@@ -1,0 +1,8 @@
+New Project Idea dataset inspection: https://huggingface.co/datasets/mvasil/polyvore-outfits/tree/main
+
+1. Images
+2. Item ID
+3. Item metadata
+4. Outfit IDs / outfit information
+
+images ↔ item metadata ↔ categories ↔ outfit membership
