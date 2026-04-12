@@ -15,6 +15,10 @@ split_counts = {
 
 styles = ["casual", "formal", "sporty", "streetwear"]
 
+# Remove old split folder if it already exists
+if os.path.exists(output_root):
+    shutil.rmtree(output_root)
+
 # Create output folders
 for split in split_counts:
     for style in styles:
@@ -24,6 +28,9 @@ for style in styles:
     all_files = []
 
     style_path = os.path.join(input_root, style)
+    if not os.path.isdir(style_path):
+        print(f"Warning: missing style folder {style_path}")
+        continue
 
     for item_type in os.listdir(style_path):
         type_path = os.path.join(style_path, item_type)
@@ -39,9 +46,19 @@ for style in styles:
 
     random.shuffle(all_files)
 
-    train_files = all_files[:split_counts["train"]]
-    val_files = all_files[split_counts["train"]:split_counts["train"] + split_counts["val"]]
-    test_files = all_files[split_counts["train"] + split_counts["val"]:]
+    expected_total = sum(split_counts.values())
+    if len(all_files) != expected_total:
+        raise ValueError(
+            f"Style '{style}' has {len(all_files)} images, but {expected_total} are required "
+            f"for the split ({split_counts})."
+        )
+
+    train_end = split_counts["train"]
+    val_end = train_end + split_counts["val"]
+
+    train_files = all_files[:train_end]
+    val_files = all_files[train_end:val_end]
+    test_files = all_files[val_end:]
 
     split_map = {
         "train": train_files,
