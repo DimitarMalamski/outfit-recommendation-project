@@ -1,0 +1,15 @@
+Initial project documentation plan of development
+
+Project Title
+Introduction
+Project Goal
+Why this project
+Problem Context
+Key concepts: style and match
+Planned approach
+Data collection and preparation
+Baseline model
+Possible improvement path
+Risks and limitations
+Stakeholders
+References

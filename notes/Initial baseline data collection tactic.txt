@@ -1,0 +1,54 @@
+Initial baseline data collection tactic:
+
+Styles:
+
+casual
+formal
+sporty
+streetwear
+
+Clothing types:
+
+shirt/top
+pants
+shoes
+jacket/outerwear
+
+Label plan:
+
+Each image should ideally get = one style and one clothing type
+
+Images:
+
+50-100 baseline start
+
+Universal image storing pattern:
+
+style_type_id
+
+Examples: casual_tshirt_001, formal_shoes_002 and so on
+
+As a starter:
+
+For each clothing type I will collect 10 images from 1 store. The idea is to start with that and later I will collect 10 more from a different store ( For example, I start with bershka, later I add H&M or Zara and so on )
+
+Casual
+	Bershka
+	H&M
+	Zara
+	Pull&Bear
+Sporty
+	Nike
+	Adidas
+	Puma
+	ASOS sport section
+Streetwear
+	Footshop
+	Urban Outfitters
+	Selected marketplace/store sections
+Formal
+	Mango
+	Zara
+	Massimo Dutti
+	H&M formal section
+
