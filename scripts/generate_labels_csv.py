@@ -20,7 +20,8 @@ for style in os.listdir(dataset_root):
             file_path = os.path.join(type_path, filename)
 
             if os.path.isfile(file_path):
-                rows.append([filename, style, item_type])
+                relative_path = os.path.join(style, item_type, filename)
+                rows.append([filename, style, item_type, relative_path])
 
 # Sort rows for neatness
 rows.sort(key=lambda x: (x[1], x[2], x[0]))
@@ -30,7 +31,7 @@ os.makedirs(os.path.dirname(output_csv), exist_ok=True)
 
 with open(output_csv, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
-    writer.writerow(["filename", "style", "type"])
+    writer.writerow(["filename", "style", "type", "relative_path"])
     writer.writerows(rows)
 
 print(f"Created {output_csv} with {len(rows)} rows.")

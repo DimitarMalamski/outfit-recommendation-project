@@ -13,7 +13,13 @@ split_counts = {
     "test": 6
 }
 
-styles = ["casual", "formal", "sporty", "streetwear"]
+# Read all style folders automatically
+styles = sorted([
+    folder for folder in os.listdir(input_root)
+    if os.path.isdir(os.path.join(input_root, folder))
+])
+
+print("Detected styles:", styles)
 
 # Remove old split folder if it already exists
 if os.path.exists(output_root):
@@ -28,9 +34,6 @@ for style in styles:
     all_files = []
 
     style_path = os.path.join(input_root, style)
-    if not os.path.isdir(style_path):
-        print(f"Warning: missing style folder {style_path}")
-        continue
 
     for item_type in os.listdir(style_path):
         type_path = os.path.join(style_path, item_type)
@@ -68,8 +71,15 @@ for style in styles:
 
     for split_name, files in split_map.items():
         for file_path in files:
+            item_type = os.path.basename(os.path.dirname(file_path))
             filename = os.path.basename(file_path)
-            destination = os.path.join(output_root, split_name, style, filename)
+            new_filename = f"{item_type}_{filename}"
+            destination = os.path.join(output_root, split_name, style, new_filename)
             shutil.copy2(file_path, destination)
+
+    print(
+        f"Style '{style}': "
+        f"{len(train_files)} train, {len(val_files)} val, {len(test_files)} test"
+    )
 
 print("Style-only dataset split created successfully.")
