@@ -7,13 +7,12 @@ random.seed(42)
 input_root = "../dataset/cleaned"
 output_root = "../dataset/split_style"
 
-split_counts = {
-    "train": 28,
-    "val": 6,
-    "test": 6
+split_ratios = {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
 }
 
-# Read all style folders automatically
 styles = sorted([
     folder for folder in os.listdir(input_root)
     if os.path.isdir(os.path.join(input_root, folder))
@@ -21,18 +20,15 @@ styles = sorted([
 
 print("Detected styles:", styles)
 
-# Remove old split folder if it already exists
 if os.path.exists(output_root):
     shutil.rmtree(output_root)
 
-# Create output folders
-for split in split_counts:
+for split in split_ratios:
     for style in styles:
         os.makedirs(os.path.join(output_root, split, style), exist_ok=True)
 
 for style in styles:
     all_files = []
-
     style_path = os.path.join(input_root, style)
 
     for item_type in os.listdir(style_path):
@@ -49,15 +45,17 @@ for style in styles:
 
     random.shuffle(all_files)
 
-    expected_total = sum(split_counts.values())
-    if len(all_files) != expected_total:
-        raise ValueError(
-            f"Style '{style}' has {len(all_files)} images, but {expected_total} are required "
-            f"for the split ({split_counts})."
-        )
+    total = len(all_files)
+    if total == 0:
+        print(f"Style '{style}' has no images, skipping.")
+        continue
 
-    train_end = split_counts["train"]
-    val_end = train_end + split_counts["val"]
+    train_count = int(total * split_ratios["train"])
+    val_count = int(total * split_ratios["val"])
+    test_count = total - train_count - val_count
+
+    train_end = train_count
+    val_end = train_end + val_count
 
     train_files = all_files[:train_end]
     val_files = all_files[train_end:val_end]
@@ -79,7 +77,8 @@ for style in styles:
 
     print(
         f"Style '{style}': "
-        f"{len(train_files)} train, {len(val_files)} val, {len(test_files)} test"
+        f"{len(train_files)} train, {len(val_files)} val, {len(test_files)} test "
+        f"(total: {total})"
     )
 
 print("Style-only dataset split created successfully.")
