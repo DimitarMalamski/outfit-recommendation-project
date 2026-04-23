@@ -17,6 +17,7 @@ Thumbs.db
 dataset/split_style/
 dataset/split/
 dataset/split_type/
+dataset/external_type_test/
 
 models/
 outputs/
