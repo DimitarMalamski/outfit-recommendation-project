@@ -7,6 +7,7 @@ __pycache__/
 *.pyo
 
 .ipynb_checkpoints/
+*.ipynb_checkpoints
 
 .DS_Store
 Thumbs.db
@@ -20,8 +21,15 @@ dataset/split_type/
 dataset/external_type_test/
 
 models/
+*.pth
+*.pt
+
 outputs/
 runs/
 checkpoints/
+
+results/**/*.png
+results/**/*.jpg
+results/**/*.jpeg
 
 *.log

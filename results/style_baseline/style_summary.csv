@@ -1,0 +1,2 @@
+experiment,model,training_setup,epochs,train_images,val_images,test_images,test_accuracy,classes
+style_resnet34_baseline,ResNet34,"frozen feature extractor, trained final layer",10,560,120,120,0.8416666666666667,"formal, gothic, sporty, streetwear"

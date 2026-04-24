@@ -1,0 +1,4 @@
+image_path,style,type,filename
+../dataset/cleaned\gothic\pants\gothic_pants_014.png,gothic,pants,gothic_pants_014.png
+../dataset/cleaned\gothic\shoes\gothic_shoes_014.png,gothic,shoes,gothic_shoes_014.png
+../dataset/cleaned\gothic\tshirt\gothic_tshirt_014.png,gothic,tshirt,gothic_tshirt_014.png

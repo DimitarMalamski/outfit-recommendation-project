@@ -1,0 +1,2 @@
+experiment,input_image,predicted_style,predicted_type,style_confidence,type_confidence,recommendation_rule,num_recommendations
+rule_based_recommendation_baseline,../dataset/cleaned/gothic/jacket/gothic_jacket_025.png,gothic,jacket,0.9474146366119385,0.8012428283691406,"same predicted style, different clothing type, one item per missing type",3

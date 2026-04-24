@@ -1,0 +1,2 @@
+experiment,model,training_setup,epochs,train_images,val_images,test_images,internal_test_accuracy,external_test_accuracy,classes
+type_resnet34_baseline,ResNet34,"frozen feature extractor, trained final layer",10,560,120,120,1.0,0.9,"jacket, pants, shoes, tshirt"
