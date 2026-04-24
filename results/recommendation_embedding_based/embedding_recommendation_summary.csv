@@ -1,0 +1,2 @@
+experiment,input_image,predicted_style,predicted_type,style_confidence,type_confidence,recommendation_rule,ranking_method,num_recommendations
+embedding_based_recommendation,../dataset/cleaned/sporty/jacket/sporty_jacket_025.png,sporty,jacket,0.8333853483200073,0.9791852831840515,"same predicted style, different clothing type, one item per missing type",cosine similarity using ResNet34 image embeddings,3

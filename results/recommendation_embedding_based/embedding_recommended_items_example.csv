@@ -1,0 +1,4 @@
+image_path,style,type,filename,embedding_index,similarity
+../dataset/cleaned\sporty\tshirt\sporty_tshirt_021.png,sporty,tshirt,sporty_tshirt_021.png,570,0.8188658
+../dataset/cleaned\sporty\pants\sporty_pants_005.png,sporty,pants,sporty_pants_005.png,454,0.7276045
+../dataset/cleaned\sporty\shoes\sporty_shoes_021.png,sporty,shoes,sporty_shoes_021.png,520,0.52903163
