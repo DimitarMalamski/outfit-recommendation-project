@@ -1,0 +1,20 @@
+Questions to ask the fashion stakeholder:
+
+1. How do you decide if clothing items go well together?
+2. What makes two items compatible rather than just visually similar?
+3. Are there any basic rules people follow when combining outfits?
+4. How important is context (like occasion or setting) when choosing outfits?
+5. If you had to judge an outfit recommendation, what would make it “good” or “bad”?
+6. Do you think starting from one item and recommending others is realistic?
+7. What are the biggest mistakes people make when combining outfits?
+
+--------------------
+
+Questions to ask the regular user stakeholder:
+
+1. How do you usually decide what clothes go well together?
+2. Do you ever find it difficult to match outfits? If yes, what makes it difficult?
+3. When you see an outfit, what makes you think it looks good?
+4. Would you use a system that suggests outfits based on one item? Why or why not?
+5. What would make you trust or not trust such recommendations?
+6. Would you prefer simple suggestions (just matching items) or more detailed ones (based on style, occasion, etc.)?
