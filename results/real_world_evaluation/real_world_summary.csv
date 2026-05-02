@@ -1,0 +1,2 @@
+experiment,num_images,style_accuracy,type_accuracy,style_classes,type_classes,main_style_issue,main_type_issue,next_step
+real_world_evaluation,80,0.475,0.75,"formal, gothic, sporty, streetwear","jacket, pants, shoes, tshirt",streetwear had 0.00 recall and gothic was overpredicted,tshirts and jackets had more confusion than shoes and pants,"improve style classifier using more varied data, refined labels, or fine-tuning"
