@@ -1,0 +1,4 @@
+Model,Training strategy,Extra data,Curated test accuracy,Real-world test accuracy
+Original style baseline,"Frozen feature extractor, trained final layer",No,0.8417,0.475
+Fine-tuned layer4 model,Fine-tuned layer4 and final layer,No,0.9417,0.425
+Dataset-improved model,"Frozen feature extractor, trained final layer",Yes,0.8666666666666667,0.6
