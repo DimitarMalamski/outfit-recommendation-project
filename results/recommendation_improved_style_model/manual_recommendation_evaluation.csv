@@ -1,0 +1,9 @@
+input,true_style,true_type,predicted_style_correct,predicted_type_correct,recommendation_structurally_valid,notes
+formal_jacket_rw_001,formal,jacket,True,False,False,"Style was correct, but type was predicted as pants. The system recommended another jacket because it excluded the wrong type."
+formal_shoes_rw_001,formal,shoes,True,True,True,Both predictions were correct and the recommendations used formal items from other clothing categories.
+gothic_jacket_rw_001,gothic,jacket,True,True,True,Both predictions were correct and the recommendations followed the expected same-style different-type rule.
+gothic_tshirt_rw_001,gothic,tshirt,False,True,True,"Type was correct, but style was predicted as streetwear, so the recommendations came from the wrong style category."
+sporty_jacket_rw_001,sporty,jacket,True,True,True,Both predictions were correct and the recommendation output was structurally valid.
+sporty_shoes_rw_001,sporty,shoes,False,True,True,"Type was correct, but style was predicted as streetwear, so the recommendations matched the wrong style."
+streetwear_jacket_rw_001,streetwear,jacket,True,False,False,"Style was correct, but type was predicted as tshirt. The system recommended another jacket because it excluded tshirts instead of jackets."
+streetwear_tshirt_rw_001,streetwear,tshirt,True,True,True,Both predictions were correct and the recommendations used streetwear items from other clothing categories.

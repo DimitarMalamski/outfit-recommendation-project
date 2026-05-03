@@ -219,7 +219,21 @@ The table below summarizes the main experiments and results from the project.
 | Style dataset improvement                | Improve style classifier using extra targeted data |     0.8667 curated accuracy |                       0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.            |
 | Recommendation with improved style model | Test recommender with improved style classifier    |                 Qualitative |                                      Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output. |
 
-## 12. Main Development Decisions
+## 12. Selected Models for Current Prototype
+
+Based on the experiments, the current prototype uses the following models:
+
+| Component                | Selected model                       | Reason                                                                                                                                                       |
+| ------------------------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Style classifier         | `style_resnet34_extra_data.pth`      | This model achieved the best real-world style accuracy, improving from 0.4750 to 0.6000.                                                                     |
+| Clothing type classifier | `type_resnet34.pth`                  | This model remained the strongest available type classifier, with 1.00 internal test accuracy, 0.90 small external accuracy, and 0.7500 real-world accuracy. |
+| Recommendation ranking   | ResNet34 embedding feature extractor | This provides visual similarity ranking using cosine similarity and improves the recommender compared with random selection.                                 |
+
+The selected style model is not the model with the highest curated test accuracy. The fine-tuned layer4 model achieved the highest curated test accuracy at 0.9417, but it performed worse on the real-world test set with 0.4250 accuracy. Because the recommendation system is intended to work with realistic input images, the dataset-improved style model is selected instead.
+
+The current recommendation prototype therefore uses the dataset-improved style classifier together with the existing clothing type classifier and embedding-based retrieval.
+
+## 13. Main Development Decisions
 
 Several important development decisions were made during the project.
 
@@ -241,7 +255,7 @@ Several important development decisions were made during the project.
 
 9. The improved style model was integrated back into the recommender to test whether model improvement helped the full pipeline.
 
-## 13. Final Conclusion
+## 14. Final Conclusion
 
 The final system is a working prototype for fashion recommendation based on image classification and embedding-based retrieval.
 
@@ -255,7 +269,7 @@ The recommendation pipeline works best when both style and type predictions are 
 
 This means that the current system is a useful prototype, but not yet a complete outfit compatibility model. It demonstrates that classification and embedding retrieval can support fashion recommendation, while also showing the limits of this approach.
 
-## 14. Next Steps
+## 15. Next Steps
 
 The next development steps are:
 

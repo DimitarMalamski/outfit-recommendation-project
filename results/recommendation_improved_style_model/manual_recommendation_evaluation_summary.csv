@@ -1,0 +1,2 @@
+num_examples,style_correct_count,type_correct_count,structurally_valid_count,style_correct_rate,type_correct_rate,structurally_valid_rate
+8,6,6,6,0.75,0.75,0.75
