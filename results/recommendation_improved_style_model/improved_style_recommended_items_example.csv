@@ -1,0 +1,4 @@
+image_path,style,type,filename,embedding_index,similarity
+../dataset/cleaned\streetwear\jacket\streetwear_jacket_033.png,streetwear,jacket,streetwear_jacket_033.png,632,0.6963201
+../dataset/cleaned\streetwear\pants\streetwear_pants_028.png,streetwear,pants,streetwear_pants_028.png,677,0.6279251
+../dataset/cleaned\streetwear\shoes\streetwear_shoes_019.png,streetwear,shoes,streetwear_shoes_019.png,718,0.6098709
