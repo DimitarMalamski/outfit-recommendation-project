@@ -1,0 +1,9 @@
+input_image,true_style,true_type,predicted_style,predicted_type,style_confidence,type_confidence,status,style_confident,type_confident,warnings,num_recommendations
+../dataset/real_world_test/formal/jacket/formal_jacket_rw_001.png,formal,jacket,formal,pants,0.6174589991569519,0.5087971687316895,type_uncertain,True,False,Clothing type prediction confidence is low. The system may exclude the wrong item type.,3
+../dataset/real_world_test/formal/shoes/formal_shoes_rw_001.png,formal,shoes,formal,shoes,0.794080376625061,0.9461197257041931,reliable,True,True,,3
+../dataset/real_world_test/gothic/jacket/gothic_jacket_rw_001.png,gothic,jacket,gothic,jacket,0.9787817597389221,0.6075882911682129,reliable,True,True,,3
+../dataset/real_world_test/gothic/tshirt/gothic_tshirt_rw_001.png,gothic,tshirt,streetwear,tshirt,0.8981559872627258,0.7653654217720032,reliable,True,True,,3
+../dataset/real_world_test/sporty/jacket/sporty_jacket_rw_001.png,sporty,jacket,sporty,jacket,0.4270082712173462,0.7475894689559937,style_uncertain,False,True,Style prediction confidence is low. Recommendations may use the wrong style category.,3
+../dataset/real_world_test/sporty/shoes/sporty_shoes_rw_001.png,sporty,shoes,streetwear,shoes,0.5997135639190674,0.7967241406440735,style_uncertain,False,True,Style prediction confidence is low. Recommendations may use the wrong style category.,3
+../dataset/real_world_test/streetwear/jacket/streetwear_jacket_rw_001.png,streetwear,jacket,streetwear,tshirt,0.9382966756820679,0.5366581082344055,type_uncertain,True,False,Clothing type prediction confidence is low. The system may exclude the wrong item type.,3
+../dataset/real_world_test/streetwear/tshirt/streetwear_tshirt_rw_001.png,streetwear,tshirt,streetwear,tshirt,0.6849294900894165,0.8358219265937805,reliable,True,True,,3

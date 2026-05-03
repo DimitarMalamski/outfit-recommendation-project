@@ -1,0 +1,2 @@
+experiment,input_image,predicted_style,predicted_type,style_confidence,type_confidence,safeguard_status,style_confident,type_confident,warnings,recommendation_rule,ranking_method,num_recommendations
+recommendation_confidence_safeguards,../dataset/real_world_test/streetwear/jacket/streetwear_jacket_rw_001.png,streetwear,tshirt,0.6849294900894165,0.8358219265937805,reliable,True,True,,"same predicted style, different predicted clothing type, one item per missing type",cosine similarity using ResNet34 image embeddings,3

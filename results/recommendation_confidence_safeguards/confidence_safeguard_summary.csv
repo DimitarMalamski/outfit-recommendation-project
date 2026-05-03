@@ -1,0 +1,2 @@
+num_examples,reliable_count,type_uncertain_count,style_uncertain_count,style_and_type_uncertain_count,style_confident_rate,type_confident_rate
+8,4,2,2,0,0.75,0.75
