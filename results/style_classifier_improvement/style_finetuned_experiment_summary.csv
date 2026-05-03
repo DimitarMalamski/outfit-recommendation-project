@@ -1,0 +1,2 @@
+experiment,model,training_strategy,epochs,best_validation_accuracy,original_curated_test_accuracy,finetuned_curated_test_accuracy,original_real_world_style_accuracy,finetuned_real_world_style_accuracy,main_result,next_step
+style_classifier_improvement_finetuned_layer4,ResNet34,fine-tuned layer4 and final classification layer,10,0.9833333333333333,0.8417,0.9416666666666667,0.475,0.425,"curated accuracy improved, but real-world accuracy decreased","improve dataset with more varied real-world style images, especially streetwear"
