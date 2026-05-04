@@ -1,0 +1,3 @@
+Model,Training data,Curated type test accuracy,External type test accuracy,Real-world type test accuracy
+Original type model,Original split_type train set,1.0,0.9,0.75
+Improved type model,Original split_type train set + type_extra,1.0,0.9,0.8875
