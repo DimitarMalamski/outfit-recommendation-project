@@ -1,0 +1,14 @@
+data requirements
+1-2 paragrapsh per page
+which AI tool is used in the documentation should be listed:
+"the prompts that are used" or "the main prompts used", don't use example
+should include the example of similar systems that were already build like mine in the document
+Why - make it more personal on why I personally want to do this, also include why I am doing this project if other similar projects exits. Evalute on why I am interested in fashion.
+For the stakehodlers, put their name ( or a fake one ) there.
+Domain Understanding - what do I need to know about fashion, clothing. Include the people you spoke to regarding fashion. Include the process on how I come up with this information.
+It is a broad subject, so it is hard to come up with a good domain understanding
+Analytic approach - should list a target variable ( to be more clear on it )
+List the iterations more specifically
+"How" - what the delivery face will be ( interface ? )
+Stakeholder - too much information, be more specific on it
+Limitation section - shorten it a lot, it is not that serious
