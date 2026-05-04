@@ -15,6 +15,7 @@ dataset/
 ├── external_type_test/
 ├── real_world_test/
 ├── style_extra/
+├── type_extra/
 └── metadata/
 ```
 
@@ -142,6 +143,23 @@ This dataset is used for training in the style dataset improvement experiment.
 
 It must remain separate from `real_world_test`.
 
+## type_extra/
+
+The `type_extra` folder contains extra targeted training images for improving the clothing type classifier.
+
+This dataset was created after the recommendation experiments showed that type prediction errors can break the recommendation structure. For example, when a jacket is predicted as a tshirt, the recommender excludes the wrong category and may recommend another jacket.
+
+The extra dataset contains 90 images focused on real-world-like type variation:
+
+- 30 jacket images
+- 30 tshirt images
+- 15 pants images
+- 15 shoes images
+
+This dataset is used for training in the type dataset improvement experiment.
+
+It must remain separate from `real_world_test`.
+
 ## metadata/
 
 The `metadata` folder contains supporting files that document the dataset.
@@ -166,7 +184,7 @@ The `real_world_test` dataset is only used for evaluation.
 
 The `style_extra` dataset is used for training improvement.
 
-Images from `real_world_test` should not be copied into `style_extra`, `cleaned`, `split_style`, or `split_type`.
+Images from `real_world_test` should not be copied into `style_extra`, `type_extra`, `cleaned`, `split_style`, or `split_type`.
 
 This separation is important because it prevents data leakage and keeps the real-world evaluation fair.
 
