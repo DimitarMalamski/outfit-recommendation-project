@@ -1,0 +1,2 @@
+num_examples,original_type_correct_count,improved_type_correct_count,type_prediction_changed_count,type_fixed_count,type_became_wrong_count,original_reliable_count,improved_reliable_count
+8,6,8,2,2,0,4,6

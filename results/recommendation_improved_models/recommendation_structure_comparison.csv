@@ -1,0 +1,9 @@
+image_path,true_style,true_type,predicted_style,original_predicted_type,original_status,original_recommended_types,original_includes_same_actual_type,improved_predicted_type,improved_status,improved_recommended_types,improved_includes_same_actual_type,structural_issue_fixed,structural_issue_introduced
+../dataset/real_world_test/formal/jacket/formal_jacket_rw_001.png,formal,jacket,formal,pants,type_uncertain,"jacket, shoes, tshirt",True,jacket,reliable,"pants, shoes, tshirt",False,True,False
+../dataset/real_world_test/formal/shoes/formal_shoes_rw_001.png,formal,shoes,formal,shoes,reliable,"jacket, pants, tshirt",False,shoes,reliable,"jacket, pants, tshirt",False,False,False
+../dataset/real_world_test/gothic/jacket/gothic_jacket_rw_001.png,gothic,jacket,gothic,jacket,reliable,"pants, shoes, tshirt",False,jacket,reliable,"pants, shoes, tshirt",False,False,False
+../dataset/real_world_test/gothic/tshirt/gothic_tshirt_rw_001.png,gothic,tshirt,streetwear,tshirt,reliable,"jacket, pants, shoes",False,tshirt,reliable,"jacket, pants, shoes",False,False,False
+../dataset/real_world_test/sporty/jacket/sporty_jacket_rw_001.png,sporty,jacket,sporty,jacket,style_uncertain,"pants, shoes, tshirt",False,jacket,style_uncertain,"pants, shoes, tshirt",False,False,False
+../dataset/real_world_test/sporty/shoes/sporty_shoes_rw_001.png,sporty,shoes,streetwear,shoes,style_uncertain,"jacket, pants, tshirt",False,shoes,style_uncertain,"jacket, pants, tshirt",False,False,False
+../dataset/real_world_test/streetwear/jacket/streetwear_jacket_rw_001.png,streetwear,jacket,streetwear,tshirt,type_uncertain,"jacket, pants, shoes",True,jacket,reliable,"pants, shoes, tshirt",False,True,False
+../dataset/real_world_test/streetwear/tshirt/streetwear_tshirt_rw_001.png,streetwear,tshirt,streetwear,tshirt,reliable,"jacket, pants, shoes",False,tshirt,reliable,"jacket, pants, shoes",False,False,False

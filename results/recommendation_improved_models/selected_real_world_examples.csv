@@ -1,0 +1,9 @@
+image_path,true_style,true_type
+../dataset/real_world_test/formal/jacket/formal_jacket_rw_001.png,formal,jacket
+../dataset/real_world_test/formal/shoes/formal_shoes_rw_001.png,formal,shoes
+../dataset/real_world_test/gothic/jacket/gothic_jacket_rw_001.png,gothic,jacket
+../dataset/real_world_test/gothic/tshirt/gothic_tshirt_rw_001.png,gothic,tshirt
+../dataset/real_world_test/sporty/jacket/sporty_jacket_rw_001.png,sporty,jacket
+../dataset/real_world_test/sporty/shoes/sporty_shoes_rw_001.png,sporty,shoes
+../dataset/real_world_test/streetwear/jacket/streetwear_jacket_rw_001.png,streetwear,jacket
+../dataset/real_world_test/streetwear/tshirt/streetwear_tshirt_rw_001.png,streetwear,tshirt

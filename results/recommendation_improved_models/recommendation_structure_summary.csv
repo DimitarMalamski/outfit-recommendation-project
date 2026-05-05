@@ -1,0 +1,2 @@
+num_examples,original_same_actual_type_count,improved_same_actual_type_count,structural_issue_fixed_count,structural_issue_introduced_count
+8,2,0,2,0
