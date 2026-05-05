@@ -19,6 +19,18 @@ dataset/
 └── metadata/
 ```
 
+## Dataset Counts Summary
+
+| Folder                | Purpose                                            |       Size |
+| --------------------- | -------------------------------------------------- | ---------: |
+| `cleaned/`            | Main reviewed dataset and recommendation catalogue | 800 images |
+| `split_style/`        | Style classifier train/validation/test split       | 800 images |
+| `split_type/`         | Type classifier train/validation/test split        | 800 images |
+| `external_type_test/` | Small external type evaluation set                 |  20 images |
+| `real_world_test/`    | Real-world evaluation set                          |  80 images |
+| `style_extra/`        | Extra style training images                        | 100 images |
+| `type_extra/`         | Extra type training images                         |  90 images |
+
 ## raw/
 
 The `raw` folder contains the initially collected clothing images before final review and organization.
@@ -48,7 +60,7 @@ style = gothic
 type = jacket
 ```
 
-The cleaned dataset is also used as the recommendation catalogue for the rule-based and embedding-based recommender prototypes.
+The cleaned dataset is also used as the recommendation catalogue for the rule-based, embedding-based, and improved recommendation prototypes.
 
 ## split_style/
 
@@ -182,7 +194,11 @@ dataset_rules.md
 
 The `real_world_test` dataset is only used for evaluation.
 
+The `external_type_test` dataset is only used for evaluation of the clothing type classifier.
+
 The `style_extra` dataset is used for training improvement.
+
+The `type_extra` dataset is used for clothing type training improvement.
 
 Images from `real_world_test` should not be copied into `style_extra`, `type_extra`, `cleaned`, `split_style`, or `split_type`.
 
