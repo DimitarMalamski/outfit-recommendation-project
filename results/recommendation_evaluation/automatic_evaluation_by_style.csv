@@ -1,0 +1,5 @@
+true_style,examples,style_correct_rate,type_correct_rate,same_actual_type_issue_rate
+formal,8,0.625,0.875,0.125
+gothic,8,0.25,1.0,0.0
+sporty,8,0.5,1.0,0.0
+streetwear,8,0.875,0.875,0.125

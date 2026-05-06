@@ -1,0 +1,2 @@
+num_examples,style_correct_count,type_correct_count,same_actual_type_issue_count,reliable_count,style_uncertain_count,type_uncertain_count,style_and_type_uncertain_count,style_accuracy_on_examples,type_accuracy_on_examples
+32,18,30,2,14,12,3,3,0.5625,0.9375

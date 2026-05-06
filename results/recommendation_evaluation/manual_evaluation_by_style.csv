@@ -1,0 +1,5 @@
+true_style,examples,structural_validity_avg,style_consistency_avg,visual_coherence_avg,confidence_warning_usefulness_avg,overall_quality_avg
+formal,8,1.75,1.25,1.25,1.625,1.25
+gothic,8,2.0,1.0,1.125,1.5,1.125
+sporty,8,2.0,1.25,1.25,1.375,1.25
+streetwear,8,1.75,1.75,1.625,1.375,1.625

@@ -1,0 +1,5 @@
+true_type,examples,structural_validity_avg,style_consistency_avg,visual_coherence_avg,confidence_warning_usefulness_avg,overall_quality_avg
+jacket,8,2.0,1.75,1.75,1.75,1.75
+pants,8,1.75,1.75,1.625,1.125,1.625
+shoes,8,2.0,0.5,0.625,1.875,0.625
+tshirt,8,1.75,1.25,1.25,1.125,1.25

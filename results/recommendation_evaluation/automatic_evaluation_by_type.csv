@@ -1,0 +1,5 @@
+true_type,examples,style_correct_rate,type_correct_rate,same_actual_type_issue_rate
+jacket,8,0.75,1.0,0.0
+pants,8,0.75,0.875,0.125
+shoes,8,0.25,1.0,0.0
+tshirt,8,0.5,0.875,0.125
