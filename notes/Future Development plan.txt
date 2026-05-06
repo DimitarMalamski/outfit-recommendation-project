@@ -1,0 +1,9 @@
+Future Development plan:
+
+1. Add balanced style boundary examples.
+2. Add light augmentation as a controlled technical improvement.
+3. Check class balance and use class weights only if needed.
+4. Train new ResNet34 style model.
+5. Evaluate on the same real-world style test set.
+6. Re-run the same 32-example recommendation evaluation.
+7. Only after that, compare architectures like EfficientNet-B0 or ResNet50.
