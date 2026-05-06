@@ -22,7 +22,9 @@ The improved style model was then tested inside the embedding-based recommendati
 
 Because some recommendation failures were caused by wrong clothing type predictions, the next development step focused on improving the type classifier with targeted real-world-like images. This improved real-world type accuracy from 0.7500 to 0.8875.
 
-Finally, the improved type model was tested inside the full recommendation pipeline. The results showed that type-related structural recommendation failures were reduced. In the selected real-world examples, same-actual-type recommendation issues dropped from 2 examples to 0 examples. However, the system still has remaining style-related weaknesses, especially when gothic or sporty items are predicted as streetwear.
+The improved type model was then tested inside the full recommendation pipeline. The results showed that type-related structural recommendation failures were reduced. In the selected real-world examples, same-actual-type recommendation issues dropped from 2 examples to 0 examples. However, the system still had remaining style-related weaknesses, especially when gothic or sporty items were predicted as streetwear.
+
+After this, a more systematic recommendation evaluation framework was created. Instead of only inspecting a few recommendation examples visually, 32 balanced real-world examples were evaluated using automatic checks and manual scoring criteria. This showed that the recommender was structurally strong, with an average structural validity score of 1.875 out of 2, but weaker in style consistency, visual coherence, and overall recommendation quality, each averaging 1.3125 out of 2. This confirmed that the next major improvement should focus on style reliability.
 
 ## 3. Experiment 1: Style Classification Baseline
 
@@ -337,25 +339,103 @@ However, the experiment also showed that some remaining issues are style-related
 
 Overall, this experiment confirmed that the improved type classifier is the better choice for the current prototype. It reduced type-related structural failures, while the main remaining bottleneck became style reliability and recommendation evaluation.
 
-## 14. Overall Results Comparison
+## 14. Experiment 12: Recommendation Evaluation Framework
+
+The twelfth experiment focused on evaluating the current final recommendation prototype more systematically.
+
+Previous recommendation experiments used selected examples and visual inspection. This was useful for understanding the system qualitatively, but it was not repeatable enough to compare future improvements. Because of this, a small evaluation framework was created.
+
+The evaluation used the current final prototype:
+
+- `style_resnet34_extra_data.pth`
+- `type_resnet34_extra_data.pth`
+- ResNet34 image embeddings
+- cosine similarity ranking
+- confidence safeguards
+
+A balanced subset of the real-world test set was selected:
+
+- 4 styles
+- 4 clothing types
+- 2 examples per style/type combination
+- 32 examples in total
+
+For each example, the system recorded automatic information such as:
+
+- true style
+- true clothing type
+- predicted style
+- predicted clothing type
+- style confidence
+- type confidence
+- safeguard status
+- recommended item types
+- whether the recommendations included the same actual type as the input
+
+The automatic evaluation showed:
+
+| Metric                                         | Result |
+| ---------------------------------------------- | -----: |
+| Style prediction accuracy on selected examples | 0.5625 |
+| Type prediction accuracy on selected examples  | 0.9375 |
+| Same-actual-type recommendation issues         | 2 / 32 |
+
+This confirmed that clothing type prediction was now strong, while style prediction remained the main bottleneck.
+
+A manual scoring framework was then added. Each recommendation was scored from 0 to 2 using the following criteria:
+
+- structural validity
+- style consistency
+- visual coherence
+- confidence warning usefulness
+- overall recommendation quality
+
+The manual evaluation results were:
+
+| Criterion                     | Average score |
+| ----------------------------- | ------------: |
+| Structural validity           |        1.8750 |
+| Style consistency             |        1.3125 |
+| Visual coherence              |        1.3125 |
+| Confidence warning usefulness |        1.4688 |
+| Overall quality               |        1.3125 |
+
+The overall recommendation quality distribution was:
+
+| Quality          | Count |
+| ---------------- | ----: |
+| Bad              |     7 |
+| Partially useful |     8 |
+| Good             |    17 |
+
+This means that 17 out of 32 recommendations were scored as good, while 15 were either partially useful or bad.
+
+The by-style results showed that streetwear had the best average overall quality score at 1.625, while gothic had the weakest score at 1.125. This fits the earlier findings: the extra style data improved streetwear recognition, but gothic and sporty boundary cases are still difficult.
+
+The by-type results showed that jacket inputs performed best, with an average overall quality score of 1.750. Shoe inputs performed worst, with an average overall quality score of 0.625. This does not mean that shoe type prediction was weak. Instead, shoe inputs often caused style prediction errors, which led the recommender to retrieve items from the wrong style category.
+
+Overall, this experiment showed that the current recommender is structurally reliable, but still limited by style prediction quality. The recommendation logic can usually select useful clothing categories, but it still struggles when the predicted style is wrong.
+
+## 15. Overall Results Comparison
 
 The table below summarizes the main experiments and results from the project.
 
-| Experiment                                | Main goal                                            |          Curated/Internal Result |                                             Real-world Result | Main conclusion                                                                                             |
-| ----------------------------------------- | ---------------------------------------------------- | -------------------------------: | ------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------- |
-| Style classification baseline             | Predict fashion style                                |             0.8417 test accuracy |                                    0.4750 real-world accuracy | The model learned style patterns on clean data but struggled with realistic images.                         |
-| Clothing type classification baseline     | Predict clothing type                                |      1.00 internal test accuracy |              0.90 small external / 0.7500 real-world accuracy | Clothing type classification was more reliable than style classification, but still made real-world errors. |
-| Rule-based recommendation                 | Recommend same-style, different-type items           |                      Qualitative |                               Not tested on real-world images | The pipeline worked, but recommendations were randomly selected.                                            |
-| Embedding-based recommendation            | Rank recommendations by visual similarity            |                      Qualitative |                     Not initially tested on real-world images | Embeddings improved recommendation ranking compared with random selection.                                  |
-| Real-world evaluation                     | Test generalization                                  |                              N/A |                                   Style: 0.4750, Type: 0.7500 | Style prediction was the main weakness, but type errors also affected the recommender.                      |
-| Style fine-tuning                         | Improve style classifier using partial fine-tuning   |          0.9417 curated accuracy |                                    0.4250 real-world accuracy | Fine-tuning improved clean-data performance but did not improve real-world generalization.                  |
-| Style dataset improvement                 | Improve style classifier using extra targeted data   |          0.8667 curated accuracy |                                    0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.                |
-| Recommendation with improved style model  | Test recommender with improved style classifier      |                      Qualitative |                                                   Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output.     |
-| Recommendation with confidence safeguards | Add warnings for uncertain predictions               |                      Qualitative | 4 reliable, 2 type_uncertain, 2 style_uncertain on 8 examples | Confidence warnings improved transparency, but high-confidence wrong predictions still occurred.            |
-| Type dataset improvement                  | Improve type classifier using extra targeted data    | 1.0000 curated / 0.9000 external |                                    0.8875 real-world accuracy | Targeted type data improved real-world type prediction while preserving clean-data performance.             |
-| Recommendation with improved models       | Test recommender with improved style and type models |                      Qualitative |     Same-actual-type issues reduced from 2 to 0 on 8 examples | Improved type prediction reduced structural recommendation failures.                                        |
+| Experiment                                | Main goal                                            |          Curated/Internal Result |                                                 Real-world Result | Main conclusion                                                                                             |
+| ----------------------------------------- | ---------------------------------------------------- | -------------------------------: | ----------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------- |
+| Style classification baseline             | Predict fashion style                                |             0.8417 test accuracy |                                        0.4750 real-world accuracy | The model learned style patterns on clean data but struggled with realistic images.                         |
+| Clothing type classification baseline     | Predict clothing type                                |      1.00 internal test accuracy |                  0.90 small external / 0.7500 real-world accuracy | Clothing type classification was more reliable than style classification, but still made real-world errors. |
+| Rule-based recommendation                 | Recommend same-style, different-type items           |                      Qualitative |                                   Not tested on real-world images | The pipeline worked, but recommendations were randomly selected.                                            |
+| Embedding-based recommendation            | Rank recommendations by visual similarity            |                      Qualitative |                         Not initially tested on real-world images | Embeddings improved recommendation ranking compared with random selection.                                  |
+| Real-world evaluation                     | Test generalization                                  |                              N/A |                                       Style: 0.4750, Type: 0.7500 | Style prediction was the main weakness, but type errors also affected the recommender.                      |
+| Style fine-tuning                         | Improve style classifier using partial fine-tuning   |          0.9417 curated accuracy |                                        0.4250 real-world accuracy | Fine-tuning improved clean-data performance but did not improve real-world generalization.                  |
+| Style dataset improvement                 | Improve style classifier using extra targeted data   |          0.8667 curated accuracy |                                        0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.                |
+| Recommendation with improved style model  | Test recommender with improved style classifier      |                      Qualitative |                                                       Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output.     |
+| Recommendation with confidence safeguards | Add warnings for uncertain predictions               |                      Qualitative |     4 reliable, 2 type_uncertain, 2 style_uncertain on 8 examples | Confidence warnings improved transparency, but high-confidence wrong predictions still occurred.            |
+| Type dataset improvement                  | Improve type classifier using extra targeted data    | 1.0000 curated / 0.9000 external |                                        0.8875 real-world accuracy | Targeted type data improved real-world type prediction while preserving clean-data performance.             |
+| Recommendation with improved models       | Test recommender with improved style and type models |                      Qualitative |         Same-actual-type issues reduced from 2 to 0 on 8 examples | Improved type prediction reduced structural recommendation failures.                                        |
+| Recommendation evaluation framework       | Evaluate final prototype systematically              |    Automatic + manual evaluation | 17 good, 8 partially useful, 7 bad recommendations on 32 examples | The recommender is structurally strong, but style consistency and visual coherence remain weaker.           |
 
-## 15. Selected Models for Current Prototype
+## 16. Selected Models for Current Prototype
 
 Based on the experiments, the current prototype uses the following models:
 
@@ -372,7 +452,7 @@ The selected type model is now the dataset-improved type classifier. The origina
 
 The current recommendation prototype therefore uses the dataset-improved style classifier, the dataset-improved type classifier, embedding-based retrieval, and confidence safeguards.
 
-## 16. Main Development Decisions
+## 17. Main Development Decisions
 
 Several important development decisions were made during the project.
 
@@ -398,7 +478,11 @@ Several important development decisions were made during the project.
 
 11. The improved type model was selected because it reduced same-actual-type recommendation issues from 2 to 0 on the selected real-world examples.
 
-## 17. Final Conclusion
+12. A manual recommendation evaluation framework was added because visual inspection alone was not repeatable enough to compare future improvements.
+
+13. The evaluation results showed that the next improvement should focus on style boundary cases, especially gothic, sporty, and streetwear confusion.
+
+## 18. Final Conclusion
 
 The final system is a working prototype for fashion recommendation based on image classification and embedding-based retrieval.
 
@@ -410,30 +494,44 @@ The strongest type-related technical result was the dataset-improved type model,
 
 The recommendation pipeline works best when both style and type predictions are correct. When the style prediction is wrong, the system retrieves items from the wrong style category. When the type prediction is wrong, the system may recommend an item from the same actual clothing category.
 
-The improved type model reduced this second problem. In the selected recommendation examples, same-actual-type recommendation issues dropped from **2** to **0**. This means the recommendation structure became more reliable.
+The improved type model reduced type-related structural failures. In the selected recommendation comparison, same-actual-type recommendation issues dropped from **2** to **0**. This means the recommendation structure became more reliable.
 
-However, the current system is still not a complete outfit compatibility model. Some recommendations are structurally correct but stylistically weak because the style classifier can still confuse gothic, sporty, and streetwear. The system also does not yet evaluate color matching, texture, proportions, occasion, or user preference.
+The final recommendation evaluation confirmed this. Across 32 balanced real-world examples, the average structural validity score was **1.875** out of 2. This shows that the recommender usually suggests useful complementary clothing types.
 
-The project also showed that clothing type classification is more reliable than style classification. Style is more subjective and depends on visual cues that overlap between categories, especially gothic, sporty, and streetwear.
+However, style consistency, visual coherence, and overall recommendation quality each averaged **1.3125** out of 2. Out of 32 recommendations, **17** were scored as good, **8** were partially useful, and **7** were bad. This means that the system is useful as a prototype, but not yet reliable enough as a complete outfit recommendation system.
 
-This means that the current system is a useful prototype. It demonstrates that classification and embedding retrieval can support fashion recommendation, while also showing the limits of this approach.
+The main remaining weakness is style reliability. Some recommendations are structurally correct but stylistically weak because the style classifier still confuses gothic, sporty, and streetwear. The system also does not yet evaluate color matching, texture, proportions, occasion, or user preference.
 
-## 18. Next Steps
+Overall, the project demonstrates that classification and embedding retrieval can support a basic fashion recommendation system. At the same time, it also shows the limits of this approach when style prediction is uncertain or wrong.
+
+## 19. Next Steps
 
 The next development steps are:
 
-1. Build a stronger recommendation evaluation framework using 20 to 40 real-world examples and manual scoring criteria.
+1. Add more balanced style boundary examples between streetwear, gothic, and sporty so the style classifier does not overpredict streetwear.
 
-2. Evaluate the current final prototype using criteria such as style correctness, type correctness, structural validity, style consistency, visual coherence, and confidence warning usefulness.
+2. Create a new style improvement experiment focused on boundary cases, especially:
+   - gothic but not streetwear
+   - streetwear but not gothic
+   - sporty but not streetwear
+   - streetwear but not sporty
+   - formal tshirts that should not be confused with streetwear
 
-3. Add more balanced style boundary examples between streetwear, gothic, and sporty so the style classifier does not overpredict streetwear.
+3. Re-train or improve the style classifier using the new boundary data.
 
-4. Re-test the recommendation pipeline after any future style improvement using the same recommendation evaluation framework.
+4. Re-test the recommendation pipeline using the same 32-example evaluation framework from Experiment 12.
 
-5. Improve recommendation ranking with color features, fashion-specific compatibility features, or CLIP embeddings.
+5. Compare the new recommendation scores with the current evaluation results:
+   - structural validity: 1.875
+   - style consistency: 1.3125
+   - visual coherence: 1.3125
+   - confidence warning usefulness: 1.4688
+   - overall quality: 1.3125
 
-6. Add a simple user evaluation where people rate whether the recommended outfits make sense.
+6. Improve recommendation ranking with color features, fashion-specific compatibility features, or CLIP embeddings.
 
-7. Expand the recommendation catalogue with more varied clothing items so the system has better options to retrieve from.
+7. Add a simple user evaluation where people rate whether the recommended outfits make sense.
 
-8. Keep the real-world test set separate from training data so future improvements can be evaluated fairly.
+8. Expand the recommendation catalogue with more varied clothing items so the system has better options to retrieve from.
+
+9. Keep the real-world test set separate from training data so future improvements can be evaluated fairly.
