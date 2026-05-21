@@ -1,0 +1,4 @@
+quality_label,previous_resnet34,new_mobilenetv3,difference
+bad,7,6,-1
+partially_useful,8,7,-1
+good,17,19,2

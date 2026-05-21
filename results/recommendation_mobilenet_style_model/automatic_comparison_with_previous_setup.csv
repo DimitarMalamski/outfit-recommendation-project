@@ -1,0 +1,3 @@
+setup,style_accuracy,type_accuracy,same_actual_type_issues,same_actual_type_issue_rate
+Previous ResNet34 style setup,0.5625,0.9375,2,0.0625
+MobileNetV3 style setup,0.65625,0.9375,2,0.0625

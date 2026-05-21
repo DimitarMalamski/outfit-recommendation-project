@@ -1,0 +1,5 @@
+safeguard_status,count
+reliable,16
+style_uncertain,10
+style_and_type_uncertain,5
+type_uncertain,1

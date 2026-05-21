@@ -28,6 +28,8 @@ After this, a more systematic recommendation evaluation framework was created. I
 
 After the recommendation evaluation framework showed that style reliability was the main bottleneck, a new model architecture comparison experiment was created. This experiment compared ResNet34, MobileNetV3 Large, and EfficientNet-B0 using the same improved style training setup and the same real-world evaluation set. MobileNetV3 Large achieved the best real-world style result, with 0.6250 accuracy and 0.6242 macro F1-score. It also had a much smaller model size than ResNet34, which made it a better candidate for the next recommendation pipeline experiment.
 
+After MobileNetV3 Large performed best in the architecture comparison, it was tested inside the full recommendation pipeline. This experiment kept the type classifier, recommendation catalogue, ResNet34 embedding extractor, cosine similarity ranking, confidence thresholds, and 32-example evaluation subset the same. Only the style classifier was changed. The MobileNetV3 setup improved automatic style accuracy from 0.5625 to 0.65625. The manual evaluation also improved: overall recommendation quality increased from 1.3125 to 1.40625, and the number of good recommendations increased from 17 to 19. Based on this, MobileNetV3 Large became the selected style classifier for the current prototype.
+
 ## 3. Experiment 1: Style Classification Baseline
 
 The first experiment focused on fashion style classification.
@@ -448,46 +450,101 @@ EfficientNet-B0 achieved the highest curated test accuracy, but it performed wor
 
 The class-level results showed that MobileNetV3 Large had the most balanced real-world recall. It did not fully solve the style classification problem, because sporty recall was still weak, but it performed better overall than the other tested architectures.
 
-Based on this experiment, MobileNetV3 Large was selected as the best candidate style model for the next recommendation pipeline experiment. It should be tested inside the full recommender before replacing the current ResNet34-based style model.
+Based on this experiment, MobileNetV3 Large was selected as the best candidate style model for the next recommendation pipeline experiment. It still needed to be tested inside the full recommender before replacing the current ResNet34-based style model.
 
-## 16. Overall Results Comparison
+## 16. Experiment 14: Recommendation Evaluation with MobileNetV3 Style Classifier
+
+The fourteenth experiment tested whether the MobileNetV3 Large style classifier improved the full recommendation pipeline.
+
+The previous architecture comparison showed that MobileNetV3 Large had the best real-world style classification performance, with **0.6250** accuracy and **0.6242** macro F1-score. However, better standalone classification accuracy does not automatically mean better recommendation quality. Because of this, the model needed to be tested inside the actual recommender.
+
+The experiment used the same setup as the previous 32-example recommendation evaluation, except for the style classifier.
+
+| Component             | Previous setup                  | New setup                                              |
+| --------------------- | ------------------------------- | ------------------------------------------------------ |
+| Style classifier      | `style_resnet34_extra_data.pth` | `style_mobilenet_v3_large_architecture_comparison.pth` |
+| Type classifier       | `type_resnet34_extra_data.pth`  | `type_resnet34_extra_data.pth`                         |
+| Catalogue             | `dataset/cleaned`               | `dataset/cleaned`                                      |
+| Embedding extractor   | ResNet34                        | ResNet34                                               |
+| Ranking method        | Cosine similarity               | Cosine similarity                                      |
+| Confidence thresholds | 0.60 style, 0.60 type           | 0.60 style, 0.60 type                                  |
+| Evaluation subset     | 32 balanced real-world examples | Same 32 balanced real-world examples                   |
+
+This made the comparison fair because only the style model changed.
+
+The automatic evaluation results were:
+
+| Metric                                 | Previous ResNet34 setup | New MobileNetV3 setup |
+| -------------------------------------- | ----------------------: | --------------------: |
+| Style prediction accuracy              |                  0.5625 |               0.65625 |
+| Type prediction accuracy               |                  0.9375 |                0.9375 |
+| Same-actual-type recommendation issues |                  2 / 32 |                2 / 32 |
+
+MobileNetV3 improved style prediction accuracy by **0.09375**, which is a **9.375 percentage point improvement**. Type accuracy stayed the same because the type classifier was not changed. Same-actual-type issues also stayed the same at 2 out of 32, which makes sense because those issues are mainly caused by type prediction errors.
+
+The manual evaluation also improved:
+
+| Criterion                     | Previous ResNet34 score | New MobileNetV3 score | Difference |
+| ----------------------------- | ----------------------: | --------------------: | ---------: |
+| Structural validity           |                  1.8750 |                1.9375 |    +0.0625 |
+| Style consistency             |                  1.3125 |               1.46875 |   +0.15625 |
+| Visual coherence              |                  1.3125 |                1.3750 |    +0.0625 |
+| Confidence warning usefulness |                  1.4688 |                1.5625 |    +0.0937 |
+| Overall quality               |                  1.3125 |               1.40625 |   +0.09375 |
+
+The biggest improvement was in style consistency. This is important because style consistency was one of the main weaknesses in the previous recommendation evaluation. The result shows that the improved style classifier helped the recommender retrieve items from a more suitable style category more often.
+
+The overall quality distribution also improved:
+
+| Quality          | Previous ResNet34 setup | New MobileNetV3 setup |
+| ---------------- | ----------------------: | --------------------: |
+| Bad              |                       7 |                     6 |
+| Partially useful |                       8 |                     7 |
+| Good             |                      17 |                    19 |
+
+This means the number of good recommendations increased by 2, while bad recommendations decreased by 1.
+
+Overall, this experiment confirmed that MobileNetV3 Large is better than the previous ResNet34 style classifier for the full recommendation pipeline. The improvement is not dramatic, but it is consistent across both automatic and manual evaluation. Based on this result, MobileNetV3 Large should replace the ResNet34 style classifier in the current prototype.
+
+## 17. Overall Results Comparison
 
 The table below summarizes the main experiments and results from the project.
 
-| Experiment                                | Main goal                                                                         |                                    Curated/Internal Result |                                                 Real-world Result | Main conclusion                                                                                                         |
-| ----------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------: | ----------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------- |
-| Style classification baseline             | Predict fashion style                                                             |                                       0.8417 test accuracy |                                        0.4750 real-world accuracy | The model learned style patterns on clean data but struggled with realistic images.                                     |
-| Clothing type classification baseline     | Predict clothing type                                                             |                                1.00 internal test accuracy |                  0.90 small external / 0.7500 real-world accuracy | Clothing type classification was more reliable than style classification, but still made real-world errors.             |
-| Rule-based recommendation                 | Recommend same-style, different-type items                                        |                                                Qualitative |                                   Not tested on real-world images | The pipeline worked, but recommendations were randomly selected.                                                        |
-| Embedding-based recommendation            | Rank recommendations by visual similarity                                         |                                                Qualitative |                         Not initially tested on real-world images | Embeddings improved recommendation ranking compared with random selection.                                              |
-| Real-world evaluation                     | Test generalization                                                               |                                                        N/A |                                       Style: 0.4750, Type: 0.7500 | Style prediction was the main weakness, but type errors also affected the recommender.                                  |
-| Style fine-tuning                         | Improve style classifier using partial fine-tuning                                |                                    0.9417 curated accuracy |                                        0.4250 real-world accuracy | Fine-tuning improved clean-data performance but did not improve real-world generalization.                              |
-| Style dataset improvement                 | Improve style classifier using extra targeted data                                |                                    0.8667 curated accuracy |                                        0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.                            |
-| Recommendation with improved style model  | Test recommender with improved style classifier                                   |                                                Qualitative |                                                       Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output.                 |
-| Recommendation with confidence safeguards | Add warnings for uncertain predictions                                            |                                                Qualitative |     4 reliable, 2 type_uncertain, 2 style_uncertain on 8 examples | Confidence warnings improved transparency, but high-confidence wrong predictions still occurred.                        |
-| Type dataset improvement                  | Improve type classifier using extra targeted data                                 |                           1.0000 curated / 0.9000 external |                                        0.8875 real-world accuracy | Targeted type data improved real-world type prediction while preserving clean-data performance.                         |
-| Recommendation with improved models       | Test recommender with improved style and type models                              |                                                Qualitative |         Same-actual-type issues reduced from 2 to 0 on 8 examples | Improved type prediction reduced structural recommendation failures.                                                    |
-| Recommendation evaluation framework       | Evaluate final prototype systematically                                           |                              Automatic + manual evaluation | 17 good, 8 partially useful, 7 bad recommendations on 32 examples | The recommender is structurally strong, but style consistency and visual coherence remain weaker.                       |
-| Style model architecture comparison       | Compare ResNet34, MobileNetV3 Large, and EfficientNet-B0 for style classification | EfficientNet-B0 had the highest curated accuracy at 0.8417 |      MobileNetV3 Large had the best real-world accuracy at 0.6250 | MobileNetV3 Large was the best candidate because it improved real-world performance and was much smaller than ResNet34. |
+| Experiment                                             | Main goal                                                                         |                                    Curated/Internal Result |                                                                                                                             Real-world Result | Main conclusion                                                                                                         |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------- | ---------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------- |
+| Style classification baseline                          | Predict fashion style                                                             |                                       0.8417 test accuracy |                                                                                                                    0.4750 real-world accuracy | The model learned style patterns on clean data but struggled with realistic images.                                     |
+| Clothing type classification baseline                  | Predict clothing type                                                             |                                1.00 internal test accuracy |                                                                                              0.90 small external / 0.7500 real-world accuracy | Clothing type classification was more reliable than style classification, but still made real-world errors.             |
+| Rule-based recommendation                              | Recommend same-style, different-type items                                        |                                                Qualitative |                                                                                                               Not tested on real-world images | The pipeline worked, but recommendations were randomly selected.                                                        |
+| Embedding-based recommendation                         | Rank recommendations by visual similarity                                         |                                                Qualitative |                                                                                                     Not initially tested on real-world images | Embeddings improved recommendation ranking compared with random selection.                                              |
+| Real-world evaluation                                  | Test generalization                                                               |                                                        N/A |                                                                                                                   Style: 0.4750, Type: 0.7500 | Style prediction was the main weakness, but type errors also affected the recommender.                                  |
+| Style fine-tuning                                      | Improve style classifier using partial fine-tuning                                |                                    0.9417 curated accuracy |                                                                                                                    0.4250 real-world accuracy | Fine-tuning improved clean-data performance but did not improve real-world generalization.                              |
+| Style dataset improvement                              | Improve style classifier using extra targeted data                                |                                    0.8667 curated accuracy |                                                                                                                    0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.                            |
+| Recommendation with improved style model               | Test recommender with improved style classifier                                   |                                                Qualitative |                                                                                                                                   Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output.                 |
+| Recommendation with confidence safeguards              | Add warnings for uncertain predictions                                            |                                                Qualitative |                                                                                 4 reliable, 2 type_uncertain, 2 style_uncertain on 8 examples | Confidence warnings improved transparency, but high-confidence wrong predictions still occurred.                        |
+| Type dataset improvement                               | Improve type classifier using extra targeted data                                 |                           1.0000 curated / 0.9000 external |                                                                                                                    0.8875 real-world accuracy | Targeted type data improved real-world type prediction while preserving clean-data performance.                         |
+| Recommendation with improved models                    | Test recommender with improved style and type models                              |                                                Qualitative |                                                                                     Same-actual-type issues reduced from 2 to 0 on 8 examples | Improved type prediction reduced structural recommendation failures.                                                    |
+| Recommendation evaluation framework                    | Evaluate final prototype systematically                                           |                              Automatic + manual evaluation |                                                                             17 good, 8 partially useful, 7 bad recommendations on 32 examples | The recommender is structurally strong, but style consistency and visual coherence remain weaker.                       |
+| Style model architecture comparison                    | Compare ResNet34, MobileNetV3 Large, and EfficientNet-B0 for style classification | EfficientNet-B0 had the highest curated accuracy at 0.8417 |                                                                                  MobileNetV3 Large had the best real-world accuracy at 0.6250 | MobileNetV3 Large was the best candidate because it improved real-world performance and was much smaller than ResNet34. |
+| Recommendation evaluation with MobileNetV3 style model | Test whether MobileNetV3 improves the full recommendation pipeline                |                              Automatic + manual evaluation | Style accuracy improved from 0.5625 to 0.65625; overall quality improved from 1.3125 to 1.40625; good recommendations increased from 17 to 19 | MobileNetV3 improved the full pipeline and should replace the previous ResNet34 style classifier.                       |
 
-## 17. Selected Models for Current Prototype
+## 18. Selected Models for Current Prototype
 
 Based on the experiments, the current prototype uses the following models:
 
-| Component                | Selected model                                                                                                      | Reason                                                                                                                                                                                                           |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Style classifier         | `style_resnet34_extra_data.pth` currently, `style_mobilenet_v3_large_architecture_comparison.pth` as next candidate | ResNet34 is still the style model used in the current recommendation evaluation, but MobileNetV3 Large achieved better real-world style classification and should be tested next in the recommendation pipeline. |
-| Clothing type classifier | `type_resnet34_extra_data.pth`                                                                                      | This model improved real-world type accuracy from 0.7500 to 0.8875 while preserving 1.0000 curated accuracy and 0.9000 external accuracy.                                                                        |
-| Recommendation ranking   | ResNet34 embedding feature extractor                                                                                | This provides visual similarity ranking using cosine similarity and improves the recommender compared with random selection.                                                                                     |
-| Confidence safeguards    | Softmax confidence thresholds                                                                                       | These make uncertain recommendations more transparent, using 0.60 thresholds for style and type confidence.                                                                                                      |
+| Component                | Selected model                                         | Reason                                                                                                                                                                                                                                                                               |
+| ------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Style classifier         | `style_mobilenet_v3_large_architecture_comparison.pth` | MobileNetV3 Large achieved the best real-world style classification result and also improved the full recommendation pipeline. Style accuracy on the 32-example recommendation subset increased from 0.5625 to 0.65625, and manual overall quality increased from 1.3125 to 1.40625. |
+| Clothing type classifier | `type_resnet34_extra_data.pth`                         | This model improved real-world type accuracy from 0.7500 to 0.8875 while preserving 1.0000 curated accuracy and 0.9000 external accuracy.                                                                                                                                            |
+| Recommendation ranking   | ResNet34 embedding feature extractor                   | This provides visual similarity ranking using cosine similarity and improves the recommender compared with random selection.                                                                                                                                                         |
+| Confidence safeguards    | Softmax confidence thresholds                          | These make uncertain recommendations more transparent, using 0.60 thresholds for style and type confidence.                                                                                                                                                                          |
 
-The selected style model is not the model with the highest curated test accuracy. The fine-tuned layer4 model achieved the highest curated test accuracy at 0.9417, but it performed worse on the real-world test set with 0.4250 accuracy. Because the recommendation system is intended to work with realistic input images, the dataset-improved style model is selected instead.
+The selected style model is not the model with the highest curated test accuracy. The fine-tuned layer4 ResNet34 model achieved the highest curated test accuracy at 0.9417, but it performed worse on the real-world test set with 0.4250 accuracy. EfficientNet-B0 also achieved the highest curated accuracy in the architecture comparison, but it performed worst on the real-world test set. Because the recommendation system is intended to work with realistic input images, MobileNetV3 Large is selected instead. It achieved the best real-world style classification result and also improved the full recommendation pipeline.
 
 The selected type model is now the dataset-improved type classifier. The original type model already performed strongly on clean data, but the improved type model achieved much better real-world type accuracy, increasing from 0.7500 to 0.8875.
 
-The current recommendation prototype therefore uses the dataset-improved style classifier, the dataset-improved type classifier, embedding-based retrieval, and confidence safeguards.
+The current recommendation prototype therefore uses the MobileNetV3 Large style classifier, the dataset-improved ResNet34 type classifier, ResNet34 embedding-based retrieval, cosine similarity ranking, and confidence safeguards.
 
-## 18. Main Development Decisions
+## 19. Main Development Decisions
 
 Several important development decisions were made during the project.
 
@@ -519,51 +576,54 @@ Several important development decisions were made during the project.
 
 14. A model architecture comparison was added after teacher feedback suggested testing models such as MobileNet and EfficientNet. MobileNetV3 Large was selected as the best candidate because it achieved the strongest real-world style classification result while being much smaller than ResNet34.
 
-## 19. Final Conclusion
+15. MobileNetV3 Large was tested inside the full recommendation pipeline before replacing ResNet34, because standalone classifier accuracy was not enough to prove recommendation improvement.
+
+16. MobileNetV3 Large was selected as the new style classifier because it improved automatic style accuracy, manual style consistency, and overall recommendation quality in the 32-example recommendation evaluation.
+
+17. The recommendation ranking method was kept unchanged during the MobileNetV3 experiment so that the effect of changing the style classifier could be isolated.
+
+## 20. Final Conclusion
 
 The final system is a working prototype for fashion recommendation based on image classification and embedding-based retrieval.
 
 The system can predict the style and clothing type of an input image, then recommend visually similar items from the same predicted style and different clothing categories.
 
-The strongest style-related technical result was the dataset-improved style model, which increased real-world style accuracy from **0.4750** to **0.6000**. This showed that improving the dataset was more effective for real-world generalization than fine-tuning alone.
-
 The strongest type-related technical result was the dataset-improved type model, which increased real-world type accuracy from **0.7500** to **0.8875**. This showed that targeted real-world-like type data can improve the classifier without damaging curated or external test performance.
+
+The strongest style-related final result was the MobileNetV3 Large style model. In the architecture comparison, MobileNetV3 Large achieved the best real-world style classification result, with **0.6250** accuracy and **0.6242** macro F1-score. It was also much smaller than ResNet34.
+
+The MobileNetV3 model was then tested inside the full recommendation pipeline. This improved style accuracy on the 32-example recommendation subset from **0.5625** to **0.65625**. Manual recommendation quality also improved. Overall quality increased from **1.3125** to **1.40625**, and style consistency increased from **1.3125** to **1.46875**.
+
+The overall quality distribution improved as well. The number of good recommendations increased from **17** to **19**, while bad recommendations decreased from **7** to **6**.
 
 The recommendation pipeline works best when both style and type predictions are correct. When the style prediction is wrong, the system retrieves items from the wrong style category. When the type prediction is wrong, the system may recommend an item from the same actual clothing category.
 
-The improved type model reduced type-related structural failures. In the selected recommendation comparison, same-actual-type recommendation issues dropped from **2** to **0**. This means the recommendation structure became more reliable.
+The final prototype is structurally strong. In the MobileNetV3 recommendation evaluation, structural validity reached **1.9375** out of 2. This shows that the recommender usually suggests useful complementary clothing types.
 
-The final recommendation evaluation confirmed this. Across 32 balanced real-world examples, the average structural validity score was **1.875** out of 2. This shows that the recommender usually suggests useful complementary clothing types.
+However, the system is still not fully reliable. The improvement from MobileNetV3 is clear but moderate. Some recommendations are still stylistically weak because the model can confuse visually overlapping styles such as gothic, sporty, and streetwear. The system also does not yet evaluate color matching, texture, proportions, occasion, or user preference.
 
-However, style consistency, visual coherence, and overall recommendation quality each averaged **1.3125** out of 2. Out of 32 recommendations, **17** were scored as good, **8** were partially useful, and **7** were bad. This means that the system is useful as a prototype, but not yet reliable enough as a complete outfit recommendation system.
+Overall, the project demonstrates that classification and embedding retrieval can support a basic fashion recommendation system. The final selected prototype uses MobileNetV3 Large for style classification, the improved ResNet34 type classifier for clothing type prediction, and ResNet34 embeddings with cosine similarity for recommendation ranking.
 
-The main remaining weakness is style reliability. Some recommendations are structurally correct but stylistically weak because the style classifier still confuses gothic, sporty, and streetwear. The system also does not yet evaluate color matching, texture, proportions, occasion, or user preference.
-
-Overall, the project demonstrates that classification and embedding retrieval can support a basic fashion recommendation system. At the same time, it also shows the limits of this approach when style prediction is uncertain or wrong.
-
-## 20. Next Steps
+## 21. Next Steps
 
 The next development steps are:
 
-1. Test the MobileNetV3 Large style classifier inside the full recommendation pipeline.
+1. Improve style boundary data, especially for visually overlapping categories:
+   - gothic but not streetwear
+   - streetwear but not gothic
+   - sporty but not streetwear
+   - streetwear but not sporty
 
-2. Keep the improved ResNet34 type classifier, the cleaned recommendation catalogue, ResNet34 embedding retrieval, and confidence safeguards the same.
+2. Improve recommendation ranking with color features, fashion-specific compatibility features, or CLIP embeddings.
 
-3. Re-run the same 32-example recommendation evaluation framework from Experiment 12.
+3. Add a simple user evaluation where people rate whether the recommended outfits make sense.
 
-4. Compare the new recommendation scores with the current evaluation results:
-   - structural validity: 1.875
-   - style consistency: 1.3125
-   - visual coherence: 1.3125
-   - confidence warning usefulness: 1.4688
-   - overall quality: 1.3125
+4. Expand the recommendation catalogue with more varied clothing items so the system has better options to retrieve from.
 
-5. Decide whether MobileNetV3 Large should replace the current ResNet34 style model in the prototype.
+5. Add more clothing attributes, such as colour, material, season, occasion, and fit.
 
-6. Improve recommendation ranking with color features, fashion-specific compatibility features, or CLIP embeddings.
+6. Improve confidence handling by testing calibration or fallback logic for uncertain predictions.
 
-7. Add a simple user evaluation where people rate whether the recommended outfits make sense.
+7. Keep the real-world test set separate from training data so future improvements can be evaluated fairly.
 
-8. Expand the recommendation catalogue with more varied clothing items so the system has better options to retrieve from.
-
-9. Keep the real-world test set separate from training data so future improvements can be evaluated fairly.
+8. Test whether a fashion-specific embedding model improves visual coherence compared with the current ResNet34 embedding extractor.
