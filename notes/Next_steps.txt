@@ -1,0 +1,310 @@
+I am working on a machine learning project called Outfit Recommendation System.
+
+The system recommends clothing items based on an input clothing image. The current pipeline works like this:
+
+1. Predict the style of the input item.
+2. Predict the clothing type of the input item.
+3. Filter the recommendation catalogue to items with the same predicted style.
+4. Exclude items with the same predicted clothing type.
+5. Rank the remaining candidate items using image embeddings and cosine similarity.
+6. Return one recommended item per remaining clothing type.
+
+The project uses four style classes:
+
+- formal
+- gothic
+- sporty
+- streetwear
+
+The project uses four clothing type classes:
+
+- jacket
+- pants
+- shoes
+- tshirt
+
+The current recommendation catalogue is stored in:
+
+../dataset/cleaned
+
+The real-world test set is stored in:
+
+../dataset/real_world_test
+
+The real-world test set structure is:
+
+real_world_test/style/type/image
+
+For example:
+
+real_world_test/streetwear/jacket/streetwear_jacket_rw_001.png
+
+This means:
+
+true style = streetwear
+true type = jacket
+
+Important: the real-world test set is evaluation-only and must not be used for training.
+
+Project history so far:
+
+The project started with ResNet34 classifiers:
+
+- style_resnet34.pth
+- type_resnet34.pth
+
+The first real-world evaluation showed:
+
+Style classifier real-world accuracy: 0.4750
+Type classifier real-world accuracy: 0.7500
+
+Then the style classifier was improved using extra targeted style data from:
+
+../dataset/style_extra
+
+This produced:
+
+style_resnet34_extra_data.pth
+
+This improved real-world style accuracy from 0.4750 to 0.6000.
+
+Then the type classifier was improved using extra targeted type data from:
+
+../dataset/type_extra
+
+This produced:
+
+type_resnet34_extra_data.pth
+
+This improved real-world type accuracy from 0.7500 to 0.8875.
+
+Then a 32-example recommendation evaluation framework was created:
+
+4 styles x 4 clothing types x 2 examples each = 32 examples
+
+The previous full recommendation evaluation used:
+
+Style model: style_resnet34_extra_data.pth
+Type model: type_resnet34_extra_data.pth
+Embedding extractor: ResNet34
+Ranking method: cosine similarity
+Confidence thresholds: 0.60 for style, 0.60 for type
+
+The previous automatic results on the 32-example evaluation were:
+
+Style prediction accuracy: 0.5625
+Type prediction accuracy: 0.9375
+Same-actual-type recommendation issues: 2 / 32
+
+The previous manual recommendation scores were:
+
+Structural validity: 1.8750 / 2
+Style consistency: 1.3125 / 2
+Visual coherence: 1.3125 / 2
+Confidence warning usefulness: 1.4688 / 2
+Overall quality: 1.3125 / 2
+
+The previous recommendation quality distribution was:
+
+Good: 17
+Partially useful: 8
+Bad: 7
+
+Based on teacher feedback, I then compared different model architectures for style classification:
+
+- ResNet34
+- MobileNetV3 Large
+- EfficientNet-B0
+
+All models were trained with the same improved style training setup:
+
+split_style/train + style_extra
+
+They were evaluated on the same curated test set and the same real-world test set.
+
+The architecture comparison results were:
+
+ResNet34:
+Curated accuracy: 0.7833
+Curated macro F1: 0.7777
+Real-world accuracy: 0.5875
+Real-world macro F1: 0.5898
+Model size: 81.34 MB
+
+MobileNetV3 Large:
+Curated accuracy: 0.8167
+Curated macro F1: 0.8105
+Real-world accuracy: 0.6250
+Real-world macro F1: 0.6242
+Model size: 16.25 MB
+
+EfficientNet-B0:
+Curated accuracy: 0.8417
+Curated macro F1: 0.8422
+Real-world accuracy: 0.5500
+Real-world macro F1: 0.5541
+Model size: 15.60 MB
+
+Conclusion from the architecture comparison:
+
+- MobileNetV3 Large had the best real-world style classification performance.
+- EfficientNet-B0 had the best curated test accuracy but the worst real-world accuracy.
+- This confirmed that curated accuracy does not automatically mean better real-world generalization.
+- MobileNetV3 Large became the best candidate style model.
+
+Then MobileNetV3 Large was tested inside the full recommendation pipeline.
+
+The MobileNetV3 recommendation setup used:
+
+Style classifier: style_mobilenet_v3_large_architecture_comparison.pth
+Type classifier: type_resnet34_extra_data.pth
+Catalogue: dataset/cleaned
+Embedding extractor: ResNet34
+Ranking method: cosine similarity
+Confidence thresholds: 0.60 style, 0.60 type
+Evaluation subset: same 32 balanced real-world examples
+
+Only the style classifier changed. Everything else stayed the same.
+
+The automatic MobileNetV3 recommendation results were:
+
+Number of examples: 32
+Style accuracy: 0.65625
+Type accuracy: 0.9375
+Same-actual-type issues: 2
+Same-actual-type issue rate: 0.0625
+Average number of recommendations: 3.0
+
+Compared with the previous ResNet34 recommendation setup:
+
+Previous style accuracy: 0.5625
+New style accuracy: 0.65625
+Improvement: 0.09375, which is 9.375 percentage points
+
+Type accuracy stayed the same at 0.9375, and same-actual-type issues stayed the same at 2 / 32.
+
+The manual MobileNetV3 recommendation scores were:
+
+Structural validity: 1.9375 / 2
+Style consistency: 1.46875 / 2
+Visual coherence: 1.3750 / 2
+Confidence warning usefulness: 1.5625 / 2
+Overall quality: 1.40625 / 2
+
+Compared with the previous ResNet34 recommendation setup:
+
+Structural validity improved from 1.8750 to 1.9375
+Style consistency improved from 1.3125 to 1.46875
+Visual coherence improved from 1.3125 to 1.3750
+Confidence warning usefulness improved from 1.4688 to 1.5625
+Overall quality improved from 1.3125 to 1.40625
+
+The quality distribution also improved:
+
+Previous ResNet34 setup:
+Good: 17
+Partially useful: 8
+Bad: 7
+
+New MobileNetV3 setup:
+Good: 19
+Partially useful: 7
+Bad: 6
+
+Conclusion:
+
+MobileNetV3 Large should replace the previous ResNet34 style classifier in the current prototype. It improved both automatic style accuracy and manual recommendation quality. However, the improvement is moderate. Visual coherence is still weaker than structural validity, meaning the system usually recommends the correct clothing categories, but the selected items do not always form the best-looking outfit.
+
+Current selected prototype:
+
+Style classifier: style_mobilenet_v3_large_architecture_comparison.pth
+Type classifier: type_resnet34_extra_data.pth
+Catalogue: ../dataset/cleaned
+Current embedding extractor: ResNet34
+Current ranking method: cosine similarity
+Confidence thresholds: 0.60 style, 0.60 type
+
+What I want to work on next:
+
+The next experiment should focus on the recommendation ranking method, not the classifiers.
+
+Currently, the system uses ResNet34 embeddings and cosine similarity to decide which specific catalogue items to recommend after filtering by predicted style and excluding the predicted clothing type.
+
+The next planned experiment is:
+
+Experiment 15: CLIP Embedding Recommendation Ranking
+
+Research question:
+
+Does replacing ResNet34 image embeddings with CLIP image embeddings improve visual coherence and overall recommendation quality in the outfit recommendation pipeline?
+
+The experiment should compare:
+
+Baseline/current setup:
+- Style classifier: MobileNetV3 Large
+- Type classifier: improved ResNet34 type model
+- Embedding extractor: ResNet34
+- Ranking method: cosine similarity
+- Catalogue: dataset/cleaned
+- Evaluation set: same 32 balanced real-world examples
+
+New setup:
+- Style classifier: MobileNetV3 Large
+- Type classifier: improved ResNet34 type model
+- Embedding extractor: CLIP image encoder
+- Ranking method: cosine similarity
+- Catalogue: dataset/cleaned
+- Evaluation set: same 32 balanced real-world examples
+
+Only the embedding extractor used for recommendation ranking should change. The classifiers, catalogue, confidence thresholds, and evaluation subset should stay the same. This makes the comparison fair.
+
+The main metric I want to improve is visual coherence, which is currently 1.3750 / 2. I also want to check whether overall quality improves from the current 1.40625 / 2.
+
+Please help me create the next experiment notebook step by step.
+
+The notebook should include:
+
+1. Objective
+2. Project Context
+3. Why This Experiment Is Needed
+4. Experiment Design
+5. Imports
+6. Paths and Results Folder
+7. Load selected classifiers
+8. Load CLIP model and preprocessing
+9. Build catalogue with CLIP embeddings
+10. Recommendation function using CLIP embeddings
+11. Create or load the same 32-example evaluation set
+12. Run automatic evaluation
+13. Generate visual evaluation sheets
+14. Create manual scoring template
+15. Load completed manual scoring
+16. Manual evaluation summary
+17. Comparison with current ResNet34 embedding baseline
+18. Results interpretation
+19. Limitations
+20. Conclusion
+21. Save experiment results
+
+Important requirements:
+
+- Keep the writing style direct, structured, technical, and clear.
+- Avoid overly formal academic language.
+- Provide copy-pastable Markdown and Python code cells.
+- Work step by step, not everything at once.
+- The real-world test set must only be used for evaluation, never training.
+- The same 32 examples should be used to make the comparison fair.
+- Manual scoring should use the same 0 to 2 criteria as before:
+  - structural validity
+  - style consistency
+  - visual coherence
+  - confidence warning usefulness
+  - overall quality
+
+Score meaning:
+
+0 = bad / not useful
+1 = partially useful
+2 = good / useful
+
+The main goal is to check whether CLIP embeddings choose better recommendation items than ResNet34 embeddings after the system has already predicted style and clothing type.
