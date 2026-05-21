@@ -1,0 +1,10 @@
+              precision    recall  f1-score   support
+
+      formal       0.58      0.70      0.64        20
+      gothic       0.81      0.65      0.72        20
+      sporty       0.64      0.45      0.53        20
+  streetwear       0.54      0.70      0.61        20
+
+    accuracy                           0.62        80
+   macro avg       0.64      0.62      0.62        80
+weighted avg       0.64      0.62      0.62        80
