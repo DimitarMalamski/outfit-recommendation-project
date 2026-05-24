@@ -1,0 +1,5 @@
+true_type,jacket,pants,shoes,tshirt
+jacket,8,0,0,0
+pants,1,7,0,0
+shoes,0,0,8,0
+tshirt,1,0,0,7

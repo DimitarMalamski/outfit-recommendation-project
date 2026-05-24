@@ -1,0 +1,6 @@
+criterion,score_0_count,score_1_count,score_2_count
+structural_validity,2,0,30
+style_consistency,5,5,22
+visual_coherence,1,10,21
+confidence_warning_usefulness,4,1,27
+overall_quality,1,12,19

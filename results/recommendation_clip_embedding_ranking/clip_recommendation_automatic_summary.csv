@@ -1,0 +1,2 @@
+num_examples,style_accuracy,type_accuracy,same_actual_type_issues,same_actual_type_issue_rate,average_num_recommendations
+32,0.65625,0.9375,2,0.0625,3.0

@@ -1,0 +1,6 @@
+criterion,average_score,median_score,minimum_score,maximum_score
+structural_validity,1.875,2.0,0.0,2.0
+style_consistency,1.53125,2.0,0.0,2.0
+visual_coherence,1.625,2.0,0.0,2.0
+confidence_warning_usefulness,1.71875,2.0,0.0,2.0
+overall_quality,1.5625,2.0,0.0,2.0

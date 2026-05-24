@@ -1,0 +1,4 @@
+overall_quality_score,meaning,count,percentage
+0,bad,1,0.03125
+1,partially useful,12,0.375
+2,good,19,0.59375

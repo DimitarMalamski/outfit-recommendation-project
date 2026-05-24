@@ -1,0 +1,4 @@
+quality_label,resnet34_embedding_baseline,clip_embedding_setup,difference
+bad,6,1,-5
+partially_useful,7,12,5
+good,19,19,0

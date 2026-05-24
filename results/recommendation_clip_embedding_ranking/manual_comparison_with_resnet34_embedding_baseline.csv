@@ -1,0 +1,6 @@
+,resnet34_embedding_baseline,clip_embedding_setup,difference
+structural_validity,1.9375,1.875,-0.0625
+style_consistency,1.46875,1.53125,0.0625
+visual_coherence,1.375,1.625,0.25
+confidence_warning_usefulness,1.5625,1.71875,0.15625
+overall_quality,1.40625,1.5625,0.15625
