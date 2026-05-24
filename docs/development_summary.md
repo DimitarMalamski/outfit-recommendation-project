@@ -506,28 +506,102 @@ This means the number of good recommendations increased by 2, while bad recommen
 
 Overall, this experiment confirmed that MobileNetV3 Large is better than the previous ResNet34 style classifier for the full recommendation pipeline. The improvement is not dramatic, but it is consistent across both automatic and manual evaluation. Based on this result, MobileNetV3 Large should replace the ResNet34 style classifier in the current prototype.
 
-## 17. Overall Results Comparison
+After the MobileNetV3 style classifier became the selected style model, the next experiment focused on the recommendation ranking method. Until this point, the recommender still used ResNet34 embeddings with cosine similarity to rank catalogue items. However, the previous evaluation showed that visual coherence was still weaker than structural validity. Because of this, Experiment 15 tested whether CLIP image embeddings could improve the visual quality of the selected recommendations.
+
+The CLIP experiment kept the classifiers, catalogue, confidence thresholds, evaluation subset, and cosine similarity ranking method unchanged. Only the embedding extractor changed from ResNet34 to CLIP. The automatic metrics stayed the same, which was expected because the classifiers were not changed. The manual evaluation showed that CLIP improved visual coherence from 1.3750 to 1.6250 and overall quality from 1.40625 to 1.5625. The number of bad recommendations also dropped from 6 to 1. Based on this, CLIP image embeddings became the selected recommendation ranking method for the current prototype.
+
+## 17. Experiment 15: CLIP Embedding Recommendation Ranking
+
+The fifteenth experiment focused on improving the recommendation ranking method.
+
+The previous MobileNetV3 recommendation experiment showed that the selected style classifier improved the full pipeline. However, visual coherence was still weaker than structural validity. This meant that the system usually recommended the correct clothing categories, but the selected items did not always form the best-looking outfit.
+
+Until this point, the recommendation system used ResNet34 image embeddings with cosine similarity. These embeddings helped rank catalogue items by visual similarity, but they were not specifically designed for semantic image understanding or fashion-related visual matching.
+
+Because of this, this experiment tested whether CLIP image embeddings could improve recommendation ranking.
+
+The research question was:
+
+**Does replacing ResNet34 image embeddings with CLIP image embeddings improve visual coherence and overall recommendation quality in the outfit recommendation pipeline?**
+
+The experiment compared two setups:
+
+| Component             | ResNet34 embedding baseline                            | CLIP embedding setup                                   |
+| --------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| Style classifier      | `style_mobilenet_v3_large_architecture_comparison.pth` | `style_mobilenet_v3_large_architecture_comparison.pth` |
+| Type classifier       | `type_resnet34_extra_data.pth`                         | `type_resnet34_extra_data.pth`                         |
+| Catalogue             | `dataset/cleaned`                                      | `dataset/cleaned`                                      |
+| Evaluation subset     | 32 balanced real-world examples                        | Same 32 balanced real-world examples                   |
+| Embedding extractor   | ResNet34                                               | CLIP image encoder                                     |
+| Ranking method        | Cosine similarity                                      | Cosine similarity                                      |
+| Confidence thresholds | 0.60 style, 0.60 type                                  | 0.60 style, 0.60 type                                  |
+
+Only the embedding extractor changed. This made the comparison fair because the classifiers, catalogue, evaluation subset, confidence thresholds, and ranking method stayed the same.
+
+The automatic evaluation results were:
+
+| Metric                                 | CLIP setup |
+| -------------------------------------- | ---------: |
+| Number of examples                     |         32 |
+| Style accuracy                         |    0.65625 |
+| Type accuracy                          |     0.9375 |
+| Same-actual-type recommendation issues |     2 / 32 |
+| Same-actual-type issue rate            |     0.0625 |
+| Average number of recommendations      |        3.0 |
+
+These automatic results stayed the same as the MobileNetV3 ResNet34 embedding baseline. This was expected because the style and type classifiers were not changed. The automatic metrics mainly checked classification and structural behaviour, not visual recommendation quality.
+
+The manual evaluation showed the main difference:
+
+| Criterion                     | ResNet34 embedding baseline | CLIP embedding setup | Difference |
+| ----------------------------- | --------------------------: | -------------------: | ---------: |
+| Structural validity           |                      1.9375 |               1.8750 |    -0.0625 |
+| Style consistency             |                     1.46875 |              1.53125 |    +0.0625 |
+| Visual coherence              |                      1.3750 |               1.6250 |    +0.2500 |
+| Confidence warning usefulness |                      1.5625 |              1.71875 |   +0.15625 |
+| Overall quality               |                     1.40625 |               1.5625 |   +0.15625 |
+
+The most important improvement was visual coherence. It increased from **1.3750** to **1.6250**, which was the main goal of the experiment.
+
+The overall quality score also improved from **1.40625** to **1.5625**.
+
+The quality distribution changed as follows:
+
+| Quality          | ResNet34 embedding baseline | CLIP embedding setup |
+| ---------------- | --------------------------: | -------------------: |
+| Bad              |                           6 |                    1 |
+| Partially useful |                           7 |                   12 |
+| Good             |                          19 |                   19 |
+
+The number of good recommendations stayed the same, but the number of bad recommendations dropped from 6 to 1. This means that CLIP did not necessarily create more perfect recommendations, but it made the weak cases less bad and improved the stability of the ranking stage.
+
+Overall, this experiment showed that CLIP embeddings are better than ResNet34 embeddings for recommendation ranking in the current prototype. CLIP improved visual coherence and overall recommendation quality while keeping the rest of the pipeline unchanged.
+
+Based on this result, CLIP image embeddings should replace ResNet34 embeddings in the recommendation ranking stage.
+
+## 18. Overall Results Comparison
 
 The table below summarizes the main experiments and results from the project.
 
-| Experiment                                             | Main goal                                                                         |                                    Curated/Internal Result |                                                                                                                             Real-world Result | Main conclusion                                                                                                         |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------- | ---------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------- |
-| Style classification baseline                          | Predict fashion style                                                             |                                       0.8417 test accuracy |                                                                                                                    0.4750 real-world accuracy | The model learned style patterns on clean data but struggled with realistic images.                                     |
-| Clothing type classification baseline                  | Predict clothing type                                                             |                                1.00 internal test accuracy |                                                                                              0.90 small external / 0.7500 real-world accuracy | Clothing type classification was more reliable than style classification, but still made real-world errors.             |
-| Rule-based recommendation                              | Recommend same-style, different-type items                                        |                                                Qualitative |                                                                                                               Not tested on real-world images | The pipeline worked, but recommendations were randomly selected.                                                        |
-| Embedding-based recommendation                         | Rank recommendations by visual similarity                                         |                                                Qualitative |                                                                                                     Not initially tested on real-world images | Embeddings improved recommendation ranking compared with random selection.                                              |
-| Real-world evaluation                                  | Test generalization                                                               |                                                        N/A |                                                                                                                   Style: 0.4750, Type: 0.7500 | Style prediction was the main weakness, but type errors also affected the recommender.                                  |
-| Style fine-tuning                                      | Improve style classifier using partial fine-tuning                                |                                    0.9417 curated accuracy |                                                                                                                    0.4250 real-world accuracy | Fine-tuning improved clean-data performance but did not improve real-world generalization.                              |
-| Style dataset improvement                              | Improve style classifier using extra targeted data                                |                                    0.8667 curated accuracy |                                                                                                                    0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.                            |
-| Recommendation with improved style model               | Test recommender with improved style classifier                                   |                                                Qualitative |                                                                                                                                   Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output.                 |
-| Recommendation with confidence safeguards              | Add warnings for uncertain predictions                                            |                                                Qualitative |                                                                                 4 reliable, 2 type_uncertain, 2 style_uncertain on 8 examples | Confidence warnings improved transparency, but high-confidence wrong predictions still occurred.                        |
-| Type dataset improvement                               | Improve type classifier using extra targeted data                                 |                           1.0000 curated / 0.9000 external |                                                                                                                    0.8875 real-world accuracy | Targeted type data improved real-world type prediction while preserving clean-data performance.                         |
-| Recommendation with improved models                    | Test recommender with improved style and type models                              |                                                Qualitative |                                                                                     Same-actual-type issues reduced from 2 to 0 on 8 examples | Improved type prediction reduced structural recommendation failures.                                                    |
-| Recommendation evaluation framework                    | Evaluate final prototype systematically                                           |                              Automatic + manual evaluation |                                                                             17 good, 8 partially useful, 7 bad recommendations on 32 examples | The recommender is structurally strong, but style consistency and visual coherence remain weaker.                       |
-| Style model architecture comparison                    | Compare ResNet34, MobileNetV3 Large, and EfficientNet-B0 for style classification | EfficientNet-B0 had the highest curated accuracy at 0.8417 |                                                                                  MobileNetV3 Large had the best real-world accuracy at 0.6250 | MobileNetV3 Large was the best candidate because it improved real-world performance and was much smaller than ResNet34. |
-| Recommendation evaluation with MobileNetV3 style model | Test whether MobileNetV3 improves the full recommendation pipeline                |                              Automatic + manual evaluation | Style accuracy improved from 0.5625 to 0.65625; overall quality improved from 1.3125 to 1.40625; good recommendations increased from 17 to 19 | MobileNetV3 improved the full pipeline and should replace the previous ResNet34 style classifier.                       |
+| Experiment                                             | Main goal                                                                           |                                    Curated/Internal Result |                                                                                                                             Real-world Result | Main conclusion                                                                                                         |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------- | ---------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------- |
+| Style classification baseline                          | Predict fashion style                                                               |                                       0.8417 test accuracy |                                                                                                                    0.4750 real-world accuracy | The model learned style patterns on clean data but struggled with realistic images.                                     |
+| Clothing type classification baseline                  | Predict clothing type                                                               |                                1.00 internal test accuracy |                                                                                              0.90 small external / 0.7500 real-world accuracy | Clothing type classification was more reliable than style classification, but still made real-world errors.             |
+| Rule-based recommendation                              | Recommend same-style, different-type items                                          |                                                Qualitative |                                                                                                               Not tested on real-world images | The pipeline worked, but recommendations were randomly selected.                                                        |
+| Embedding-based recommendation                         | Rank recommendations by visual similarity                                           |                                                Qualitative |                                                                                                     Not initially tested on real-world images | Embeddings improved recommendation ranking compared with random selection.                                              |
+| Real-world evaluation                                  | Test generalization                                                                 |                                                        N/A |                                                                                                                   Style: 0.4750, Type: 0.7500 | Style prediction was the main weakness, but type errors also affected the recommender.                                  |
+| Style fine-tuning                                      | Improve style classifier using partial fine-tuning                                  |                                    0.9417 curated accuracy |                                                                                                                    0.4250 real-world accuracy | Fine-tuning improved clean-data performance but did not improve real-world generalization.                              |
+| Style dataset improvement                              | Improve style classifier using extra targeted data                                  |                                    0.8667 curated accuracy |                                                                                                                    0.6000 real-world accuracy | Extra data improved real-world style performance and was more useful than fine-tuning alone.                            |
+| Recommendation with improved style model               | Test recommender with improved style classifier                                     |                                                Qualitative |                                                                                                                                   Qualitative | Recommendations improved when predictions were correct, but errors in style/type still affected output.                 |
+| Recommendation with confidence safeguards              | Add warnings for uncertain predictions                                              |                                                Qualitative |                                                                                 4 reliable, 2 type_uncertain, 2 style_uncertain on 8 examples | Confidence warnings improved transparency, but high-confidence wrong predictions still occurred.                        |
+| Type dataset improvement                               | Improve type classifier using extra targeted data                                   |                           1.0000 curated / 0.9000 external |                                                                                                                    0.8875 real-world accuracy | Targeted type data improved real-world type prediction while preserving clean-data performance.                         |
+| Recommendation with improved models                    | Test recommender with improved style and type models                                |                                                Qualitative |                                                                                     Same-actual-type issues reduced from 2 to 0 on 8 examples | Improved type prediction reduced structural recommendation failures.                                                    |
+| Recommendation evaluation framework                    | Evaluate final prototype systematically                                             |                              Automatic + manual evaluation |                                                                             17 good, 8 partially useful, 7 bad recommendations on 32 examples | The recommender is structurally strong, but style consistency and visual coherence remain weaker.                       |
+| Style model architecture comparison                    | Compare ResNet34, MobileNetV3 Large, and EfficientNet-B0 for style classification   | EfficientNet-B0 had the highest curated accuracy at 0.8417 |                                                                                  MobileNetV3 Large had the best real-world accuracy at 0.6250 | MobileNetV3 Large was the best candidate because it improved real-world performance and was much smaller than ResNet34. |
+| Recommendation evaluation with MobileNetV3 style model | Test whether MobileNetV3 improves the full recommendation pipeline                  |                              Automatic + manual evaluation | Style accuracy improved from 0.5625 to 0.65625; overall quality improved from 1.3125 to 1.40625; good recommendations increased from 17 to 19 | MobileNetV3 improved the full pipeline and should replace the previous ResNet34 style classifier.                       |
+| CLIP embedding recommendation ranking                  | Test whether CLIP improves recommendation ranking compared with ResNet34 embeddings |                              Automatic + manual evaluation |     Visual coherence improved from 1.3750 to 1.6250; overall quality improved from 1.40625 to 1.5625; bad recommendations dropped from 6 to 1 | CLIP embeddings improved the ranking stage and should replace ResNet34 embeddings in the current prototype.             |
 
-## 18. Selected Models for Current Prototype
+## 19. Selected Models for Current Prototype
 
 Based on the experiments, the current prototype uses the following models:
 
@@ -535,16 +609,16 @@ Based on the experiments, the current prototype uses the following models:
 | ------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Style classifier         | `style_mobilenet_v3_large_architecture_comparison.pth` | MobileNetV3 Large achieved the best real-world style classification result and also improved the full recommendation pipeline. Style accuracy on the 32-example recommendation subset increased from 0.5625 to 0.65625, and manual overall quality increased from 1.3125 to 1.40625. |
 | Clothing type classifier | `type_resnet34_extra_data.pth`                         | This model improved real-world type accuracy from 0.7500 to 0.8875 while preserving 1.0000 curated accuracy and 0.9000 external accuracy.                                                                                                                                            |
-| Recommendation ranking   | ResNet34 embedding feature extractor                   | This provides visual similarity ranking using cosine similarity and improves the recommender compared with random selection.                                                                                                                                                         |
+| Recommendation ranking   | CLIP image embeddings with cosine similarity           | CLIP improved visual coherence from 1.3750 to 1.6250 and overall quality from 1.40625 to 1.5625 compared with the ResNet34 embedding baseline. It also reduced bad recommendations from 6 to 1.                                                                                      |
 | Confidence safeguards    | Softmax confidence thresholds                          | These make uncertain recommendations more transparent, using 0.60 thresholds for style and type confidence.                                                                                                                                                                          |
 
 The selected style model is not the model with the highest curated test accuracy. The fine-tuned layer4 ResNet34 model achieved the highest curated test accuracy at 0.9417, but it performed worse on the real-world test set with 0.4250 accuracy. EfficientNet-B0 also achieved the highest curated accuracy in the architecture comparison, but it performed worst on the real-world test set. Because the recommendation system is intended to work with realistic input images, MobileNetV3 Large is selected instead. It achieved the best real-world style classification result and also improved the full recommendation pipeline.
 
 The selected type model is now the dataset-improved type classifier. The original type model already performed strongly on clean data, but the improved type model achieved much better real-world type accuracy, increasing from 0.7500 to 0.8875.
 
-The current recommendation prototype therefore uses the MobileNetV3 Large style classifier, the dataset-improved ResNet34 type classifier, ResNet34 embedding-based retrieval, cosine similarity ranking, and confidence safeguards.
+The current recommendation prototype therefore uses the MobileNetV3 Large style classifier, the dataset-improved ResNet34 type classifier, CLIP embedding-based retrieval, cosine similarity ranking, and confidence safeguards.
 
-## 19. Main Development Decisions
+## 20. Main Development Decisions
 
 Several important development decisions were made during the project.
 
@@ -582,7 +656,13 @@ Several important development decisions were made during the project.
 
 17. The recommendation ranking method was kept unchanged during the MobileNetV3 experiment so that the effect of changing the style classifier could be isolated.
 
-## 20. Final Conclusion
+18. After MobileNetV3 was selected as the style classifier, the recommendation ranking method was tested separately so that classifier improvements and ranking improvements would not be mixed.
+
+19. CLIP embeddings were tested against the ResNet34 embedding baseline while keeping the classifiers, catalogue, confidence thresholds, and evaluation subset unchanged.
+
+20. CLIP embeddings were selected for the final prototype because they improved visual coherence and overall quality, and reduced the number of bad recommendations.
+
+## 21. Final Conclusion
 
 The final system is a working prototype for fashion recommendation based on image classification and embedding-based retrieval.
 
@@ -602,9 +682,9 @@ The final prototype is structurally strong. In the MobileNetV3 recommendation ev
 
 However, the system is still not fully reliable. The improvement from MobileNetV3 is clear but moderate. Some recommendations are still stylistically weak because the model can confuse visually overlapping styles such as gothic, sporty, and streetwear. The system also does not yet evaluate color matching, texture, proportions, occasion, or user preference.
 
-Overall, the project demonstrates that classification and embedding retrieval can support a basic fashion recommendation system. The final selected prototype uses MobileNetV3 Large for style classification, the improved ResNet34 type classifier for clothing type prediction, and ResNet34 embeddings with cosine similarity for recommendation ranking.
+Overall, the project demonstrates that classification and embedding retrieval can support a basic fashion recommendation system. The final selected prototype uses MobileNetV3 Large for style classification, the improved ResNet34 type classifier for clothing type prediction, and CLIP embeddings with cosine similarity for recommendation ranking.
 
-## 21. Next Steps
+## 22. Next Steps
 
 The next development steps are:
 
@@ -614,7 +694,7 @@ The next development steps are:
    - sporty but not streetwear
    - streetwear but not sporty
 
-2. Improve recommendation ranking with color features, fashion-specific compatibility features, or CLIP embeddings.
+2. Improve recommendation ranking further by adding colour features, fashion-specific compatibility features, or occasion-based matching on top of the selected CLIP embedding approach.
 
 3. Add a simple user evaluation where people rate whether the recommended outfits make sense.
 
@@ -626,4 +706,4 @@ The next development steps are:
 
 7. Keep the real-world test set separate from training data so future improvements can be evaluated fairly.
 
-8. Test whether a fashion-specific embedding model improves visual coherence compared with the current ResNet34 embedding extractor.
+8. Test whether a fashion-specific embedding model can improve visual coherence even further compared with the selected CLIP embedding extractor.
