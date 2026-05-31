@@ -1,0 +1,13 @@
+services:
+  runway-api:
+    build: .
+    container_name: runway-ai-stylist-api
+    ports:
+      - "8000:8000"
+    environment:
+      - BACKEND_HOST=0.0.0.0
+      - BACKEND_PORT=8000
+      - CATALOGUE_DIR=catalogue
+      - EMBEDDINGS_PATH=data/catalogue_embeddings.pt
+      - STYLE_MODEL_PATH=models/style_mobilenet_v3_large_architecture_comparison.pth
+      - TYPE_MODEL_PATH=models/type_resnet34_extra_data.pth
