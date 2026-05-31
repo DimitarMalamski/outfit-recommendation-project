@@ -33,3 +33,6 @@ results/**/*.jpg
 results/**/*.jpeg
 
 *.log
+
+app/backend/catalogue/
+pp/backend/data/catalogue_embeddings.pt
