@@ -1,0 +1,23 @@
+not sertain accuracy;
+where can I deply this prototype;
+impact and weaknesses;
+how did you involve you stakeholder;
+how did you recognize your target audience;
+cross validate the feedback with different teachers;
+have an opinion on my own ( but can I apply the feedback );
+good to ask a technical teacher as well;
+success criteria for the end of the semester;
+ask different teacher about their expectations;
+final evaluation of the semester;
+Scrum methodology in my group;
+feedback from the group for my performance; ( template with questions )
+ask the stakeholder at the end about feedback on the product
+
+----
+
+I had a talk with my professor regarding my next steps towards the end of the semester. We brainstormed a little about potential things I should look over about each specific learning outcome. From a technical point of view, we discussed that model deployment and evaluation of other metrices rather then accuracy are a good starting points. Also, the key step would be cross-validation with different professor in order to align their expectation with mine regarding my progress in the semester and the about the developed projects. Other things that we discussed that can potentially enhance me as a professional are: success criteria document, final semester evaluation, Scrum methodology in the GP and also feedback from my group members regarding my participation in this project ( this can be done in a form or questions form ). Finally, good thing would be to contact my stakeholders about the final project version and their opinion about it. I am glad for the received feedback and I am looking towards our next meeting!
+
+
+
+
+
