@@ -1,39 +1,56 @@
+"use client";
+
+import { useState } from "react";
+import { getRecommendations, RecommendationResponse } from "@/lib/api";
+
 export default function RunwayAIStylist() {
-  // Static data - in Streamlit, replace with your Python variables
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [result, setResult] = useState<RecommendationResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    setSelectedFile(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    setResult(null);
+    setError(null);
+  }
+
+  async function handleSubmit() {
+    if (!selectedFile) {
+      setError("Please upload an image first.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const data = await getRecommendations(selectedFile);
+      setResult(data);
+    } catch {
+      setError("Something went wrong while generating recommendations.");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   const analysis = {
-    style: "Contemporary Minimalist",
-    type: "Silk Blouse",
-    styleConf: 92,
-    typeConf: 87,
+    style: result?.predicted_style ?? "Awaiting Image",
+    type: result?.predicted_type ?? "Awaiting Image",
+    styleConf: result ? Math.round(result.style_confidence * 100) : 0,
+    typeConf: result ? Math.round(result.type_confidence * 100) : 0,
   };
 
-  const outfits = [
-    {
-      type: "Top",
-      name: "Ivory Silk Charmeuse Blouse",
-      brand: "The Row",
-      price: "$1,290",
-      img: "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=800&h=1200&fit=crop",
-    },
-    {
-      type: "Bottom",
-      name: "High-Waisted Wool Trousers",
-      brand: "Loro Piana",
-      price: "$2,450",
-      img: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1200&fit=crop",
-    },
-    {
-      type: "Shoes",
-      name: "Patent Leather Pumps",
-      brand: "Manolo Blahnik",
-      price: "$795",
-      img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&h=1200&fit=crop",
-    },
-  ];
+  const outfits = result?.recommendations ?? [];
 
   return (
     <>
-      {/* HERO SECTION */}
       <section className="hero">
         <p className="hero-tag">The Future of Personal Style</p>
         <h1 className="hero-title">RUNWAY</h1>
@@ -50,7 +67,6 @@ export default function RunwayAIStylist() {
         </p>
       </section>
 
-      {/* UPLOAD SECTION */}
       <section className="section upload-section">
         <span className="section-num">01</span>
         <div className="section-grid">
@@ -61,22 +77,69 @@ export default function RunwayAIStylist() {
             </h2>
             <div className="divider" />
             <p className="section-desc">
-              Every great ensemble begins with a single piece. Drop your chosen
-              garment into the frame, and watch as our AI deconstructs its
-              essence.
+              Every great ensemble begins with a single piece. Upload your
+              chosen garment, then let the AI classify its style, type, and
+              visual direction.
             </p>
           </div>
+
           <div className="upload-area">
             <div className="upload-box">
-              <div className="upload-icon">+</div>
-              <p className="upload-text">Drop Image Here</p>
-              <p className="upload-hint">or click to select</p>
+              {previewUrl ? (
+                <img
+                  src={previewUrl}
+                  alt="Uploaded clothing item"
+                  className="outfit-img"
+                />
+              ) : (
+                <>
+                  <div className="upload-icon">+</div>
+                  <p className="upload-text">Drop Image Here</p>
+                  <p className="upload-hint">or click to select</p>
+                </>
+              )}
+
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/jpg"
+                onChange={handleFileChange}
+                style={{ marginTop: "1.5rem", maxWidth: "220px" }}
+              />
+
+              <button
+                onClick={handleSubmit}
+                disabled={isLoading}
+                style={{
+                  marginTop: "1.5rem",
+                  padding: "0.8rem 1.4rem",
+                  border: "1px solid #8b2635",
+                  background: "#8b2635",
+                  color: "#f5f3f0",
+                  cursor: "pointer",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  fontSize: "0.7rem",
+                }}
+              >
+                {isLoading ? "Styling..." : "Generate Outfit"}
+              </button>
+
+              {error && (
+                <p
+                  style={{
+                    color: "#c9a962",
+                    marginTop: "1rem",
+                    fontSize: "0.85rem",
+                  }}
+                >
+                  {error}
+                </p>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ANALYSIS SECTION */}
       <section className="section analysis-section">
         <span className="section-num right">02</span>
         <p className="chapter">Chapter Two</p>
@@ -111,7 +174,6 @@ export default function RunwayAIStylist() {
         </div>
       </section>
 
-      {/* OUTFIT CARDS */}
       <section className="section ensemble-section">
         <span className="section-num">03</span>
         <p className="chapter">Chapter Three</p>
@@ -120,21 +182,33 @@ export default function RunwayAIStylist() {
         </h2>
 
         <div className="outfit-grid">
-          {outfits.map((item, i) => (
-            <div key={i} className="outfit-card">
-              <img src={item.img} alt={item.name} className="outfit-img" />
-              <div className="outfit-overlay">
-                <p className="outfit-type">{item.type}</p>
-                <h3 className="outfit-name">{item.name}</h3>
-                <p className="outfit-brand">{item.brand}</p>
-                <p className="outfit-price">{item.price}</p>
+          {outfits.length > 0 ? (
+            outfits.map((item, index) => (
+              <div key={index} className="outfit-card">
+                <img
+                  src={item.image_url}
+                  alt={item.name}
+                  className="outfit-img"
+                />
+                <div className="outfit-overlay">
+                  <p className="outfit-type">{item.type}</p>
+                  <h3 className="outfit-name">{item.name}</h3>
+                  <p className="outfit-brand">{item.brand}</p>
+                  <p className="outfit-price">
+                    Similarity: {Math.round(item.score * 100)}%
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="section-desc">
+              Upload an image and generate an outfit to reveal the recommended
+              pieces.
+            </p>
+          )}
         </div>
       </section>
 
-      {/* NOTES SECTION */}
       <section className="section notes-section">
         <span className="section-num right">04</span>
         <div className="section-grid">
@@ -144,13 +218,13 @@ export default function RunwayAIStylist() {
               The <em>Notes</em>
             </h2>
           </div>
+
           <div className="quote-area">
             <blockquote className="quote">
               <span className="quote-mark">&ldquo;</span>
-              The silk blouse creates an elegant foundation with its fluid
-              drape. High-waisted trousers elongate the silhouette. Patent
-              leather pumps add editorial polish—perfect for both boardroom and
-              evening.
+              {result
+                ? result.styling_notes
+                : "The AI styling explanation will appear here after the outfit is generated."}
               <span className="quote-mark end">&rdquo;</span>
             </blockquote>
             <p className="quote-attr">— AI Styling Intelligence</p>
@@ -158,10 +232,9 @@ export default function RunwayAIStylist() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="footer">
         <p>RUNWAY AI STYLIST</p>
-        <p className="footer-sub">Issue No. 01 · Spring/Summer</p>
+        <p className="footer-sub">Fashion Recommendation Prototype</p>
       </footer>
     </>
   );
