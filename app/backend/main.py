@@ -70,9 +70,22 @@ def calculate_reliability(prediction_result):
 def create_styling_notes(prediction_result):
     style = prediction_result["predicted_style"]
     item_type = prediction_result["predicted_type"]
+    style_conf = prediction_result["style_confidence"]
+    type_conf = prediction_result["type_confidence"]
+
+    if style_conf < 0.60 or type_conf < 0.60:
+        confidence_note = (
+            "Because one or both predictions are below the confidence threshold, "
+            "this outfit should be treated as a suggested prototype result rather than a fully reliable recommendation."
+        )
+    else:
+        confidence_note = (
+            "Both predictions are above the confidence threshold, so the recommendation is considered more reliable."
+        )
 
     return (
         f"The uploaded item was classified as {style} and detected as a {item_type}. "
-        "The outfit was created by selecting items from the same predicted style, "
-        "avoiding duplicate clothing categories, and ranking candidates using CLIP-based visual similarity."
+        "The system selected catalogue items from the same predicted style, excluded the uploaded item type, "
+        "and ranked candidates using CLIP-based visual similarity. "
+        f"{confidence_note}"
     )
