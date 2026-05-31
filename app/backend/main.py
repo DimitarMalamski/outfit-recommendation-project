@@ -7,7 +7,16 @@ from PIL import Image
 from src.prediction import predict_image
 from src.recommender import recommend_outfit
 
+from fastapi.staticfiles import StaticFiles
+from src.config import CATALOGUE_DIR
+
 app = FastAPI(title="Runway AI Stylist API")
+
+app.mount(
+    "/catalogue",
+    StaticFiles(directory=CATALOGUE_DIR),
+    name="catalogue"
+)
 
 app.add_middleware(
     CORSMiddleware,

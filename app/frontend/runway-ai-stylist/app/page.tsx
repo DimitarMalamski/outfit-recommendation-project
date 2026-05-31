@@ -186,7 +186,7 @@ export default function RunwayAIStylist() {
             outfits.map((item, index) => (
               <div key={index} className="outfit-card">
                 <img
-                  src={item.image_url}
+                  src={`http://localhost:8000${item.image_url}`}
                   alt={item.name}
                   className="outfit-img"
                 />
