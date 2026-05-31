@@ -1,19 +1,23 @@
-from pathlib import Path
+import torch
 
-from src.config import CATALOGUE_DIR, TYPE_CLASSES
-
-
-SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
+from src.clip_service import encode_image
+from src.config import TYPE_CLASSES
 
 
-def recommend_outfit(prediction_result):
+_EMBEDDINGS_PATH = "data/catalogue_embeddings.pt"
+_catalogue_records = None
+
+
+def recommend_outfit(prediction_result, input_image=None):
     predicted_style = prediction_result["predicted_style"]
     predicted_type = prediction_result["predicted_type"]
 
-    style_folder = CATALOGUE_DIR / predicted_style
-
-    if not style_folder.exists():
+    if input_image is None:
         return []
+
+    input_embedding = encode_image(input_image).squeeze(0)
+
+    records = _load_catalogue_records()
 
     recommendations = []
 
@@ -21,40 +25,62 @@ def recommend_outfit(prediction_result):
         if clothing_type == predicted_type:
             continue
 
-        type_folder = style_folder / clothing_type
+        candidates = [
+            record
+            for record in records
+            if record["style"] == predicted_style and record["type"] == clothing_type
+        ]
 
-        if not type_folder.exists():
+        if not candidates:
             continue
 
-        image_path = _get_first_image(type_folder)
-
-        if image_path is None:
-            continue
+        best_record, best_score = _find_best_candidate(input_embedding, candidates)
 
         recommendations.append(
             {
                 "type": clothing_type,
                 "name": _format_item_name(predicted_style, clothing_type),
                 "brand": "Catalogue Item",
-                "image_url": _to_public_catalogue_url(image_path),
-                "score": 1.0,
+                "image_url": "/catalogue/" + best_record["path"],
+                "score": round(float(best_score), 4),
             }
         )
 
     return recommendations[:3]
 
 
-def _get_first_image(folder: Path):
-    for file_path in folder.iterdir():
-        if file_path.is_file() and file_path.suffix.lower() in SUPPORTED_EXTENSIONS:
-            return file_path
+def _load_catalogue_records():
+    global _catalogue_records
 
-    return None
+    if _catalogue_records is not None:
+        return _catalogue_records
+
+    _catalogue_records = torch.load(
+        _EMBEDDINGS_PATH,
+        map_location="cpu",
+        weights_only=False,
+    )
+
+    return _catalogue_records
 
 
-def _to_public_catalogue_url(image_path: Path):
-    relative_path = image_path.relative_to(CATALOGUE_DIR)
-    return "/catalogue/" + relative_path.as_posix()
+def _find_best_candidate(input_embedding, candidates):
+    best_record = None
+    best_score = -1.0
+
+    for record in candidates:
+        candidate_embedding = record["embedding"]
+
+        score = torch.nn.functional.cosine_similarity(
+            input_embedding.unsqueeze(0),
+            candidate_embedding.unsqueeze(0),
+        ).item()
+
+        if score > best_score:
+            best_score = score
+            best_record = record
+
+    return best_record, best_score
 
 
 def _format_item_name(style: str, clothing_type: str):

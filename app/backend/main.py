@@ -10,6 +10,8 @@ from src.recommender import recommend_outfit
 from fastapi.staticfiles import StaticFiles
 from src.config import CATALOGUE_DIR
 
+from src.clip_service import load_clip_model
+
 app = FastAPI(title="Runway AI Stylist API")
 
 app.mount(
@@ -31,6 +33,10 @@ app.add_middleware(
 def root():
     return {"message": "Runway AI Stylist API is running"}
 
+@app.get("/test-clip")
+def test_clip():
+    load_clip_model()
+    return {"message": "CLIP model loaded successfully"}
 
 @app.post("/recommend")
 async def recommend(file: UploadFile = File(...)):
@@ -38,7 +44,7 @@ async def recommend(file: UploadFile = File(...)):
     image = Image.open(BytesIO(image_bytes)).convert("RGB")
 
     prediction_result = predict_image(image)
-    recommendations = recommend_outfit(prediction_result)
+    recommendations = recommend_outfit(prediction_result, image)
 
     return {
         **prediction_result,
@@ -68,5 +74,5 @@ def create_styling_notes(prediction_result):
     return (
         f"The uploaded item was classified as {style} and detected as a {item_type}. "
         "The outfit was created by selecting items from the same predicted style, "
-        "avoiding duplicate clothing categories, and ranking candidates by visual similarity."
+        "avoiding duplicate clothing categories, and ranking candidates using CLIP-based visual similarity."
     )

@@ -172,6 +172,21 @@ export default function RunwayAIStylist() {
             <p className="confidence accent">{analysis.typeConf}%</p>
           </div>
         </div>
+
+        {result && (
+          <div className={`reliability-box reliability-${result.reliability}`}>
+            <p className="reliability-label">Reliability</p>
+            <p className="reliability-value">{result.reliability}</p>
+            <p className="reliability-text">
+              {result.reliability === "high" &&
+                "The model is confident in both the predicted style and clothing type."}
+              {result.reliability === "medium" &&
+                "The result is usable, but one prediction is not highly confident. Review the outfit manually."}
+              {result.reliability === "low" &&
+                "The model is uncertain. The recommendation may not match the uploaded item correctly."}
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="section ensemble-section">

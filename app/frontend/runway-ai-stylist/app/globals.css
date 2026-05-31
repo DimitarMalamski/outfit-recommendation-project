@@ -496,6 +496,48 @@
   margin-top: 2rem;
 }
 
+/* RELIABILITY */
+.reliability-box {
+  max-width: 900px;
+  margin: 4rem auto 0;
+  padding: 2rem;
+  border-left: 2px solid var(--luxury-accent);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.reliability-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 0.75rem;
+}
+
+.reliability-value {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+}
+
+.reliability-text {
+  color: var(--fg-muted);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+.reliability-high {
+  border-left-color: var(--luxury-accent);
+}
+
+.reliability-medium {
+  border-left-color: var(--luxury-primary);
+}
+
+.reliability-low {
+  border-left-color: #d46a6a;
+}
+
 /* FOOTER */
 .footer {
   padding: 4rem 2rem;
