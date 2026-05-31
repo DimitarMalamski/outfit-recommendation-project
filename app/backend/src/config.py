@@ -1,15 +1,15 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parents[3]
+BACKEND_DIR = Path(__file__).resolve().parents[1]
 
-MODELS_DIR = BASE_DIR / "models"
-DATASET_DIR = BASE_DIR / "dataset"
-RESULTS_DIR = BASE_DIR / "results"
+MODELS_DIR = BACKEND_DIR / "models"
+CATALOGUE_DIR = BACKEND_DIR / "catalogue"
+DATA_DIR = BACKEND_DIR / "data"
 
 STYLE_MODEL_PATH = MODELS_DIR / "style_mobilenet_v3_large_architecture_comparison.pth"
 TYPE_MODEL_PATH = MODELS_DIR / "type_resnet34_extra_data.pth"
 
-CATALOGUE_DIR = DATASET_DIR / "cleaned"
+CATALOGUE_EMBEDDINGS_PATH = DATA_DIR / "catalogue_embeddings.pt"
 
 STYLE_CLASSES = ["formal", "gothic", "sporty", "streetwear"]
 TYPE_CLASSES = ["jacket", "pants", "shoes", "tshirt"]

@@ -1,10 +1,10 @@
 import torch
 
 from src.clip_service import encode_image
-from src.config import TYPE_CLASSES
 
+from src.config import CATALOGUE_EMBEDDINGS_PATH, TYPE_CLASSES
 
-_EMBEDDINGS_PATH = "data/catalogue_embeddings.pt"
+CATALOGUE_EMBEDDINGS_PATH = "data/catalogue_embeddings.pt"
 _catalogue_records = None
 
 
@@ -56,7 +56,7 @@ def _load_catalogue_records():
         return _catalogue_records
 
     _catalogue_records = torch.load(
-        _EMBEDDINGS_PATH,
+        CATALOGUE_EMBEDDINGS_PATH,
         map_location="cpu",
         weights_only=False,
     )

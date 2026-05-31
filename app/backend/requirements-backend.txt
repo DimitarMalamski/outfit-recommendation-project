@@ -2,7 +2,5 @@ fastapi
 uvicorn
 python-multipart
 pillow
-torch
-torchvision
 numpy
 open-clip-torch
