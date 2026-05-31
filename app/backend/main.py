@@ -1,5 +1,11 @@
+from io import BytesIO
+
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from PIL import Image
+
+from src.prediction import predict_image
+from src.recommender import recommend_outfit
 
 app = FastAPI(title="Runway AI Stylist API")
 
@@ -19,37 +25,39 @@ def root():
 
 @app.post("/recommend")
 async def recommend(file: UploadFile = File(...)):
+    image_bytes = await file.read()
+    image = Image.open(BytesIO(image_bytes)).convert("RGB")
+
+    prediction_result = predict_image(image)
+    recommendations = recommend_outfit(prediction_result)
+
     return {
-        "predicted_style": "streetwear",
-        "style_confidence": 0.87,
-        "predicted_type": "jacket",
-        "type_confidence": 0.91,
-        "reliability": "high",
-        "styling_notes": (
-            "The uploaded item was matched with visually similar pieces from the same predicted style, "
-            "while avoiding duplicate clothing categories."
-        ),
-        "recommendations": [
-            {
-                "type": "bottom",
-                "name": "Wide-leg black trousers",
-                "brand": "Prototype Catalogue",
-                "image_url": "/demo-outfits/pants.png",
-                "score": 0.84
-            },
-            {
-                "type": "shoes",
-                "name": "Minimal leather sneakers",
-                "brand": "Prototype Catalogue",
-                "image_url": "/demo-outfits/shoes.png",
-                "score": 0.81
-            },
-            {
-                "type": "top",
-                "name": "Oversized graphic tee",
-                "brand": "Prototype Catalogue",
-                "image_url": "/demo-outfits/top.png",
-                "score": 0.79
-            }
-        ]
+        **prediction_result,
+        "reliability": calculate_reliability(prediction_result),
+        "styling_notes": create_styling_notes(prediction_result),
+        "recommendations": recommendations,
     }
+
+
+def calculate_reliability(prediction_result):
+    style_conf = prediction_result["style_confidence"]
+    type_conf = prediction_result["type_confidence"]
+
+    if style_conf >= 0.80 and type_conf >= 0.80:
+        return "high"
+
+    if style_conf >= 0.60 and type_conf >= 0.60:
+        return "medium"
+
+    return "low"
+
+
+def create_styling_notes(prediction_result):
+    style = prediction_result["predicted_style"]
+    item_type = prediction_result["predicted_type"]
+
+    return (
+        f"The uploaded item was classified as {style} and detected as a {item_type}. "
+        "The outfit was created by selecting items from the same predicted style, "
+        "avoiding duplicate clothing categories, and ranking candidates by visual similarity."
+    )
