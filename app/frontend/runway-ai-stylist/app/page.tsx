@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { getRecommendations, RecommendationResponse } from "@/lib/api";
+import "./upload-section.css";
 
 export default function RunwayAIStylist() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -17,6 +18,13 @@ export default function RunwayAIStylist() {
 
     setSelectedFile(file);
     setPreviewUrl(URL.createObjectURL(file));
+    setResult(null);
+    setError(null);
+  }
+
+  function handleRemoveImage() {
+    setSelectedFile(null);
+    setPreviewUrl(null);
     setResult(null);
     setError(null);
   }
@@ -61,9 +69,9 @@ export default function RunwayAIStylist() {
         </div>
         <h2 className="hero-subtitle">Stylist</h2>
         <p className="hero-desc">
-          One garment. Infinite possibilities.
-          <br />
-          Let artificial intelligence curate your look.
+          Upload a clear image of a clothing item, such as a jacket, shirt,
+          pants, or shoes. The AI analyses the item&apos;s style, and category,
+          then recommends outfit combinations that match it.
         </p>
       </section>
 
@@ -85,56 +93,44 @@ export default function RunwayAIStylist() {
 
           <div className="upload-area">
             <div className="upload-box">
-              {previewUrl ? (
-                <img
-                  src={previewUrl}
-                  alt="Uploaded clothing item"
-                  className="outfit-img"
-                />
-              ) : (
-                <>
-                  <div className="upload-icon">+</div>
-                  <p className="upload-text">Drop Image Here</p>
-                  <p className="upload-hint">or click to select</p>
-                </>
-              )}
+              <div className="upload-content">
+                {previewUrl ? (
+                  <img
+                    src={previewUrl}
+                    alt="Uploaded clothing item"
+                    className="preview-img"
+                  />
+                ) : (
+                  <>
+                    <div className="upload-icon">+</div>
+                    <p className="upload-text">Drop Image Here</p>
+                    <p className="upload-hint">or click to select</p>
+                  </>
+                )}
+              </div>
 
-              <input
-                type="file"
-                accept="image/png,image/jpeg,image/jpg"
-                onChange={handleFileChange}
-                style={{ marginTop: "1.5rem", maxWidth: "220px" }}
-              />
+              <div className="upload-actions">
+                <label className="upload-button">
+                  {previewUrl ? "Change Image" : "Choose Image"}
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg"
+                    onChange={handleFileChange}
+                    hidden
+                  />
+                </label>
 
-              <button
-                onClick={handleSubmit}
-                disabled={isLoading}
-                style={{
-                  marginTop: "1.5rem",
-                  padding: "0.8rem 1.4rem",
-                  border: "1px solid #8b2635",
-                  background: "#8b2635",
-                  color: "#f5f3f0",
-                  cursor: "pointer",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  fontSize: "0.7rem",
-                }}
-              >
-                {isLoading ? "Styling..." : "Generate Outfit"}
-              </button>
-
-              {error && (
-                <p
-                  style={{
-                    color: "#c9a962",
-                    marginTop: "1rem",
-                    fontSize: "0.85rem",
-                  }}
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isLoading}
+                  className="generate-button"
                 >
-                  {error}
-                </p>
-              )}
+                  {isLoading ? "Styling..." : "Generate Outfit"}
+                </button>
+              </div>
+
+              {error && <p className="upload-error">{error}</p>}
             </div>
           </div>
         </div>
