@@ -55,7 +55,11 @@ export default function RunwayAIStylist() {
     typeConf: result ? Math.round(result.type_confidence * 100) : 0,
   };
 
-  const outfits = result?.recommendations ?? [];
+  const outfits = result?.outfits?.length
+    ? result.outfits
+    : result?.recommendations?.length
+      ? [{ name: "Outfit 1", items: result.recommendations }]
+      : [];
 
   return (
     <>
@@ -185,40 +189,45 @@ export default function RunwayAIStylist() {
         )}
       </section>
 
-      <section className="section ensemble-section">
-        <span className="section-num">03</span>
-        <p className="chapter">Chapter Three</p>
-        <h2 className="section-title">
-          The <em>Ensemble</em>
-        </h2>
+      {result && (
+        <section className="section ensemble-section">
+          <div className="section-num">03</div>
 
-        <div className="outfit-grid">
-          {outfits.length > 0 ? (
-            outfits.map((item, index) => (
-              <div key={index} className="outfit-card">
-                <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${item.image_url}`}
-                  alt={item.name}
-                  className="outfit-img"
-                />
-                <div className="outfit-overlay">
-                  <p className="outfit-type">{item.type}</p>
-                  <h3 className="outfit-name">{item.name}</h3>
-                  <p className="outfit-brand">{item.brand}</p>
-                  <p className="outfit-price">
-                    Similarity: {Math.round(item.score * 100)}%
-                  </p>
+          <div className="section-text">
+            <p className="chapter">Chapter Three</p>
+            <h2 className="section-title">
+              Curated <em>Ensemble</em>
+            </h2>
+            <div className="divider" />
+          </div>
+
+          <div className="outfit-carousel">
+            {outfits.map((outfit, outfitIndex) => (
+              <div className="outfit-slide" key={outfitIndex}>
+                <h3 className="outfit-slide-title">{outfit.name}</h3>
+
+                <div className="outfit-grid">
+                  {outfit.items.map((item, itemIndex) => (
+                    <div className="outfit-card" key={itemIndex}>
+                      <img
+                        src={`${process.env.NEXT_PUBLIC_API_URL}${item.image_url}`}
+                        alt={item.name}
+                        className="outfit-img"
+                      />
+
+                      <div className="outfit-overlay">
+                        <p className="outfit-type">{item.type}</p>
+                        <h3 className="outfit-name">{item.name}</h3>
+                        <p className="outfit-brand">{item.brand}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))
-          ) : (
-            <p className="section-desc">
-              Upload an image and generate an outfit to reveal the recommended
-              pieces.
-            </p>
-          )}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="section notes-section">
         <span className="section-num right">04</span>

@@ -6,6 +6,11 @@ export type RecommendationItem = {
   score: number;
 };
 
+export type OutfitRecommendation = {
+  name: string;
+  items: RecommendationItem[];
+};
+
 export type RecommendationResponse = {
   predicted_style: string;
   style_confidence: number;
@@ -14,6 +19,7 @@ export type RecommendationResponse = {
   reliability: string;
   styling_notes: string;
   recommendations: RecommendationItem[];
+  outfits: OutfitRecommendation[];
 };
 
 export async function getRecommendations(

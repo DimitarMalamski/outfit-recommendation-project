@@ -375,8 +375,8 @@
 
 .outfit-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(360px, 1fr));
+  gap: 1.8rem;
   max-width: 1200px;
   margin: 4rem auto 0;
 }
@@ -586,4 +586,51 @@
     grid-template-columns: 1fr;
     max-width: 400px;
   }
+}
+
+.outfit-carousel {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  max-width: 1400px;
+  margin: 4rem auto 0;
+  padding-bottom: 1rem;
+}
+
+.outfit-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.outfit-slide-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: var(--luxury-accent);
+}
+
+.outfit-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.outfit-carousel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.outfit-carousel::-webkit-scrollbar-thumb {
+  background: var(--luxury-primary);
+  border-radius: 999px;
+}
+
+.outfit-carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--luxury-accent);
+}
+
+.outfit-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: var(--luxury-primary) rgba(255, 255, 255, 0.08);
 }
