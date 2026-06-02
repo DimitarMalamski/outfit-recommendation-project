@@ -1,8 +1,7 @@
 import torch
 
 from src.clip_service import encode_image
-
-from src.config import CATALOGUE_EMBEDDINGS_PATH, TYPE_CLASSES
+from src.config import TYPE_CLASSES
 
 CATALOGUE_EMBEDDINGS_PATH = "data/catalogue_embeddings.pt"
 _catalogue_records = None
@@ -13,13 +12,15 @@ def recommend_outfit(prediction_result, input_image=None):
     predicted_type = prediction_result["predicted_type"]
 
     if input_image is None:
-        return []
+        return {
+            "recommendations": [],
+            "outfits": [],
+        }
 
     input_embedding = encode_image(input_image).squeeze(0)
-
     records = _load_catalogue_records()
 
-    recommendations = []
+    candidates_by_type = {}
 
     for clothing_type in TYPE_CLASSES:
         if clothing_type == predicted_type:
@@ -34,19 +35,15 @@ def recommend_outfit(prediction_result, input_image=None):
         if not candidates:
             continue
 
-        best_record, best_score = _find_best_candidate(input_embedding, candidates)
+        ranked_candidates = _rank_candidates(input_embedding, candidates)
+        candidates_by_type[clothing_type] = ranked_candidates[:3]
 
-        recommendations.append(
-            {
-                "type": clothing_type,
-                "name": _format_item_name(predicted_style, clothing_type),
-                "brand": "Catalogue Item",
-                "image_url": "/catalogue/" + best_record["path"],
-                "score": round(float(best_score), 4),
-            }
-        )
+    outfits = _build_outfits(predicted_style, candidates_by_type)
 
-    return recommendations[:3]
+    return {
+        "recommendations": outfits[0]["items"] if outfits else [],
+        "outfits": outfits,
+    }
 
 
 def _load_catalogue_records():
@@ -64,9 +61,8 @@ def _load_catalogue_records():
     return _catalogue_records
 
 
-def _find_best_candidate(input_embedding, candidates):
-    best_record = None
-    best_score = -1.0
+def _rank_candidates(input_embedding, candidates):
+    ranked = []
 
     for record in candidates:
         candidate_embedding = record["embedding"]
@@ -76,11 +72,44 @@ def _find_best_candidate(input_embedding, candidates):
             candidate_embedding.unsqueeze(0),
         ).item()
 
-        if score > best_score:
-            best_score = score
-            best_record = record
+        ranked.append((record, score))
 
-    return best_record, best_score
+    ranked.sort(key=lambda item: item[1], reverse=True)
+
+    return ranked
+
+
+def _build_outfits(predicted_style, candidates_by_type):
+    outfits = []
+
+    for outfit_index in range(3):
+        outfit_items = []
+
+        for clothing_type, ranked_candidates in candidates_by_type.items():
+            if outfit_index >= len(ranked_candidates):
+                continue
+
+            record, score = ranked_candidates[outfit_index]
+
+            outfit_items.append(
+                {
+                    "type": clothing_type,
+                    "name": _format_item_name(predicted_style, clothing_type),
+                    "brand": "Catalogue Item",
+                    "image_url": "/catalogue/" + record["path"],
+                    "score": round(float(score), 4),
+                }
+            )
+
+        if outfit_items:
+            outfits.append(
+                {
+                    "name": f"Outfit {outfit_index + 1}",
+                    "items": outfit_items[:3],
+                }
+            )
+
+    return outfits
 
 
 def _format_item_name(style: str, clothing_type: str):

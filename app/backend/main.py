@@ -44,13 +44,14 @@ async def recommend(file: UploadFile = File(...)):
     image = Image.open(BytesIO(image_bytes)).convert("RGB")
 
     prediction_result = predict_image(image)
-    recommendations = recommend_outfit(prediction_result, image)
+    recommendation_result = recommend_outfit(prediction_result, image)
 
     return {
         **prediction_result,
         "reliability": calculate_reliability(prediction_result),
         "styling_notes": create_styling_notes(prediction_result),
-        "recommendations": recommendations,
+        "recommendations": recommendation_result["recommendations"],
+        "outfits": recommendation_result["outfits"],
     }
 
 
