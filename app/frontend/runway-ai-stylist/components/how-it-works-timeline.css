@@ -83,6 +83,49 @@
   max-width: 360px;
 }
 
+.hiw-step-marker {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hiw-step-icon {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.hiw-step:hover .hiw-step-marker {
+  transform: translateY(-4px);
+  border-color: var(--luxury-accent);
+  background: rgba(139, 38, 53, 0.08);
+  box-shadow: 0 0 24px rgba(139, 38, 53, 0.25);
+}
+
+.hiw-step:hover .hiw-step-icon {
+  color: var(--fg);
+  transform: scale(1.08);
+}
+
+.hiw-step:hover .hiw-step-title {
+  color: var(--luxury-accent);
+}
+
+.how-it-works-grid {
+  gap: 15rem;
+}
+
+.hiw-footnote {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--luxury-accent-muted);
+  max-width: 520px;
+}
+
 @media (max-width: 768px) {
   .hiw-timeline {
     max-width: 100%;

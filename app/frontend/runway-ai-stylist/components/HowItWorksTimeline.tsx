@@ -36,8 +36,6 @@ const steps = [
 export default function HowItWorksTimeline() {
   return (
     <section className="section how-it-works-section">
-      <div className="section-num right">02</div>
-
       <div className="section-grid how-it-works-grid">
         <div className="hiw-timeline">
           {steps.map((step, index) => (
@@ -65,6 +63,10 @@ export default function HowItWorksTimeline() {
           <p className="section-desc">
             Three simple steps to understand what to upload, what the AI checks,
             and what kind of result you can expect.
+          </p>
+          <p className="hiw-footnote">
+            For best results, upload one clearly visible clothing item on a
+            simple background.
           </p>
         </div>
       </div>

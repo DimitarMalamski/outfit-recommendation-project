@@ -55,6 +55,7 @@
   --fg-muted: #8a8a8f;
   --luxury-primary: #8b2635;
   --luxury-accent: #c9a962;
+  --luxury-accent-muted: #c9a96280;
 }
 
 @theme inline {
