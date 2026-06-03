@@ -1,11 +1,12 @@
 from io import BytesIO
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
+import json
 
 from src.prediction import predict_image
-from src.recommender import recommend_outfit
+from src.recommender import recommend_outfit, recommend_replacement_item
 
 from fastapi.staticfiles import StaticFiles
 from src.config import CATALOGUE_DIR
@@ -52,6 +53,38 @@ async def recommend(file: UploadFile = File(...)):
         "styling_notes": create_styling_notes(prediction_result),
         "recommendations": recommendation_result["recommendations"],
         "outfits": recommendation_result["outfits"],
+    }
+
+@app.post("/recommend/replace-item")
+async def replace_item(
+    file: UploadFile = File(...),
+    target_type: str = Form(...),
+    predicted_style: str = Form(...),
+    exclude_image_urls: str = Form("[]"),
+):
+    image_bytes = await file.read()
+    image = Image.open(BytesIO(image_bytes)).convert("RGB")
+
+    try:
+        excluded_urls = json.loads(exclude_image_urls)
+    except json.JSONDecodeError:
+        excluded_urls = []
+
+    replacement_item = recommend_replacement_item(
+        target_type=target_type,
+        predicted_style=predicted_style,
+        input_image=image,
+        exclude_image_urls=excluded_urls,
+    )
+
+    if replacement_item is None:
+        raise HTTPException(
+            status_code=404,
+            detail="No alternative item found for this category and style.",
+        )
+
+    return {
+        "item": replacement_item
     }
 
 

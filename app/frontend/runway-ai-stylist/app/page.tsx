@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { getRecommendations, RecommendationResponse } from "@/lib/api";
+import {
+  getRecommendations,
+  replaceRecommendationItem,
+  RecommendationResponse,
+} from "@/lib/api";
 import "./upload-section.css";
 import "./ensemble-section.css";
 import HowItWorksTimeline from "../components/HowItWorksTimeline";
@@ -12,6 +16,13 @@ export default function RunwayAIStylist() {
   const [result, setResult] = useState<RecommendationResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [refreshingItemKey, setRefreshingItemKey] = useState<string | null>(
+    null,
+  );
+  const [refreshError, setRefreshError] = useState<string | null>(null);
+  const [refreshHistory, setRefreshHistory] = useState<
+    Record<string, string[]>
+  >({});
 
   async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -22,6 +33,8 @@ export default function RunwayAIStylist() {
     setPreviewUrl(URL.createObjectURL(file));
     setResult(null);
     setError(null);
+    setRefreshError(null);
+    setRefreshHistory({});
   }
 
   function handleRemoveImage() {
@@ -29,6 +42,9 @@ export default function RunwayAIStylist() {
     setPreviewUrl(null);
     setResult(null);
     setError(null);
+    setRefreshError(null);
+    setRefreshingItemKey(null);
+    setRefreshHistory({});
   }
 
   async function handleSubmit() {
@@ -40,6 +56,8 @@ export default function RunwayAIStylist() {
     try {
       setIsLoading(true);
       setError(null);
+      setRefreshError(null);
+      setRefreshHistory({});
 
       const data = await getRecommendations(selectedFile);
       setResult(data);
@@ -47,6 +65,103 @@ export default function RunwayAIStylist() {
       setError("Something went wrong while generating recommendations.");
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  async function handleRefreshItem(
+    outfitIndex: number,
+    itemIndex: number,
+    itemType: string,
+  ) {
+    if (!selectedFile || !result) return;
+
+    const itemKey = `${outfitIndex}-${itemIndex}`;
+
+    const currentOutfits = result.outfits?.length
+      ? result.outfits
+      : result.recommendations?.length
+        ? [{ name: "Outfit 1", items: result.recommendations }]
+        : [];
+
+    const currentVisibleImageUrls = currentOutfits.flatMap((outfit) =>
+      outfit.items.map((item) => item.image_url),
+    );
+
+    const allPreviouslyUsedImageUrls = Object.values(refreshHistory).flat();
+
+    const excludeImageUrls = Array.from(
+      new Set([...currentVisibleImageUrls, ...allPreviouslyUsedImageUrls]),
+    );
+
+    try {
+      setRefreshingItemKey(itemKey);
+      setRefreshError(null);
+
+      const data = await replaceRecommendationItem(
+        selectedFile,
+        itemType,
+        result.predicted_style,
+        excludeImageUrls,
+      );
+
+      const newItem = data.item;
+
+      const currentItem = currentOutfits[outfitIndex]?.items[itemIndex];
+
+      setRefreshHistory((previousHistory) => {
+        const existingHistory = previousHistory[itemKey] ?? [];
+
+        const updatedHistory = Array.from(
+          new Set(
+            [
+              ...existingHistory,
+              currentItem?.image_url,
+              newItem.image_url,
+            ].filter(Boolean) as string[],
+          ),
+        );
+
+        return {
+          ...previousHistory,
+          [itemKey]: updatedHistory,
+        };
+      });
+
+      setResult((previousResult) => {
+        if (!previousResult) return previousResult;
+
+        const existingOutfits = previousResult.outfits?.length
+          ? previousResult.outfits
+          : previousResult.recommendations?.length
+            ? [{ name: "Outfit 1", items: previousResult.recommendations }]
+            : [];
+
+        const updatedOutfits = existingOutfits.map(
+          (outfit, currentOutfitIndex) => {
+            if (currentOutfitIndex !== outfitIndex) return outfit;
+
+            return {
+              ...outfit,
+              items: outfit.items.map((existingItem, currentItemIndex) =>
+                currentItemIndex === itemIndex ? newItem : existingItem,
+              ),
+            };
+          },
+        );
+
+        return {
+          ...previousResult,
+          outfits: updatedOutfits,
+          recommendations:
+            outfitIndex === 0
+              ? (updatedOutfits[0]?.items ?? previousResult.recommendations)
+              : previousResult.recommendations,
+        };
+      });
+    } catch {
+      setRefreshError("No further alternatives are available for this piece.");
+    } finally {
+      setRefreshingItemKey(null);
     }
   }
 
@@ -227,6 +342,23 @@ export default function RunwayAIStylist() {
                         className="outfit-img"
                       />
 
+                      <button
+                        type="button"
+                        className={`item-refresh-button ${
+                          refreshingItemKey === `${outfitIndex}-${itemIndex}`
+                            ? "loading"
+                            : ""
+                        }`}
+                        onClick={() =>
+                          handleRefreshItem(outfitIndex, itemIndex, item.type)
+                        }
+                        disabled={refreshingItemKey !== null}
+                        aria-label={`Refresh ${item.type}`}
+                        title="Find alternative piece"
+                      >
+                        <span className="refresh-symbol">↻</span>
+                      </button>
+
                       <div className="outfit-overlay">
                         <p className="outfit-type">{item.type}</p>
                         <h3 className="outfit-name">{item.name}</h3>
@@ -238,6 +370,8 @@ export default function RunwayAIStylist() {
               </div>
             ))}
           </div>
+
+          {refreshError && <p className="refresh-error">{refreshError}</p>}
         </section>
       )}
 

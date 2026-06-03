@@ -45,6 +45,50 @@ def recommend_outfit(prediction_result, input_image=None):
         "outfits": outfits,
     }
 
+def recommend_replacement_item(
+    target_type: str,
+    predicted_style: str,
+    input_image=None,
+    exclude_image_urls=None,
+):
+    if exclude_image_urls is None:
+        exclude_image_urls = []
+
+    if input_image is None:
+        return None
+
+    input_embedding = encode_image(input_image).squeeze(0)
+    records = _load_catalogue_records()
+
+    excluded_paths = set()
+
+    for image_url in exclude_image_urls:
+        cleaned_path = image_url.replace("/catalogue/", "")
+        excluded_paths.add(cleaned_path)
+
+    candidates = [
+        record
+        for record in records
+        if record["style"] == predicted_style
+        and record["type"] == target_type
+        and record["path"] not in excluded_paths
+    ]
+
+    if not candidates:
+        return None
+
+    ranked_candidates = _rank_candidates(input_embedding, candidates)
+
+    record, score = ranked_candidates[0]
+
+    return {
+        "type": target_type,
+        "name": _format_item_name(predicted_style, target_type),
+        "brand": "Catalogue Item",
+        "image_url": "/catalogue/" + record["path"],
+        "score": round(float(score), 4),
+    }
+
 
 def _load_catalogue_records():
     global _catalogue_records
