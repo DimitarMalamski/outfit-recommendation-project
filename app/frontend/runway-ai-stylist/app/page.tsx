@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getRecommendations,
   replaceRecommendationItem,
@@ -16,6 +16,7 @@ export default function RunwayAIStylist() {
   const [result, setResult] = useState<RecommendationResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [shouldScrollToEnsemble, setShouldScrollToEnsemble] = useState(false);
   const [refreshingItemKey, setRefreshingItemKey] = useState<string | null>(
     null,
   );
@@ -39,6 +40,7 @@ export default function RunwayAIStylist() {
       setRefreshError(null);
       setRefreshingItemKey(null);
       setRefreshHistory({});
+      setShouldScrollToEnsemble(false);
 
       event.target.value = "";
       return;
@@ -50,6 +52,7 @@ export default function RunwayAIStylist() {
     setError(null);
     setRefreshError(null);
     setRefreshHistory({});
+    setShouldScrollToEnsemble(false);
   }
 
   function handleRemoveImage() {
@@ -60,7 +63,25 @@ export default function RunwayAIStylist() {
     setRefreshError(null);
     setRefreshingItemKey(null);
     setRefreshHistory({});
+    setShouldScrollToEnsemble(false);
   }
+
+  useEffect(() => {
+    if (!result || !shouldScrollToEnsemble) return;
+
+    requestAnimationFrame(() => {
+      const ensembleSection = document.getElementById("outfit-results-anchor");
+
+      if (!ensembleSection) return;
+
+      ensembleSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      setShouldScrollToEnsemble(false);
+    });
+  }, [result, shouldScrollToEnsemble]);
 
   async function handleSubmit() {
     if (!selectedFile) {
@@ -75,7 +96,9 @@ export default function RunwayAIStylist() {
       setRefreshHistory({});
 
       const data = await getRecommendations(selectedFile);
+
       setResult(data);
+      setShouldScrollToEnsemble(true);
     } catch (error) {
       setError(
         error instanceof Error
@@ -217,7 +240,7 @@ export default function RunwayAIStylist() {
 
       <HowItWorksTimeline />
 
-      <section className="section upload-section">
+      <section id="upload-section" className="section upload-section">
         <span className="section-num">01</span>
         <div className="section-grid">
           <div className="section-text">
@@ -278,7 +301,7 @@ export default function RunwayAIStylist() {
         </div>
       </section>
 
-      <section className="section analysis-section">
+      <section id="analysis-section" className="section analysis-section">
         <span className="section-num right">02</span>
         <p className="chapter">Chapter Two</p>
         <h2 className="section-title">
@@ -328,7 +351,7 @@ export default function RunwayAIStylist() {
       </section>
 
       {result && (
-        <section className="section ensemble-section">
+        <section id="ensemble-section" className="section ensemble-section">
           <div className="section-num">03</div>
 
           <div className="section-grid ensemble-header-grid">
@@ -346,6 +369,8 @@ export default function RunwayAIStylist() {
               </p>
             </div>
           </div>
+
+          <div id="outfit-results-anchor" className="outfit-results-anchor" />
 
           <div className="outfit-carousel">
             {outfits.map((outfit, outfitIndex) => (

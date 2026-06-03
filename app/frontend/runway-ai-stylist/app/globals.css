@@ -116,6 +116,14 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  scroll-margin-top: 2rem;
+}
+
 /* HERO */
 .hero {
   min-height: 100vh;
