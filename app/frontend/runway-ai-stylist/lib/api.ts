@@ -26,6 +26,24 @@ export type ReplacementItemResponse = {
   item: RecommendationItem;
 };
 
+async function getApiErrorMessage(response: Response, fallbackMessage: string) {
+  try {
+    const errorBody = await response.json();
+
+    if (typeof errorBody.detail === "string") {
+      return errorBody.detail;
+    }
+
+    if (errorBody.detail?.message) {
+      return errorBody.detail.message;
+    }
+
+    return fallbackMessage;
+  } catch {
+    return fallbackMessage;
+  }
+}
+
 export async function getRecommendations(
   file: File,
 ): Promise<RecommendationResponse> {
@@ -38,7 +56,12 @@ export async function getRecommendations(
   });
 
   if (!response.ok) {
-    throw new Error("Failed to get recommendations");
+    const message = await getApiErrorMessage(
+      response,
+      "Something went wrong while generating recommendations.",
+    );
+
+    throw new Error(message);
   }
 
   return response.json();
@@ -66,7 +89,12 @@ export async function replaceRecommendationItem(
   );
 
   if (!response.ok) {
-    throw new Error("Failed to replace recommendation item");
+    const message = await getApiErrorMessage(
+      response,
+      "No alternative item could be found for this piece.",
+    );
+
+    throw new Error(message);
   }
 
   return response.json();

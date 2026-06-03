@@ -24,10 +24,25 @@ export default function RunwayAIStylist() {
     Record<string, string[]>
   >({});
 
-  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
 
     if (!file) return;
+
+    const allowedTypes = ["image/jpeg", "image/png"];
+
+    if (!allowedTypes.includes(file.type)) {
+      setSelectedFile(null);
+      setPreviewUrl(null);
+      setResult(null);
+      setError("Please upload a JPG or PNG image.");
+      setRefreshError(null);
+      setRefreshingItemKey(null);
+      setRefreshHistory({});
+
+      event.target.value = "";
+      return;
+    }
 
     setSelectedFile(file);
     setPreviewUrl(URL.createObjectURL(file));
@@ -61,8 +76,12 @@ export default function RunwayAIStylist() {
 
       const data = await getRecommendations(selectedFile);
       setResult(data);
-    } catch {
-      setError("Something went wrong while generating recommendations.");
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong while generating recommendations.",
+      );
     } finally {
       setIsLoading(false);
     }
