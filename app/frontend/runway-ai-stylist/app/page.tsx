@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { getRecommendations, RecommendationResponse } from "@/lib/api";
 import "./upload-section.css";
+import HowItWorksTimeline from "../components/HowItWorksTimeline";
 
 export default function RunwayAIStylist() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -78,6 +79,8 @@ export default function RunwayAIStylist() {
           then recommends outfit combinations that match it.
         </p>
       </section>
+
+      <HowItWorksTimeline />
 
       <section className="section upload-section">
         <span className="section-num">01</span>
