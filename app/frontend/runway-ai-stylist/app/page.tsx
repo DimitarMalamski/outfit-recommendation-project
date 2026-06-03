@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { getRecommendations, RecommendationResponse } from "@/lib/api";
 import "./upload-section.css";
+import "./ensemble-section.css";
 import HowItWorksTimeline from "../components/HowItWorksTimeline";
 
 export default function RunwayAIStylist() {
@@ -196,12 +197,20 @@ export default function RunwayAIStylist() {
         <section className="section ensemble-section">
           <div className="section-num">03</div>
 
-          <div className="section-text">
-            <p className="chapter">Chapter Three</p>
-            <h2 className="section-title">
-              Curated <em>Ensemble</em>
-            </h2>
-            <div className="divider" />
+          <div className="section-grid ensemble-header-grid">
+            <div className="ensemble-header-spacer" />
+
+            <div className="section-text ensemble-title-block">
+              <p className="chapter">Chapter Three</p>
+              <h2 className="section-title">
+                Curated <em>Ensemble</em>
+              </h2>
+              <div className="divider" />
+              <p className="section-desc">
+                Explore complete outfit combinations generated from your
+                uploaded garment.
+              </p>
+            </div>
           </div>
 
           <div className="outfit-carousel">

@@ -15,14 +15,13 @@ const steps = [
     icon: Upload,
     title: "Upload your garment",
     description:
-      "Upload a clear image of one clothing item, such as a jacket, shirt, trousers, dress, or shoes.",
+      "Upload a clear image of one clothing item, such as a jacket, shirt, pants, or shoes.",
   },
   {
     number: 2,
     icon: Sparkles,
     title: "Discover its style",
-    description:
-      "The AI analyses the garment category, predicted style, and visual features.",
+    description: "The AI analyses the garment category and predicted style.",
   },
   {
     number: 3,
