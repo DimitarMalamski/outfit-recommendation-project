@@ -574,6 +574,13 @@
   transform: translateY(0);
 }
 
+.infoHoverArea:hover + .reliabilityPopover,
+.reliabilityPopover:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .metaBar {
   width: 100%;
   height: 2px;
@@ -614,6 +621,21 @@
   .metaItem,
   .reliabilityInline summary {
     white-space: normal;
+  }
+
+  .infoHoverArea {
+    position: relative;
+  }
+
+  .reliabilityInline {
+    position: relative;
+  }
+
+  .reliabilityPopover {
+    left: 0;
+    right: auto;
+    top: calc(100% + 0.8rem);
+    width: min(300px, calc(100vw - 2.5rem));
   }
 }
 

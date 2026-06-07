@@ -133,11 +133,11 @@ export default function AestheticAnalysis({
 
             <span className={styles.infoHoverArea}>
               <Info className={styles.infoIcon} strokeWidth={1.5} />
-
-              <p className={styles.reliabilityPopover}>
-                {reliabilityDescription}
-              </p>
             </span>
+
+            <p className={styles.reliabilityPopover}>
+              {reliabilityDescription}
+            </p>
           </div>
         </div>
       </div>
