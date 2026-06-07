@@ -1,0 +1,555 @@
+.analysisSection {
+  position: relative;
+  padding: 5rem 2rem;
+  background: var(--bg-alt);
+  overflow: hidden;
+}
+
+.analysisSection::before {
+  content: "02";
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  left: auto;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.editorialSummary {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.editorialLabel {
+  display: block;
+  margin-bottom: 1.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--luxury-accent);
+}
+
+.editorialSentence {
+  max-width: 900px;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--fg);
+}
+
+.inlineAestheticButton {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--luxury-primary);
+  font: inherit;
+  font-style: italic;
+  cursor: pointer;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+  transition:
+    color 0.3s ease,
+    text-decoration-color 0.3s ease;
+}
+
+.inlineAestheticButton:hover {
+  color: var(--luxury-accent);
+}
+
+.editorialMeta {
+  display: grid;
+  grid-template-columns: max-content 1fr max-content 1fr max-content;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.75rem;
+  color: var(--fg-muted);
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.metaItem,
+.reliabilityInline summary {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.metaItem strong,
+.reliabilityInline strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--luxury-accent);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.metaDot {
+  justify-self: center;
+  color: var(--luxury-primary);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.editorialMeta span,
+.reliabilityInline summary {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.editorialMeta strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--luxury-accent);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.reliabilityInline {
+  position: relative;
+}
+
+.reliabilityInline summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--fg-muted);
+}
+
+.reliabilityInline summary::-webkit-details-marker {
+  display: none;
+}
+
+.reliabilityInline summary:hover {
+  color: var(--luxury-accent);
+}
+
+.reliabilityInline p {
+  max-width: 420px;
+  margin: 0.8rem 0 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--luxury-primary);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.sectionHeader {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionEyebrow {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--luxury-accent);
+  margin-bottom: 1rem;
+}
+
+.sectionEyebrow,
+.cardLabel {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--luxury-accent);
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.sectionHeader h2 em {
+  color: var(--luxury-primary);
+  font-style: italic;
+}
+
+.titleDivider {
+  width: 60px;
+  height: 1px;
+  background: var(--fg-muted);
+  margin: 2rem 0;
+  opacity: 0.3;
+}
+
+.sectionHeader p {
+  margin: 0;
+  max-width: 420px;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--fg-muted);
+}
+
+.analysisGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.summaryCard {
+  min-width: 0;
+}
+
+.summaryCard strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0 0 1.5rem;
+  text-transform: capitalize;
+}
+
+.summaryCard p {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--luxury-accent);
+}
+
+.directionPanel,
+.probabilityPanel {
+  max-width: none;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.directionPanel {
+  padding: 1.6rem;
+  border-left: 2px solid var(--luxury-accent);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.directionHeader {
+  max-width: 720px;
+  margin-bottom: 1.4rem;
+}
+
+.directionHeader h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.directionHeader p {
+  margin: 0.75rem 0 0;
+  max-width: 520px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.directionOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.directionOption {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 2px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--fg);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.directionOption:hover {
+  transform: translateY(-2px);
+  border-left-color: var(--luxury-primary);
+  background: rgba(139, 38, 53, 0.05);
+}
+
+.directionOption.active {
+  border-left-color: var(--luxury-accent);
+  background: rgba(201, 169, 98, 0.06);
+}
+
+.directionName {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 300;
+  line-height: 1.1;
+  text-transform: capitalize;
+}
+
+.directionReason {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.directionConfidence {
+  flex-shrink: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--luxury-accent);
+}
+
+.activeDirectionNote {
+  margin: 1.5rem 0 0;
+  max-width: 640px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--fg-muted);
+}
+
+.activeDirectionNote strong {
+  color: var(--fg);
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.probabilityPanel {
+  align-self: center;
+  height: fit-content;
+  padding: 1.6rem;
+  border-left: 2px solid var(--luxury-primary);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.probabilityHeader {
+  margin-bottom: 1.25rem;
+}
+
+.probabilityHeader p {
+  margin: 0;
+  max-width: 360px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.probabilityList {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.probabilityRow {
+  display: grid;
+  grid-template-columns: 120px 1fr 54px;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.probabilityName {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.probabilityTrack {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.probabilityFill {
+  height: 100%;
+  background: var(--luxury-accent);
+  transition: width 1s ease;
+}
+
+.probabilityRow:nth-child(even) .probabilityFill {
+  background: var(--luxury-primary);
+}
+
+.probabilityRow strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  text-align: right;
+  color: var(--luxury-accent);
+}
+
+.explanationDisclosure {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.explanationDisclosure summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  cursor: pointer;
+}
+
+.explanationDisclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.explanationDisclosure summary span:first-child {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--luxury-accent);
+}
+
+.explanationHint {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  transition: color 0.3s ease;
+}
+
+.explanationDisclosure:hover .explanationHint {
+  color: var(--luxury-primary);
+}
+
+.explanationDisclosure[open] .explanationHint {
+  color: var(--luxury-primary);
+}
+
+.explanationContent {
+  padding: 0 0 1.5rem;
+}
+
+.compactAnalysisGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+}
+
+.explanationContent p {
+  max-width: 760px;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--fg-muted);
+}
+
+@media (max-width: 900px) {
+  .compactAnalysisGrid {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 700px) {
+  .editorialSummary {
+    margin-bottom: 3rem;
+  }
+
+  .editorialMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .metaDot {
+    display: none;
+  }
+
+  .metaItem,
+  .reliabilityInline summary {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .analysisGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .directionOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .probabilityRow {
+    grid-template-columns: 96px 1fr 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .analysisSection {
+    padding: 5rem 1.25rem;
+  }
+
+  .directionPanel,
+  .probabilityPanel {
+    padding: 1.5rem;
+  }
+
+  .directionOption {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .probabilityRow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .probabilityRow strong {
+    text-align: left;
+  }
+}

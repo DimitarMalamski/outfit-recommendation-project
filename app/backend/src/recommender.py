@@ -8,41 +8,70 @@ _catalogue_records = None
 
 
 def recommend_outfit(prediction_result, input_image=None):
-    predicted_style = prediction_result["predicted_style"]
     predicted_type = prediction_result["predicted_type"]
+
+    style_candidates = prediction_result.get("style_candidates")
+
+    if not style_candidates:
+        style_candidates = [
+            {
+                "style": prediction_result["predicted_style"],
+                "confidence": prediction_result["style_confidence"],
+                "reason": "Most likely aesthetic",
+            }
+        ]
 
     if input_image is None:
         return {
             "recommendations": [],
             "outfits": [],
+            "recommendation_groups": [],
         }
 
     input_embedding = encode_image(input_image).squeeze(0)
     records = _load_catalogue_records()
 
-    candidates_by_type = {}
+    recommendation_groups = []
 
-    for clothing_type in TYPE_CLASSES:
-        if clothing_type == predicted_type:
-            continue
+    for style_candidate in style_candidates:
+        style = style_candidate["style"]
 
-        candidates = [
-            record
-            for record in records
-            if record["style"] == predicted_style and record["type"] == clothing_type
-        ]
+        candidates_by_type = {}
 
-        if not candidates:
-            continue
+        for clothing_type in TYPE_CLASSES:
+            if clothing_type == predicted_type:
+                continue
 
-        ranked_candidates = _rank_candidates(input_embedding, candidates)
-        candidates_by_type[clothing_type] = ranked_candidates[:3]
+            candidates = [
+                record
+                for record in records
+                if record["style"] == style and record["type"] == clothing_type
+            ]
 
-    outfits = _build_outfits(predicted_style, candidates_by_type)
+            if not candidates:
+                continue
+
+            ranked_candidates = _rank_candidates(input_embedding, candidates)
+            candidates_by_type[clothing_type] = ranked_candidates[:3]
+
+        outfits = _build_outfits(style, candidates_by_type)
+
+        recommendation_groups.append(
+            {
+                "style": style,
+                "confidence": style_candidate.get("confidence"),
+                "reason": style_candidate.get("reason"),
+                "outfits": outfits,
+                "recommendations": outfits[0]["items"] if outfits else [],
+            }
+        )
+
+    primary_group = recommendation_groups[0] if recommendation_groups else None
 
     return {
-        "recommendations": outfits[0]["items"] if outfits else [],
-        "outfits": outfits,
+        "recommendations": primary_group["recommendations"] if primary_group else [],
+        "outfits": primary_group["outfits"] if primary_group else [],
+        "recommendation_groups": recommendation_groups,
     }
 
 def recommend_replacement_item(

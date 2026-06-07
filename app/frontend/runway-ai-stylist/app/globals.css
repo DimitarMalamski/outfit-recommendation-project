@@ -460,51 +460,6 @@ html {
   margin: 1rem 0 0;
 }
 
-/* NOTES / QUOTE */
-.notes-section {
-  background: var(--bg);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.quote-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 2rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.quote {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 300;
-  line-height: 1.7;
-  margin: 0;
-  position: relative;
-}
-
-.quote-mark {
-  font-size: 4rem;
-  color: var(--luxury-primary);
-  opacity: 0.3;
-  line-height: 0;
-  vertical-align: top;
-  margin-right: 0.25rem;
-}
-
-.quote-mark.end {
-  margin-left: 0.25rem;
-  margin-right: 0;
-}
-
-.quote-attr {
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--luxury-accent);
-  margin-top: 2rem;
-}
-
 /* RELIABILITY */
 .reliability-box {
   max-width: 900px;

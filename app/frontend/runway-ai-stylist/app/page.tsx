@@ -9,11 +9,13 @@ import {
 import "./upload-section.css";
 import "./ensemble-section.css";
 import HowItWorksTimeline from "../components/HowItWorksTimeline";
+import AestheticAnalysis from "../components/AestheticAnalysis/AestheticAnalysis";
 
 export default function RunwayAIStylist() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [result, setResult] = useState<RecommendationResponse | null>(null);
+  const [selectedStyleIndex, setSelectedStyleIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [shouldScrollToEnsemble, setShouldScrollToEnsemble] = useState(false);
@@ -33,6 +35,7 @@ export default function RunwayAIStylist() {
     const allowedTypes = ["image/jpeg", "image/png"];
 
     if (!allowedTypes.includes(file.type)) {
+      setSelectedStyleIndex(0);
       setSelectedFile(null);
       setPreviewUrl(null);
       setResult(null);
@@ -46,6 +49,7 @@ export default function RunwayAIStylist() {
       return;
     }
 
+    setSelectedStyleIndex(0);
     setSelectedFile(file);
     setPreviewUrl(URL.createObjectURL(file));
     setResult(null);
@@ -56,6 +60,7 @@ export default function RunwayAIStylist() {
   }
 
   function handleRemoveImage() {
+    setSelectedStyleIndex(0);
     setSelectedFile(null);
     setPreviewUrl(null);
     setResult(null);
@@ -97,6 +102,7 @@ export default function RunwayAIStylist() {
 
       const data = await getRecommendations(selectedFile);
 
+      setSelectedStyleIndex(0);
       setResult(data);
       setShouldScrollToEnsemble(true);
     } catch (error) {
@@ -117,13 +123,21 @@ export default function RunwayAIStylist() {
   ) {
     if (!selectedFile || !result) return;
 
-    const itemKey = `${outfitIndex}-${itemIndex}`;
+    const activeGroup =
+      result.recommendation_groups?.[selectedStyleIndex] ??
+      result.recommendation_groups?.[0];
 
-    const currentOutfits = result.outfits?.length
-      ? result.outfits
-      : result.recommendations?.length
-        ? [{ name: "Outfit 1", items: result.recommendations }]
-        : [];
+    const activeStyle = activeGroup?.style ?? result.predicted_style;
+
+    const itemKey = `${activeStyle}-${outfitIndex}-${itemIndex}`;
+
+    const currentOutfits = activeGroup?.outfits?.length
+      ? activeGroup.outfits
+      : result.outfits?.length
+        ? result.outfits
+        : result.recommendations?.length
+          ? [{ name: "Outfit 1", items: result.recommendations }]
+          : [];
 
     const currentVisibleImageUrls = currentOutfits.flatMap((outfit) =>
       outfit.items.map((item) => item.image_url),
@@ -142,7 +156,7 @@ export default function RunwayAIStylist() {
       const data = await replaceRecommendationItem(
         selectedFile,
         itemType,
-        result.predicted_style,
+        activeStyle,
         excludeImageUrls,
       );
 
@@ -172,32 +186,58 @@ export default function RunwayAIStylist() {
       setResult((previousResult) => {
         if (!previousResult) return previousResult;
 
-        const existingOutfits = previousResult.outfits?.length
-          ? previousResult.outfits
-          : previousResult.recommendations?.length
-            ? [{ name: "Outfit 1", items: previousResult.recommendations }]
-            : [];
+        const existingGroups = previousResult.recommendation_groups?.length
+          ? previousResult.recommendation_groups
+          : [
+              {
+                style: previousResult.predicted_style,
+                confidence: previousResult.style_confidence,
+                reason: "Most likely aesthetic",
+                outfits: previousResult.outfits,
+                recommendations: previousResult.recommendations,
+              },
+            ];
 
-        const updatedOutfits = existingOutfits.map(
-          (outfit, currentOutfitIndex) => {
-            if (currentOutfitIndex !== outfitIndex) return outfit;
+        const updatedGroups = existingGroups.map((group, groupIndex) => {
+          if (groupIndex !== selectedStyleIndex) return group;
 
-            return {
-              ...outfit,
-              items: outfit.items.map((existingItem, currentItemIndex) =>
-                currentItemIndex === itemIndex ? newItem : existingItem,
-              ),
-            };
-          },
-        );
+          const groupOutfits = group.outfits?.length
+            ? group.outfits
+            : group.recommendations?.length
+              ? [{ name: "Outfit 1", items: group.recommendations }]
+              : [];
+
+          const updatedOutfits = groupOutfits.map(
+            (outfit, currentOutfitIndex) => {
+              if (currentOutfitIndex !== outfitIndex) return outfit;
+
+              return {
+                ...outfit,
+                items: outfit.items.map((existingItem, currentItemIndex) =>
+                  currentItemIndex === itemIndex ? newItem : existingItem,
+                ),
+              };
+            },
+          );
+
+          return {
+            ...group,
+            outfits: updatedOutfits,
+            recommendations:
+              outfitIndex === 0
+                ? (updatedOutfits[0]?.items ?? group.recommendations)
+                : group.recommendations,
+          };
+        });
+
+        const primaryGroup = updatedGroups[0];
 
         return {
           ...previousResult,
-          outfits: updatedOutfits,
+          recommendation_groups: updatedGroups,
+          outfits: primaryGroup?.outfits ?? previousResult.outfits,
           recommendations:
-            outfitIndex === 0
-              ? (updatedOutfits[0]?.items ?? previousResult.recommendations)
-              : previousResult.recommendations,
+            primaryGroup?.recommendations ?? previousResult.recommendations,
         };
       });
     } catch {
@@ -214,10 +254,27 @@ export default function RunwayAIStylist() {
     typeConf: result ? Math.round(result.type_confidence * 100) : 0,
   };
 
-  const outfits = result?.outfits?.length
-    ? result.outfits
-    : result?.recommendations?.length
-      ? [{ name: "Outfit 1", items: result.recommendations }]
+  const recommendationGroups = result?.recommendation_groups?.length
+    ? result.recommendation_groups
+    : result
+      ? [
+          {
+            style: result.predicted_style,
+            confidence: result.style_confidence,
+            reason: "Most likely aesthetic",
+            outfits: result.outfits,
+            recommendations: result.recommendations,
+          },
+        ]
+      : [];
+
+  const activeRecommendationGroup =
+    recommendationGroups[selectedStyleIndex] ?? recommendationGroups[0];
+
+  const outfits = activeRecommendationGroup?.outfits?.length
+    ? activeRecommendationGroup.outfits
+    : activeRecommendationGroup?.recommendations?.length
+      ? [{ name: "Outfit 1", items: activeRecommendationGroup.recommendations }]
       : [];
 
   return (
@@ -301,54 +358,17 @@ export default function RunwayAIStylist() {
         </div>
       </section>
 
-      <section id="analysis-section" className="section analysis-section">
-        <span className="section-num right">02</span>
-        <p className="chapter">Chapter Two</p>
-        <h2 className="section-title">
-          The <em>Analysis</em>
-        </h2>
-
-        <div className="analysis-grid">
-          <div className="analysis-item">
-            <p className="analysis-label">Detected Aesthetic</p>
-            <p className="analysis-value">{analysis.style}</p>
-            <div className="progress-bar">
-              <div
-                className="progress-fill"
-                style={{ width: `${analysis.styleConf}%` }}
-              />
-            </div>
-            <p className="confidence">{analysis.styleConf}%</p>
-          </div>
-
-          <div className="analysis-item">
-            <p className="analysis-label">Garment Classification</p>
-            <p className="analysis-value">{analysis.type}</p>
-            <div className="progress-bar">
-              <div
-                className="progress-fill accent"
-                style={{ width: `${analysis.typeConf}%` }}
-              />
-            </div>
-            <p className="confidence accent">{analysis.typeConf}%</p>
-          </div>
-        </div>
-
-        {result && (
-          <div className={`reliability-box reliability-${result.reliability}`}>
-            <p className="reliability-label">Reliability</p>
-            <p className="reliability-value">{result.reliability}</p>
-            <p className="reliability-text">
-              {result.reliability === "high" &&
-                "The model is confident in both the predicted style and clothing type."}
-              {result.reliability === "medium" &&
-                "The result is usable, but one prediction is not highly confident. Review the outfit manually."}
-              {result.reliability === "low" &&
-                "The model is uncertain. The recommendation may not match the uploaded item correctly."}
-            </p>
-          </div>
-        )}
-      </section>
+      {result && (
+        <AestheticAnalysis
+          result={result}
+          recommendationGroups={recommendationGroups}
+          selectedStyleIndex={selectedStyleIndex}
+          onSelectStyle={(index) => {
+            setSelectedStyleIndex(index);
+            setRefreshError(null);
+          }}
+        />
+      )}
 
       {result && (
         <section id="ensemble-section" className="section ensemble-section">
@@ -364,8 +384,9 @@ export default function RunwayAIStylist() {
               </h2>
               <div className="divider" />
               <p className="section-desc">
-                Explore complete outfit combinations generated from your
-                uploaded garment.
+                {activeRecommendationGroup
+                  ? `Showing outfit suggestions for the ${activeRecommendationGroup.style} direction. You can change the aesthetic direction in the analysis section above.`
+                  : "Explore complete outfit combinations generated from your uploaded garment."}
               </p>
             </div>
           </div>
@@ -418,29 +439,6 @@ export default function RunwayAIStylist() {
           {refreshError && <p className="refresh-error">{refreshError}</p>}
         </section>
       )}
-
-      <section className="section notes-section">
-        <span className="section-num right">04</span>
-        <div className="section-grid">
-          <div className="section-text">
-            <p className="chapter">Chapter Four</p>
-            <h2 className="section-title">
-              The <em>Notes</em>
-            </h2>
-          </div>
-
-          <div className="quote-area">
-            <blockquote className="quote">
-              <span className="quote-mark">&ldquo;</span>
-              {result
-                ? result.styling_notes
-                : "The AI styling explanation will appear here after the outfit is generated."}
-              <span className="quote-mark end">&rdquo;</span>
-            </blockquote>
-            <p className="quote-attr">— AI Styling Intelligence</p>
-          </div>
-        </div>
-      </section>
 
       <footer className="footer">
         <p>RUNWAY AI STYLIST</p>

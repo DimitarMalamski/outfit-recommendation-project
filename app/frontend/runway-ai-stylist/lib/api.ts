@@ -11,15 +11,39 @@ export type OutfitRecommendation = {
   items: RecommendationItem[];
 };
 
+export type StyleCandidate = {
+  style: string;
+  confidence: number;
+  reason: string;
+};
+
+export type RecommendationGroup = {
+  style: string;
+  confidence: number;
+  reason: string;
+  outfits: OutfitRecommendation[];
+  recommendations: RecommendationItem[];
+};
+
+export type StyleMode = "single_style" | "multi_style";
+
 export type RecommendationResponse = {
   predicted_style: string;
   style_confidence: number;
+
+  style_probabilities: Record<string, number>;
+  style_candidates: StyleCandidate[];
+  style_mode: StyleMode;
+
   predicted_type: string;
   type_confidence: number;
   reliability: string;
   styling_notes: string;
+
   recommendations: RecommendationItem[];
   outfits: OutfitRecommendation[];
+
+  recommendation_groups: RecommendationGroup[];
 };
 
 export type ReplacementItemResponse = {

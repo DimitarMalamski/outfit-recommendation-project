@@ -168,6 +168,7 @@ async def recommend(file: UploadFile = File(...)):
         "styling_notes": create_styling_notes(prediction_result),
         "recommendations": recommendation_result["recommendations"],
         "outfits": recommendation_result["outfits"],
+        "recommendation_groups": recommendation_result["recommendation_groups"],
     }
 
 @app.post("/recommend/replace-item")
@@ -220,6 +221,27 @@ def create_styling_notes(prediction_result):
     item_type = prediction_result["predicted_type"]
     style_conf = prediction_result["style_confidence"]
     type_conf = prediction_result["type_confidence"]
+    style_mode = prediction_result.get("style_mode", "single_style")
+    style_candidates = prediction_result.get("style_candidates", [])
+
+    if style_mode == "multi_style" and len(style_candidates) > 1:
+        alternative_styles = [
+            candidate["style"]
+            for candidate in style_candidates[1:]
+        ]
+
+        alternatives_text = ", ".join(alternative_styles)
+
+        style_note = (
+            f"The uploaded item was classified mainly as {style}, "
+            f"but the style confidence is not high enough to treat it as only one aesthetic. "
+            f"The system also found possible alternative aesthetic direction(s): {alternatives_text}. "
+            "Because fashion items can fit multiple aesthetics, recommendations are shown for each possible direction. "
+        )
+    else:
+        style_note = (
+            f"The uploaded item was classified as {style}. "
+        )
 
     if style_conf < 0.60 or type_conf < 0.60:
         confidence_note = (
@@ -232,8 +254,9 @@ def create_styling_notes(prediction_result):
         )
 
     return (
-        f"The uploaded item was classified as {style} and detected as a {item_type}. "
-        "The system selected catalogue items from the same predicted style, excluded the uploaded item type, "
-        "and ranked candidates using CLIP-based visual similarity. "
+        f"{style_note}"
+        f"The item was detected as a {item_type}. "
+        "The system selected catalogue items from the same predicted aesthetic direction, "
+        "excluded the uploaded item type, and ranked candidates using CLIP-based visual similarity. "
         f"{confidence_note}"
     )
