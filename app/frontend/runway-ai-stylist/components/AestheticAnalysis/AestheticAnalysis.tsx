@@ -1,6 +1,8 @@
 "use client";
 
 import type { RecommendationGroup, RecommendationResponse } from "@/lib/api";
+import { Info } from "lucide-react";
+import { useState } from "react";
 
 import styles from "./AestheticAnalysis.module.css";
 
@@ -33,6 +35,8 @@ export default function AestheticAnalysis({
   selectedStyleIndex,
   onSelectStyle,
 }: AestheticAnalysisProps) {
+  const [isReliabilityOpen, setIsReliabilityOpen] = useState(false);
+
   const activeGroup =
     recommendationGroups[selectedStyleIndex] ?? recommendationGroups[0];
 
@@ -74,7 +78,8 @@ export default function AestheticAnalysis({
         <span className={styles.editorialLabel}>Garment profile</span>
 
         <p className={styles.editorialSentence}>
-          We read this as a{" "}
+          Your garment reads as
+          <br />
           <button
             type="button"
             className={styles.inlineAestheticButton}
@@ -90,28 +95,50 @@ export default function AestheticAnalysis({
         </p>
 
         <div className={styles.editorialMeta}>
-          <span className={styles.metaItem}>
-            <strong>{formatConfidence(selectedAestheticConfidence)}</strong>{" "}
-            style confidence
-          </span>
+          <div className={styles.metaMetric}>
+            <span>
+              <strong>{formatConfidence(selectedAestheticConfidence)}</strong>{" "}
+              style confidence
+            </span>
+            <div className={styles.metaBar}>
+              <div
+                className={styles.metaBarFill}
+                style={{ width: formatConfidence(selectedAestheticConfidence) }}
+              />
+            </div>
+          </div>
 
           <span className={styles.metaDot}>·</span>
 
-          <span className={styles.metaItem}>
-            <strong>{formatConfidence(result.type_confidence)}</strong> garment
-            confidence
-          </span>
+          <div className={styles.metaMetric}>
+            <span>
+              <strong>{formatConfidence(result.type_confidence)}</strong>{" "}
+              garment confidence
+            </span>
+            <div className={styles.metaBar}>
+              <div
+                className={styles.metaBarFill}
+                style={{ width: formatConfidence(result.type_confidence) }}
+              />
+            </div>
+          </div>
 
           <span className={styles.metaDot}>·</span>
 
-          <details className={`${styles.reliabilityInline} ${styles.metaItem}`}>
-            <summary>
+          <div className={`${styles.reliabilityInline} ${styles.metaMetric}`}>
+            <span>
               <strong>{getReliabilityLabel(result.reliability)}</strong>{" "}
               reliability
-            </summary>
+            </span>
 
-            <p>{reliabilityDescription}</p>
-          </details>
+            <span className={styles.infoHoverArea}>
+              <Info className={styles.infoIcon} strokeWidth={1.5} />
+
+              <p className={styles.reliabilityPopover}>
+                {reliabilityDescription}
+              </p>
+            </span>
+          </div>
         </div>
       </div>
 

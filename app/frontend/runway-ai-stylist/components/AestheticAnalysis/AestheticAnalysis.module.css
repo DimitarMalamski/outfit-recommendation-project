@@ -123,12 +123,19 @@
 
 .reliabilityInline {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
-.reliabilityInline summary {
-  list-style: none;
+.infoButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
   cursor: pointer;
-  color: var(--fg-muted);
 }
 
 .reliabilityInline summary::-webkit-details-marker {
@@ -137,18 +144,6 @@
 
 .reliabilityInline summary:hover {
   color: var(--luxury-accent);
-}
-
-.reliabilityInline p {
-  max-width: 420px;
-  margin: 0.8rem 0 0;
-  padding-left: 1rem;
-  border-left: 1px solid var(--luxury-primary);
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: var(--fg-muted);
-  text-transform: none;
-  letter-spacing: normal;
 }
 
 .sectionHeader {
@@ -294,20 +289,53 @@
   text-align: left;
   cursor: pointer;
   transition:
-    border-color 0.3s ease,
-    background 0.3s ease,
-    transform 0.3s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    border-left-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .directionOption:hover {
-  transform: translateY(-2px);
+  transform: translateY(-6px);
+  border-color: rgba(201, 169, 98, 0.22);
   border-left-color: var(--luxury-primary);
-  background: rgba(139, 38, 53, 0.05);
+  background: rgba(139, 38, 53, 0.06);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.22);
+}
+
+.directionOption.active:hover {
+  border-left-color: var(--luxury-accent);
+  background: rgba(201, 169, 98, 0.08);
 }
 
 .directionOption.active {
   border-left-color: var(--luxury-accent);
   background: rgba(201, 169, 98, 0.06);
+}
+
+.directionPanel,
+.probabilityPanel {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-left-color 0.3s ease;
+}
+
+.directionPanel:hover,
+.probabilityPanel:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.22);
+}
+
+.directionPanel:hover {
+  border-left-color: var(--luxury-accent);
+}
+
+.probabilityPanel:hover {
+  border-left-color: var(--luxury-primary);
 }
 
 .directionName {
@@ -483,6 +511,81 @@
   font-weight: 300;
   line-height: 1.8;
   color: var(--fg-muted);
+}
+
+.metaMetric {
+  min-width: 220px;
+}
+
+.metaMetric span {
+  display: block;
+}
+
+.infoHoverArea {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+}
+
+.infoIcon {
+  width: 15px;
+  height: 15px;
+  color: var(--luxury-primary);
+  opacity: 0.75;
+  transform: translateY(2px);
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.infoHoverArea:hover .infoIcon {
+  color: var(--luxury-accent);
+  opacity: 1;
+  transform: translateY(2px) scale(1.08);
+}
+
+.reliabilityPopover {
+  position: absolute;
+  top: calc(100% + 0.8rem);
+  right: 0;
+  width: 320px;
+  padding: 1rem;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  border: 1px solid var(--luxury-primary);
+  background: var(--bg-alt);
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: 0.25s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.infoHoverArea:hover .reliabilityPopover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.metaBar {
+  width: 100%;
+  height: 2px;
+  margin-top: 0.55rem;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.metaBarFill {
+  height: 100%;
+  background: var(--luxury-accent);
+  transition: width 0.8s ease;
 }
 
 @media (max-width: 900px) {

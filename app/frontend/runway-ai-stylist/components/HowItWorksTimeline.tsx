@@ -24,7 +24,7 @@ const steps: TimelineStep[] = [
   {
     number: 2,
     icon: Sparkles,
-    title: "Discover its style",
+    title: "AI identifies aesthetic",
     description: "The AI analyses the garment category and predicted style.",
     targetId: "analysis-section",
     fallbackId: "upload-section",

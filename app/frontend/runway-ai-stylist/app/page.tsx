@@ -10,6 +10,7 @@ import "./upload-section.css";
 import "./ensemble-section.css";
 import HowItWorksTimeline from "../components/HowItWorksTimeline";
 import AestheticAnalysis from "../components/AestheticAnalysis/AestheticAnalysis";
+import HeroSection from "../components/HeroSection";
 
 export default function RunwayAIStylist() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -279,21 +280,7 @@ export default function RunwayAIStylist() {
 
   return (
     <>
-      <section className="hero">
-        <p className="hero-tag">The Future of Personal Style</p>
-        <h1 className="hero-title">RUNWAY</h1>
-        <div className="hero-divider">
-          <span className="line" />
-          <span className="hero-ai">AI</span>
-          <span className="line" />
-        </div>
-        <h2 className="hero-subtitle">Stylist</h2>
-        <p className="hero-desc">
-          Upload a clear image of a clothing item, such as a jacket, shirt,
-          pants, or shoes. The AI analyses the item&apos;s style, and category,
-          then recommends outfit combinations that match it.
-        </p>
-      </section>
+      <HeroSection />
 
       <HowItWorksTimeline />
 
