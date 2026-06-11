@@ -1,0 +1,6 @@
+source,num_images,accuracy,avg_loss,wrong_predictions,high_loss_count,low_margin_count,low_confidence_count,boundary_pair_count,candidate_count
+real_world_test,80,0.625,0.9756930135888979,30,27,30,42,56,38
+split_style_test,120,0.8166666666666667,0.45972405311961967,22,19,16,27,75,28
+split_style_train,560,0.9303571428571429,0.3181688331749423,39,26,68,109,350,79
+split_style_val,120,0.8666666666666667,0.47555046625590575,16,14,23,40,68,28
+style_extra,100,0.83,0.5567966651171445,17,12,29,46,80,36

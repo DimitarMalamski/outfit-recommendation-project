@@ -1,0 +1,13 @@
+true_style,predicted_style,count
+sporty,formal,25
+streetwear,sporty,21
+sporty,streetwear,20
+streetwear,formal,15
+streetwear,gothic,12
+formal,streetwear,8
+formal,sporty,7
+gothic,streetwear,7
+gothic,sporty,4
+gothic,formal,3
+formal,gothic,1
+sporty,gothic,1

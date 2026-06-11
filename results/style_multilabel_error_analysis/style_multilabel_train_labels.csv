@@ -1,0 +1,661 @@
+source,split,filename,image_path,true_style,was_manually_reviewed,review_decision,manual_label_names,manual_notes,label_formal,label_gothic,label_sporty,label_streetwear,label_count
+split_style_train,train,jacket_formal_jacket_001.png,..\dataset\split_style\train\formal\jacket_formal_jacket_001.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_003.png,..\dataset\split_style\train\formal\jacket_formal_jacket_003.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_004.png,..\dataset\split_style\train\formal\jacket_formal_jacket_004.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_005.png,..\dataset\split_style\train\formal\jacket_formal_jacket_005.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_006.png,..\dataset\split_style\train\formal\jacket_formal_jacket_006.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_010.png,..\dataset\split_style\train\formal\jacket_formal_jacket_010.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_011.png,..\dataset\split_style\train\formal\jacket_formal_jacket_011.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_013.png,..\dataset\split_style\train\formal\jacket_formal_jacket_013.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_014.png,..\dataset\split_style\train\formal\jacket_formal_jacket_014.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_015.png,..\dataset\split_style\train\formal\jacket_formal_jacket_015.png,formal,True,keep_single_label,formal,Tuxedo/velvet blazer is clearly formal. Not enough streetwear influence.,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_016.png,..\dataset\split_style\train\formal\jacket_formal_jacket_016.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_017.png,..\dataset\split_style\train\formal\jacket_formal_jacket_017.png,formal,True,add_second_label,formal + gothic,"Formal blazer, but dark patterned fabric gives it a gothic/formal look. Not streetwear.",1,1,0,0,2
+split_style_train,train,jacket_formal_jacket_019.png,..\dataset\split_style\train\formal\jacket_formal_jacket_019.png,formal,True,add_second_label,formal + gothic,"Formal blazer, but the dark patterned fabric gives it a gothic/formal look. Not streetwear.",1,1,0,0,2
+split_style_train,train,jacket_formal_jacket_020.png,..\dataset\split_style\train\formal\jacket_formal_jacket_020.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_022.png,..\dataset\split_style\train\formal\jacket_formal_jacket_022.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_026.png,..\dataset\split_style\train\formal\jacket_formal_jacket_026.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_028.png,..\dataset\split_style\train\formal\jacket_formal_jacket_028.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_030.png,..\dataset\split_style\train\formal\jacket_formal_jacket_030.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_031.png,..\dataset\split_style\train\formal\jacket_formal_jacket_031.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_033.png,..\dataset\split_style\train\formal\jacket_formal_jacket_033.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_034.png,..\dataset\split_style\train\formal\jacket_formal_jacket_034.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_035.png,..\dataset\split_style\train\formal\jacket_formal_jacket_035.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_037.png,..\dataset\split_style\train\formal\jacket_formal_jacket_037.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_038.png,..\dataset\split_style\train\formal\jacket_formal_jacket_038.png,formal,True,keep_single_label,formal,Structured blazer. Clearly formal.,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_039.png,..\dataset\split_style\train\formal\jacket_formal_jacket_039.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_042.png,..\dataset\split_style\train\formal\jacket_formal_jacket_042.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_043.png,..\dataset\split_style\train\formal\jacket_formal_jacket_043.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_044.png,..\dataset\split_style\train\formal\jacket_formal_jacket_044.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_045.png,..\dataset\split_style\train\formal\jacket_formal_jacket_045.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_046.png,..\dataset\split_style\train\formal\jacket_formal_jacket_046.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_047.png,..\dataset\split_style\train\formal\jacket_formal_jacket_047.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_048.png,..\dataset\split_style\train\formal\jacket_formal_jacket_048.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_formal_jacket_049.png,..\dataset\split_style\train\formal\jacket_formal_jacket_049.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_002.png,..\dataset\split_style\train\formal\pants_formal_pants_002.png,formal,True,keep_single_label,formal,Tailored trousers. Clearly formal.,1,0,0,0,1
+split_style_train,train,pants_formal_pants_003.png,..\dataset\split_style\train\formal\pants_formal_pants_003.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_004.png,..\dataset\split_style\train\formal\pants_formal_pants_004.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_005.png,..\dataset\split_style\train\formal\pants_formal_pants_005.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_011.png,..\dataset\split_style\train\formal\pants_formal_pants_011.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_012.png,..\dataset\split_style\train\formal\pants_formal_pants_012.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_014.png,..\dataset\split_style\train\formal\pants_formal_pants_014.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_015.png,..\dataset\split_style\train\formal\pants_formal_pants_015.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_016.png,..\dataset\split_style\train\formal\pants_formal_pants_016.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_017.png,..\dataset\split_style\train\formal\pants_formal_pants_017.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_019.png,..\dataset\split_style\train\formal\pants_formal_pants_019.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_020.png,..\dataset\split_style\train\formal\pants_formal_pants_020.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_023.png,..\dataset\split_style\train\formal\pants_formal_pants_023.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_024.png,..\dataset\split_style\train\formal\pants_formal_pants_024.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_025.png,..\dataset\split_style\train\formal\pants_formal_pants_025.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_027.png,..\dataset\split_style\train\formal\pants_formal_pants_027.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_028.png,..\dataset\split_style\train\formal\pants_formal_pants_028.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_029.png,..\dataset\split_style\train\formal\pants_formal_pants_029.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_030.png,..\dataset\split_style\train\formal\pants_formal_pants_030.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_031.png,..\dataset\split_style\train\formal\pants_formal_pants_031.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_032.png,..\dataset\split_style\train\formal\pants_formal_pants_032.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_033.png,..\dataset\split_style\train\formal\pants_formal_pants_033.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_034.png,..\dataset\split_style\train\formal\pants_formal_pants_034.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_035.png,..\dataset\split_style\train\formal\pants_formal_pants_035.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_036.png,..\dataset\split_style\train\formal\pants_formal_pants_036.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_040.png,..\dataset\split_style\train\formal\pants_formal_pants_040.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_041.png,..\dataset\split_style\train\formal\pants_formal_pants_041.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_044.png,..\dataset\split_style\train\formal\pants_formal_pants_044.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_045.png,..\dataset\split_style\train\formal\pants_formal_pants_045.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_046.png,..\dataset\split_style\train\formal\pants_formal_pants_046.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_049.png,..\dataset\split_style\train\formal\pants_formal_pants_049.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,pants_formal_pants_050.png,..\dataset\split_style\train\formal\pants_formal_pants_050.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_001.png,..\dataset\split_style\train\formal\shoes_formal_shoes_001.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_002.png,..\dataset\split_style\train\formal\shoes_formal_shoes_002.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_003.png,..\dataset\split_style\train\formal\shoes_formal_shoes_003.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_004.png,..\dataset\split_style\train\formal\shoes_formal_shoes_004.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_005.png,..\dataset\split_style\train\formal\shoes_formal_shoes_005.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_006.png,..\dataset\split_style\train\formal\shoes_formal_shoes_006.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_007.png,..\dataset\split_style\train\formal\shoes_formal_shoes_007.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_010.png,..\dataset\split_style\train\formal\shoes_formal_shoes_010.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_011.png,..\dataset\split_style\train\formal\shoes_formal_shoes_011.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_012.png,..\dataset\split_style\train\formal\shoes_formal_shoes_012.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_013.png,..\dataset\split_style\train\formal\shoes_formal_shoes_013.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_014.png,..\dataset\split_style\train\formal\shoes_formal_shoes_014.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_016.png,..\dataset\split_style\train\formal\shoes_formal_shoes_016.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_017.png,..\dataset\split_style\train\formal\shoes_formal_shoes_017.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_019.png,..\dataset\split_style\train\formal\shoes_formal_shoes_019.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_020.png,..\dataset\split_style\train\formal\shoes_formal_shoes_020.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_021.png,..\dataset\split_style\train\formal\shoes_formal_shoes_021.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_022.png,..\dataset\split_style\train\formal\shoes_formal_shoes_022.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_023.png,..\dataset\split_style\train\formal\shoes_formal_shoes_023.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_024.png,..\dataset\split_style\train\formal\shoes_formal_shoes_024.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_025.png,..\dataset\split_style\train\formal\shoes_formal_shoes_025.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_026.png,..\dataset\split_style\train\formal\shoes_formal_shoes_026.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_027.png,..\dataset\split_style\train\formal\shoes_formal_shoes_027.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_028.png,..\dataset\split_style\train\formal\shoes_formal_shoes_028.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_029.png,..\dataset\split_style\train\formal\shoes_formal_shoes_029.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_031.png,..\dataset\split_style\train\formal\shoes_formal_shoes_031.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_032.png,..\dataset\split_style\train\formal\shoes_formal_shoes_032.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_033.png,..\dataset\split_style\train\formal\shoes_formal_shoes_033.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_034.png,..\dataset\split_style\train\formal\shoes_formal_shoes_034.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_035.png,..\dataset\split_style\train\formal\shoes_formal_shoes_035.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_036.png,..\dataset\split_style\train\formal\shoes_formal_shoes_036.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_037.png,..\dataset\split_style\train\formal\shoes_formal_shoes_037.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_039.png,..\dataset\split_style\train\formal\shoes_formal_shoes_039.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_041.png,..\dataset\split_style\train\formal\shoes_formal_shoes_041.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_043.png,..\dataset\split_style\train\formal\shoes_formal_shoes_043.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_045.png,..\dataset\split_style\train\formal\shoes_formal_shoes_045.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_046.png,..\dataset\split_style\train\formal\shoes_formal_shoes_046.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_047.png,..\dataset\split_style\train\formal\shoes_formal_shoes_047.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_048.png,..\dataset\split_style\train\formal\shoes_formal_shoes_048.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_049.png,..\dataset\split_style\train\formal\shoes_formal_shoes_049.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,shoes_formal_shoes_050.png,..\dataset\split_style\train\formal\shoes_formal_shoes_050.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_004.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_004.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_006.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_006.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_007.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_007.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_008.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_008.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_009.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_009.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_010.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_010.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_011.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_011.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_012.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_012.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_013.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_013.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_015.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_015.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_016.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_016.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_018.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_018.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_020.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_020.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_021.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_021.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_022.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_022.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_023.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_023.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_025.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_025.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_026.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_026.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_027.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_027.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_028.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_028.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_029.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_029.png,formal,True,add_second_label,formal + streetwear,"Polo/preppy shirt, but strong logo/graphic branding can also work in streetwear.",1,0,0,1,2
+split_style_train,train,tshirt_formal_tshirt_030.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_030.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_031.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_031.png,formal,True,add_second_label,formal + streetwear,"Collared/preppy shirt, but the NY branding also makes it fit streetwear.",1,0,0,1,2
+split_style_train,train,tshirt_formal_tshirt_034.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_034.png,formal,True,add_second_label,formal + streetwear,"Rugby/preppy shirt can fit a formal/preppy category, but also works in streetwear styling.",1,0,0,1,2
+split_style_train,train,tshirt_formal_tshirt_035.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_035.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_037.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_037.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_038.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_038.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_043.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_043.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_044.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_044.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_045.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_045.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_046.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_046.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_047.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_047.png,formal,True,keep_single_label,formal,Clean polo shirt. More formal/preppy than streetwear.,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_049.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_049.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,tshirt_formal_tshirt_050.png,..\dataset\split_style\train\formal\tshirt_formal_tshirt_050.png,formal,False,not_reviewed,,,1,0,0,0,1
+split_style_train,train,jacket_gothic_jacket_001.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_001.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_003.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_003.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_004.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_004.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_005.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_005.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_007.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_007.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_008.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_008.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_010.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_010.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_011.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_011.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_012.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_012.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_013.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_013.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_015.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_015.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_020.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_020.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_021.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_021.png,gothic,True,add_second_label,formal + gothic,"Gothic coat, but the structured long coat shape also has a formal/Victorian feel. Not sporty.",1,1,0,0,2
+split_style_train,train,jacket_gothic_jacket_022.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_022.png,gothic,True,add_second_label,formal + gothic,"Long structured black coat. Gothic, but also clearly formal/elegant. Not sporty.",1,1,0,0,2
+split_style_train,train,jacket_gothic_jacket_023.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_023.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_024.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_024.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_027.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_027.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_028.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_028.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_029.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_029.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_030.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_030.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_032.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_032.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_033.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_033.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_035.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_035.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_036.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_036.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_037.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_037.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_038.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_038.png,gothic,True,add_second_label,formal + gothic,"From a gothic source, so gothic label is valid, but visually it also looks formal/vintage because of the coat shape and pattern.",1,1,0,0,2
+split_style_train,train,jacket_gothic_jacket_039.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_039.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_040.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_040.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_041.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_041.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_042.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_042.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_043.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_043.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_044.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_044.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_045.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_045.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_046.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_046.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_047.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_047.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_048.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_048.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_gothic_jacket_050.png,..\dataset\split_style\train\gothic\jacket_gothic_jacket_050.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_001.png,..\dataset\split_style\train\gothic\pants_gothic_pants_001.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_003.png,..\dataset\split_style\train\gothic\pants_gothic_pants_003.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_004.png,..\dataset\split_style\train\gothic\pants_gothic_pants_004.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_006.png,..\dataset\split_style\train\gothic\pants_gothic_pants_006.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_010.png,..\dataset\split_style\train\gothic\pants_gothic_pants_010.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_012.png,..\dataset\split_style\train\gothic\pants_gothic_pants_012.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_015.png,..\dataset\split_style\train\gothic\pants_gothic_pants_015.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_016.png,..\dataset\split_style\train\gothic\pants_gothic_pants_016.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_017.png,..\dataset\split_style\train\gothic\pants_gothic_pants_017.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_018.png,..\dataset\split_style\train\gothic\pants_gothic_pants_018.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_019.png,..\dataset\split_style\train\gothic\pants_gothic_pants_019.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_020.png,..\dataset\split_style\train\gothic\pants_gothic_pants_020.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_021.png,..\dataset\split_style\train\gothic\pants_gothic_pants_021.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_023.png,..\dataset\split_style\train\gothic\pants_gothic_pants_023.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_024.png,..\dataset\split_style\train\gothic\pants_gothic_pants_024.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_025.png,..\dataset\split_style\train\gothic\pants_gothic_pants_025.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_026.png,..\dataset\split_style\train\gothic\pants_gothic_pants_026.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_027.png,..\dataset\split_style\train\gothic\pants_gothic_pants_027.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_028.png,..\dataset\split_style\train\gothic\pants_gothic_pants_028.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_029.png,..\dataset\split_style\train\gothic\pants_gothic_pants_029.png,gothic,True,add_second_label,gothic + streetwear,"Clearly gothic because of the lacing/leather look, but could also fit dark streetwear outfits.",0,1,0,1,2
+split_style_train,train,pants_gothic_pants_031.png,..\dataset\split_style\train\gothic\pants_gothic_pants_031.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_032.png,..\dataset\split_style\train\gothic\pants_gothic_pants_032.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_033.png,..\dataset\split_style\train\gothic\pants_gothic_pants_033.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_034.png,..\dataset\split_style\train\gothic\pants_gothic_pants_034.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_036.png,..\dataset\split_style\train\gothic\pants_gothic_pants_036.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_038.png,..\dataset\split_style\train\gothic\pants_gothic_pants_038.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_039.png,..\dataset\split_style\train\gothic\pants_gothic_pants_039.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_040.png,..\dataset\split_style\train\gothic\pants_gothic_pants_040.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_042.png,..\dataset\split_style\train\gothic\pants_gothic_pants_042.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_043.png,..\dataset\split_style\train\gothic\pants_gothic_pants_043.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_044.png,..\dataset\split_style\train\gothic\pants_gothic_pants_044.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_045.png,..\dataset\split_style\train\gothic\pants_gothic_pants_045.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_047.png,..\dataset\split_style\train\gothic\pants_gothic_pants_047.png,gothic,True,keep_single_label,gothic,The black/white striped pants feel more gothic/alternative than streetwear.,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_048.png,..\dataset\split_style\train\gothic\pants_gothic_pants_048.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_049.png,..\dataset\split_style\train\gothic\pants_gothic_pants_049.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,pants_gothic_pants_050.png,..\dataset\split_style\train\gothic\pants_gothic_pants_050.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_001.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_001.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_002.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_002.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_007.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_007.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_008.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_008.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_010.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_010.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_012.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_012.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_014.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_014.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_015.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_015.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_017.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_017.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_018.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_018.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_019.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_019.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_021.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_021.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_023.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_023.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_024.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_024.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_026.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_026.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_027.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_027.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_028.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_028.png,gothic,True,keep_single_label,gothic,These are very clearly gothic/punk boots. Streetwear does not feel necessary here.,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_029.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_029.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_030.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_030.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_031.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_031.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_034.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_034.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_035.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_035.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_036.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_036.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_037.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_037.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_038.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_038.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_040.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_040.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_041.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_041.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_043.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_043.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_044.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_044.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_045.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_045.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_046.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_046.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_049.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_049.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,shoes_gothic_shoes_050.png,..\dataset\split_style\train\gothic\shoes_gothic_shoes_050.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_002.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_002.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_003.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_003.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_004.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_004.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_005.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_005.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_007.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_007.png,gothic,True,keep_single_label,gothic,"Graphic black tee, but not sporty. I would keep the original gothic label.",0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_008.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_008.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_009.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_009.png,gothic,True,add_second_label,gothic + streetwear,"Gothic graphic tee, but also works as streetwear because it is a black graphic t-shirt.",0,1,0,1,2
+split_style_train,train,tshirt_gothic_tshirt_010.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_010.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_011.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_011.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_013.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_013.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_014.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_014.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_015.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_015.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_016.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_016.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_018.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_018.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_019.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_019.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_020.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_020.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_024.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_024.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_025.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_025.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_028.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_028.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_030.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_030.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_031.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_031.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_032.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_032.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_034.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_034.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_035.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_035.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_036.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_036.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_038.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_038.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_039.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_039.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_040.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_040.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_041.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_041.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_042.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_042.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_043.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_043.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_045.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_045.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_047.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_047.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,tshirt_gothic_tshirt_048.png,..\dataset\split_style\train\gothic\tshirt_gothic_tshirt_048.png,gothic,False,not_reviewed,,,0,1,0,0,1
+split_style_train,train,jacket_sporty_jacket_002.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_002.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_004.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_004.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_005.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_005.png,sporty,True,add_second_label,sporty + streetwear,"Hoodie is sporty/casual, but also very usable in streetwear outfit",0,0,1,1,2
+split_style_train,train,jacket_sporty_jacket_006.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_006.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_008.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_008.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_009.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_009.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_013.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_013.png,sporty,True,add_second_label,sporty + streetwear,"Sporty windbreaker, but it can also fit streetwear styling.",0,0,1,1,2
+split_style_train,train,jacket_sporty_jacket_015.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_015.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_016.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_016.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_017.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_017.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_018.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_018.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_019.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_019.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_021.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_021.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_022.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_022.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_023.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_023.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_025.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_025.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_026.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_026.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_030.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_030.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_031.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_031.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_032.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_032.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_035.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_035.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_036.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_036.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_037.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_037.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_043.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_043.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_044.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_044.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_045.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_045.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_047.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_047.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_048.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_048.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_049.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_049.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_sporty_jacket_050.png,..\dataset\split_style\train\sporty\jacket_sporty_jacket_050.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_001.png,..\dataset\split_style\train\sporty\pants_sporty_pants_001.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_002.png,..\dataset\split_style\train\sporty\pants_sporty_pants_002.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_003.png,..\dataset\split_style\train\sporty\pants_sporty_pants_003.png,sporty,True,add_second_label,sporty + streetwear,Loose casual pants with side stripe can work in both sporty and streetwear outfits.,0,0,1,1,2
+split_style_train,train,pants_sporty_pants_005.png,..\dataset\split_style\train\sporty\pants_sporty_pants_005.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_006.png,..\dataset\split_style\train\sporty\pants_sporty_pants_006.png,sporty,True,keep_single_label,sporty,Simple lounge/sport pants. They do not strongly show streetwear or formal styling.,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_007.png,..\dataset\split_style\train\sporty\pants_sporty_pants_007.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_008.png,..\dataset\split_style\train\sporty\pants_sporty_pants_008.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_009.png,..\dataset\split_style\train\sporty\pants_sporty_pants_009.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_010.png,..\dataset\split_style\train\sporty\pants_sporty_pants_010.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_012.png,..\dataset\split_style\train\sporty\pants_sporty_pants_012.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_013.png,..\dataset\split_style\train\sporty\pants_sporty_pants_013.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_016.png,..\dataset\split_style\train\sporty\pants_sporty_pants_016.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_017.png,..\dataset\split_style\train\sporty\pants_sporty_pants_017.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_020.png,..\dataset\split_style\train\sporty\pants_sporty_pants_020.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_022.png,..\dataset\split_style\train\sporty\pants_sporty_pants_022.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_023.png,..\dataset\split_style\train\sporty\pants_sporty_pants_023.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_024.png,..\dataset\split_style\train\sporty\pants_sporty_pants_024.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_025.png,..\dataset\split_style\train\sporty\pants_sporty_pants_025.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_026.png,..\dataset\split_style\train\sporty\pants_sporty_pants_026.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_027.png,..\dataset\split_style\train\sporty\pants_sporty_pants_027.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_028.png,..\dataset\split_style\train\sporty\pants_sporty_pants_028.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_030.png,..\dataset\split_style\train\sporty\pants_sporty_pants_030.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_031.png,..\dataset\split_style\train\sporty\pants_sporty_pants_031.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_032.png,..\dataset\split_style\train\sporty\pants_sporty_pants_032.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_033.png,..\dataset\split_style\train\sporty\pants_sporty_pants_033.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_034.png,..\dataset\split_style\train\sporty\pants_sporty_pants_034.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_035.png,..\dataset\split_style\train\sporty\pants_sporty_pants_035.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_037.png,..\dataset\split_style\train\sporty\pants_sporty_pants_037.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_038.png,..\dataset\split_style\train\sporty\pants_sporty_pants_038.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_039.png,..\dataset\split_style\train\sporty\pants_sporty_pants_039.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_040.png,..\dataset\split_style\train\sporty\pants_sporty_pants_040.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_043.png,..\dataset\split_style\train\sporty\pants_sporty_pants_043.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_046.png,..\dataset\split_style\train\sporty\pants_sporty_pants_046.png,sporty,True,add_second_label,sporty + streetwear,"Cargo-style loose pants can fit sporty/outdoor style, but also streetwear.",0,0,1,1,2
+split_style_train,train,pants_sporty_pants_047.png,..\dataset\split_style\train\sporty\pants_sporty_pants_047.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_049.png,..\dataset\split_style\train\sporty\pants_sporty_pants_049.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,pants_sporty_pants_050.png,..\dataset\split_style\train\sporty\pants_sporty_pants_050.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_001.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_001.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_002.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_002.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_003.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_003.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_004.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_004.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_007.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_007.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_008.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_008.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_012.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_012.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_013.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_013.png,sporty,True,add_second_label,sporty + streetwear,"Technical/outdoor sporty shoe, but also fits modern streetwear/gorpcore style.",0,0,1,1,2
+split_style_train,train,shoes_sporty_shoes_015.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_015.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_016.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_016.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_017.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_017.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_018.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_018.png,sporty,True,keep_single_label,sporty,Black running/performance shoe. The black color alone does not make it gothic.,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_019.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_019.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_020.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_020.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_022.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_022.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_023.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_023.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_024.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_024.png,sporty,True,add_second_label,sporty + streetwear,"Technical Salomon-style shoe is sporty, but also fits streetwear/gorpcore styling.",0,0,1,1,2
+split_style_train,train,shoes_sporty_shoes_025.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_025.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_027.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_027.png,sporty,True,keep_single_label,sporty,Clearly sporty shoes.,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_028.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_028.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_029.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_029.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_031.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_031.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_032.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_032.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_033.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_033.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_034.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_034.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_035.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_035.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_036.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_036.png,sporty,True,add_second_label,sporty + streetwear,"Sporty technical sneaker, but the bold design also fits streetwear styling.",0,0,1,1,2
+split_style_train,train,shoes_sporty_shoes_037.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_037.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_038.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_038.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_039.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_039.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_041.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_041.png,sporty,True,add_second_label,sporty + streetwear,"Technical sneaker is sporty, but also works in streetwear/gorpcore outfits.",0,0,1,1,2
+split_style_train,train,shoes_sporty_shoes_043.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_043.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_045.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_045.png,sporty,True,keep_single_label,sporty,"Looks like a running/performance shoe, so it should stay sporty only.",0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_046.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_046.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_047.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_047.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_048.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_048.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,shoes_sporty_shoes_049.png,..\dataset\split_style\train\sporty\shoes_sporty_shoes_049.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_001.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_001.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_004.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_004.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_005.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_005.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_006.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_006.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_007.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_007.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_008.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_008.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_009.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_009.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_010.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_010.png,sporty,True,add_second_label,sporty + streetwear,"Adidas logo tee is sporty, but also very common in casual streetwear outfits.",0,0,1,1,2
+split_style_train,train,tshirt_sporty_tshirt_012.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_012.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_015.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_015.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_016.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_016.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_018.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_018.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_019.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_019.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_020.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_020.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_021.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_021.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_022.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_022.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_023.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_023.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_025.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_025.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_026.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_026.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_028.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_028.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_029.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_029.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_030.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_030.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_032.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_032.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_035.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_035.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_037.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_037.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_038.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_038.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_039.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_039.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_041.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_041.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_042.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_042.png,sporty,True,keep_single_label,sporty,Simple sports/basic t-shirt. Not enough streetwear identity by itself.,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_043.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_043.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_044.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_044.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_045.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_045.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_046.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_046.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_047.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_047.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_048.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_048.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_049.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_049.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,tshirt_sporty_tshirt_050.png,..\dataset\split_style\train\sporty\tshirt_sporty_tshirt_050.png,sporty,False,not_reviewed,,,0,0,1,0,1
+split_style_train,train,jacket_streetwear_jacket_001.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_003.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_003.png,streetwear,True,keep_single_label,streetwear,"Denim hoodie/jacket is clearly casual streetwear, not formal.",0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_004.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_004.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_005.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_005.png,streetwear,True,add_second_label,sporty + streetwear,"Racing/track-style jacket is streetwear, but also clearly has sporty influence.",0,0,1,1,2
+split_style_train,train,jacket_streetwear_jacket_007.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_007.png,streetwear,True,keep_single_label,streetwear,"Varsity/leather jacket fits streetwear. It is structured, but not formal.",0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_008.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_008.png,streetwear,True,add_second_label,sporty + streetwear,"Green track-style jacket. It is streetwear, but also clearly sporty. Not formal.",0,0,1,1,2
+split_style_train,train,jacket_streetwear_jacket_009.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_009.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_010.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_010.png,streetwear,True,add_second_label,formal + streetwear,"Clean grey zip/cardigan style. It is casual streetwear, but also has a smart/minimal formal feel.",1,0,0,1,2
+split_style_train,train,jacket_streetwear_jacket_011.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_011.png,streetwear,True,keep_single_label,streetwear,Black workwear-style jacket. More streetwear than formal.,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_012.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_012.png,streetwear,True,add_second_label,sporty + streetwear,"Black track/bomber-style jacket. Streetwear, but also sporty because of the athletic jacket shape.",0,0,1,1,2
+split_style_train,train,jacket_streetwear_jacket_013.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_013.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_014.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_014.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_015.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_015.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_018.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_018.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_019.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_019.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_022.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_022.png,streetwear,True,add_second_label,formal + streetwear,"Clean structured jacket. Streetwear, but also has a minimal smart-casual/formal feel.",1,0,0,1,2
+split_style_train,train,jacket_streetwear_jacket_023.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_023.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_024.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_024.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_025.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_025.png,streetwear,True,keep_single_label,streetwear,Patterned fleece/jacket. More casual streetwear than formal.,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_026.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_026.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_027.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_027.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_028.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_028.png,streetwear,True,add_second_label,gothic + streetwear,"Dark oversized streetwear jacket, but the black styling and graphics can also fit gothic/alternative outfits.",0,1,0,1,2
+split_style_train,train,jacket_streetwear_jacket_029.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_029.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_030.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_030.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_031.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_031.png,streetwear,True,add_second_label,formal + streetwear,"Knitted zip/cardigan-style jacket. Streetwear, but also clean/preppy/formal-ish.",1,0,0,1,2
+split_style_train,train,jacket_streetwear_jacket_032.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_032.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_033.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_033.png,streetwear,True,add_second_label,formal + streetwear,"Varsity/preppy jacket. It is streetwear, but also has a smart/preppy formal influence.",1,0,0,1,2
+split_style_train,train,jacket_streetwear_jacket_034.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_034.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_035.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_035.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_037.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_037.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_038.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_038.png,streetwear,True,keep_single_label,streetwear,Red leather bomber is bold streetwear. I would not call it formal.,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_042.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_042.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_043.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_043.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_044.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_044.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_045.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_045.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_046.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_046.png,streetwear,True,add_second_label,formal + streetwear,"Clean white structured jacket. It is streetwear, but the minimal clean look can also fit smart/formal styling.",1,0,0,1,2
+split_style_train,train,jacket_streetwear_jacket_047.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_047.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_048.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_048.png,streetwear,True,keep_single_label,streetwear,Black denim jacket. More streetwear/casual than formal.,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_049.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_049.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,jacket_streetwear_jacket_050.png,..\dataset\split_style\train\streetwear\jacket_streetwear_jacket_050.png,streetwear,True,add_second_label,sporty + streetwear,"Half-zip windbreaker style fits streetwear, but also has sporty/outdoor clothing features.",0,0,1,1,2
+split_style_train,train,pants_streetwear_pants_001.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_002.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_002.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_004.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_004.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_006.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_006.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_007.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_007.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_008.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_008.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_009.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_009.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_013.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_013.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_015.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_015.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_016.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_016.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_018.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_018.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_019.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_019.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_022.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_022.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_023.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_023.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_025.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_025.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_026.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_026.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_028.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_028.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_029.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_029.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_030.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_030.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_031.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_031.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_033.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_033.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_034.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_034.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_037.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_037.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_038.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_038.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_039.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_039.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_040.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_040.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_042.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_042.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_043.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_043.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_044.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_044.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_045.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_045.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_046.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_046.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,pants_streetwear_pants_047.png,..\dataset\split_style\train\streetwear\pants_streetwear_pants_047.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_001.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_002.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_002.png,streetwear,True,keep_single_label,streetwear,"Vans checkerboard shoe. Clearly streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_003.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_003.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_004.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_004.png,streetwear,True,add_second_label,sporty + streetwear,"Athletic sneaker shape, but also works as streetwear.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_006.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_006.png,streetwear,True,add_second_label,sporty + streetwear,Jordan-style sneaker. Streetwear and sporty both make sense.,0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_009.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_009.png,streetwear,True,keep_single_label,streetwear,"Nike lifestyle sneaker. Streetwear only, not formal.",0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_011.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_011.png,streetwear,True,keep_single_label,streetwear,"Jordan-style lifestyle sneaker. Streetwear, not formal.",0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_012.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_012.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_017.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_017.png,streetwear,True,keep_single_label,streetwear,Nike lifestyle sneaker. More streetwear/fashion than actual running/performance shoe.,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_018.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_018.png,streetwear,True,keep_single_label,streetwear,Black Converse-style shoes are common streetwear. The black color alone is not enough to call it gothic.,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_021.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_021.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_024.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_024.png,streetwear,True,add_second_label,sporty + streetwear,"Adidas casual sneaker is streetwear, but still has sporty brand/design cues.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_026.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_026.png,streetwear,True,add_second_label,sporty + streetwear,Casual streetwear sneaker with sporty Adidas design.,0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_027.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_027.png,streetwear,True,add_second_label,sporty + streetwear,"Very sporty Adidas-style sneaker, but can still be styled as streetwear.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_028.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_028.png,streetwear,True,add_second_label,sporty + streetwear,"Basketball-style sneaker. Strong streetwear item, but athletic/sporty influence is also valid.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_029.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_029.png,streetwear,True,add_second_label,sporty + streetwear,New Balance technical sneaker fits both sporty and streetwear.,0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_031.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_031.png,streetwear,True,keep_single_label,streetwear,"Adidas lifestyle sneaker. Streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_032.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_032.png,streetwear,True,add_second_label,sporty + streetwear,New Balance-style sneaker works strongly in both sporty and streetwear.,0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_033.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_033.png,streetwear,True,add_second_label,sporty + streetwear,Nike basketball-style sneaker. Streetwear and sporty both make sense.,0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_035.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_035.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_037.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_037.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_038.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_038.png,streetwear,True,add_second_label,sporty + streetwear,"Adidas-style sneakers are streetwear, but the athletic design also makes sporty valid.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_040.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_040.png,streetwear,True,keep_single_label,streetwear,More fashion/casual sneaker than athletic. Streetwear only is enough.,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_042.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_042.png,streetwear,True,add_second_label,sporty + streetwear,"Technical sneaker with sporty features, but also works as streetwear/fashion sneaker.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_043.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_043.png,streetwear,True,keep_single_label,streetwear,More fashion/casual shoe than athletic sneaker. Not sporty enough.,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_045.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_045.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,shoes_streetwear_shoes_046.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_046.png,streetwear,True,add_second_label,sporty + streetwear,"Puma sneaker works as streetwear, but still has sporty sneaker design.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_047.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_047.png,streetwear,True,add_second_label,sporty + streetwear,"Basketball-style sneaker. Streetwear, but also has clear sporty/athletic influence.",0,0,1,1,2
+split_style_train,train,shoes_streetwear_shoes_048.png,..\dataset\split_style\train\streetwear\shoes_streetwear_shoes_048.png,streetwear,True,add_second_label,sporty + streetwear,"Basketball-style sneaker fits streetwear, but the athletic design makes sporty valid too.",0,0,1,1,2
+split_style_train,train,tshirt_streetwear_tshirt_001.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_002.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_002.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_004.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_004.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_005.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_005.png,streetwear,True,add_second_label,gothic + streetwear,"Metallica black graphic tee fits streetwear, but also clearly connects to gothic/metal styling.",0,1,0,1,2
+split_style_train,train,tshirt_streetwear_tshirt_006.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_006.png,streetwear,True,add_second_label,gothic + streetwear,"Black oversized graphic tee is streetwear, but the dark artwork makes gothic also reasonable.",0,1,0,1,2
+split_style_train,train,tshirt_streetwear_tshirt_009.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_009.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_010.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_010.png,streetwear,True,keep_single_label,streetwear,"Graphic t-shirt is streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_012.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_012.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_013.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_013.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_015.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_015.png,streetwear,True,keep_single_label,streetwear,Oversized black graphic tee. Streetwear only.,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_016.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_016.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_018.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_018.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_019.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_019.png,streetwear,True,keep_single_label,streetwear,"Oversized graphic t-shirt. Clearly streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_020.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_020.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_022.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_022.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_023.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_023.png,streetwear,True,keep_single_label,streetwear,"Oversized graphic tee. Streetwear only, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_024.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_024.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_025.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_025.png,streetwear,True,keep_single_label,streetwear,"Graphic/racing-style tee. Streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_026.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_026.png,streetwear,True,keep_single_label,streetwear,"Graphic t-shirt is streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_027.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_027.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_028.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_028.png,streetwear,True,keep_single_label,streetwear,"Oversized graphic tee. Streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_029.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_029.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_031.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_031.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_032.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_032.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_033.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_033.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_034.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_034.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_036.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_036.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_037.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_037.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_038.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_038.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_039.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_039.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_040.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_040.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_041.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_041.png,streetwear,True,keep_single_label,streetwear,"Graphic/racing-style tee. Streetwear/casual, not formal.",0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_042.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_042.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_043.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_043.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_046.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_046.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_047.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_047.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_048.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_048.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_049.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_049.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+split_style_train,train,tshirt_streetwear_tshirt_050.png,..\dataset\split_style\train\streetwear\tshirt_streetwear_tshirt_050.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,formal_pants_extra_001.png,..\dataset\style_extra\formal\pants\formal_pants_extra_001.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_002.png,..\dataset\style_extra\formal\pants\formal_pants_extra_002.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_003.png,..\dataset\style_extra\formal\pants\formal_pants_extra_003.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_004.png,..\dataset\style_extra\formal\pants\formal_pants_extra_004.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_005.png,..\dataset\style_extra\formal\pants\formal_pants_extra_005.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_006.png,..\dataset\style_extra\formal\pants\formal_pants_extra_006.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_007.png,..\dataset\style_extra\formal\pants\formal_pants_extra_007.png,formal,True,keep_single_label,formal,Pleated trousers with loafers are strongly formal/classic.,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_008.png,..\dataset\style_extra\formal\pants\formal_pants_extra_008.png,formal,True,keep_single_label,formal,Dress trousers with formal shoes. Clearly formal.,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_009.png,..\dataset\style_extra\formal\pants\formal_pants_extra_009.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_pants_extra_010.png,..\dataset\style_extra\formal\pants\formal_pants_extra_010.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_001.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_001.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_002.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_002.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_003.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_003.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_004.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_004.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_005.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_005.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_006.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_006.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_007.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_007.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_008.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_008.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_009.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_009.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,formal_shoes_extra_010.png,..\dataset\style_extra\formal\shoes\formal_shoes_extra_010.png,formal,False,not_reviewed,,,1,0,0,0,1
+style_extra,style_extra,sporty_jacket_extra_001.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_001.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_jacket_extra_002.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_002.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_jacket_extra_003.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_003.png,sporty,True,add_second_label,sporty + streetwear,"Adidas track jacket is clearly sporty, but also very common in streetwear styling.",0,0,1,1,2
+style_extra,style_extra,sporty_jacket_extra_004.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_004.png,sporty,True,add_second_label,sporty + streetwear,"Track jacket is clearly sporty, but also common in streetwear outfits.",0,0,1,1,2
+style_extra,style_extra,sporty_jacket_extra_005.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_005.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_jacket_extra_006.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_006.png,sporty,True,keep_single_label,sporty,"Track jacket is sporty, but the full look does not strongly read as streetwear.",0,0,1,0,1
+style_extra,style_extra,sporty_jacket_extra_007.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_007.png,sporty,True,keep_single_label,sporty,Simple grey sports zip jacket. It feels more purely sporty than streetwear.,0,0,1,0,1
+style_extra,style_extra,sporty_jacket_extra_008.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_008.png,sporty,True,add_second_label,sporty + streetwear,"Track jacket is sporty, but oversized/casual styling also fits streetwear.",0,0,1,1,2
+style_extra,style_extra,sporty_jacket_extra_009.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_009.png,sporty,True,add_second_label,sporty + streetwear,"Adidas track jacket is sporty, but also common in streetwear outfits.",0,0,1,1,2
+style_extra,style_extra,sporty_jacket_extra_010.png,..\dataset\style_extra\sporty\jacket\sporty_jacket_extra_010.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_001.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_001.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_002.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_002.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_003.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_003.png,sporty,True,keep_single_label,sporty,Clearly sporty shoes.,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_004.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_004.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_005.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_005.png,sporty,True,keep_single_label,sporty,Running shoe in an athletic context. Sporty only.,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_006.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_006.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_007.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_007.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_008.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_008.png,sporty,True,keep_single_label,sporty,Clearly sporty shoes.,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_009.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_009.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,sporty_shoes_extra_010.png,..\dataset\style_extra\sporty\shoes\sporty_shoes_extra_010.png,sporty,False,not_reviewed,,,0,0,1,0,1
+style_extra,style_extra,streetwear_jacket_extra_001.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_002.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_002.png,streetwear,True,add_second_label,sporty + streetwear,"Bomber jacket is streetwear, but the casual athletic shape makes sporty reasonable too.",0,0,1,1,2
+style_extra,style_extra,streetwear_jacket_extra_003.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_003.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_004.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_004.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_005.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_005.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_006.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_006.png,streetwear,True,add_second_label,formal + streetwear,"Oversized leather/bomber jacket is streetwear, but the coat-like structure gives it a slightly smart/fashion-formal direction.",1,0,0,1,2
+style_extra,style_extra,streetwear_jacket_extra_007.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_007.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_008.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_008.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_009.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_009.png,streetwear,True,keep_single_label,streetwear,Workwear jacket is streetwear.,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_010.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_010.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_011.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_011.png,streetwear,True,keep_single_label,streetwear,Denim jacket is streetwear,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_012.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_012.png,streetwear,True,add_second_label,gothic + streetwear,"Streetwear shape, but the military/dark jacket style also fits gothic/alternative styling.",0,1,0,1,2
+style_extra,style_extra,streetwear_jacket_extra_013.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_013.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_014.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_014.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_jacket_extra_015.png,..\dataset\style_extra\streetwear\jacket\streetwear_jacket_extra_015.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_001.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_002.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_002.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_003.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_003.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_004.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_004.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_005.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_005.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_006.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_006.png,streetwear,True,add_second_label,gothic + streetwear,"Dark shiny oversized pants can work as streetwear, but also have a gothic/alternative look.",0,1,0,1,2
+style_extra,style_extra,streetwear_pants_extra_007.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_007.png,streetwear,True,keep_single_label,streetwear,"Very oversized denim pants. Strong streetwear, not really sporty.",0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_008.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_008.png,streetwear,True,keep_single_label,streetwear,"Baggy cargo-style pants. Strong streetwear, not clearly sporty.",0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_009.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_009.png,streetwear,True,add_second_label,sporty + streetwear,"Loose cargo pants are streetwear, but can also fit sporty/outdoor casual styling.",0,0,1,1,2
+style_extra,style_extra,streetwear_pants_extra_010.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_010.png,streetwear,True,keep_single_label,streetwear,"Oversized styled pants fit streetwear, but not enough sporty features.",0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_011.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_011.png,streetwear,True,keep_single_label,streetwear,"Casual long shorts/jorts. Streetwear, not formal.",0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_012.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_012.png,streetwear,True,keep_single_label,streetwear,Baggy green pants are streetwear. Not sporty enough by themselves.,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_013.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_013.png,streetwear,True,keep_single_label,streetwear,"Baggy graphic jeans are clearly streetwear, not really sporty.",0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_014.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_014.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_pants_extra_015.png,..\dataset\style_extra\streetwear\pants\streetwear_pants_extra_015.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_001.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_002.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_002.png,streetwear,True,add_second_label,sporty + streetwear,"Vans-style streetwear shoe, but still casual/sporty enough to overlap.",0,0,1,1,2
+style_extra,style_extra,streetwear_shoes_extra_003.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_003.png,streetwear,True,keep_single_label,streetwear,"Black Converse-style shoes. Streetwear/casual, not gothic enough by themselves.",0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_004.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_004.png,streetwear,True,keep_single_label,streetwear,"Converse-style shoes fit streetwear. They are dark, but not gothic enough by themselves.",0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_005.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_005.png,streetwear,True,keep_single_label,streetwear,"Adidas Superstar-style sneaker is streetwear/lifestyle, not formal.",0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_006.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_006.png,streetwear,True,keep_single_label,streetwear,"Jordan-style lifestyle sneaker. Streetwear, not formal.",0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_007.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_007.png,streetwear,True,keep_single_label,streetwear,Jordan-style sneaker in streetwear context. Not formal.,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_008.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_008.png,streetwear,True,keep_single_label,streetwear,"Jordan-style lifestyle sneaker. Streetwear, not formal.",0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_009.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_009.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_010.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_010.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_011.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_011.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_012.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_012.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_013.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_013.png,streetwear,True,add_second_label,sporty + streetwear,"Streetwear outfit context, but the sneaker itself is clearly athletic/sporty too.",0,0,1,1,2
+style_extra,style_extra,streetwear_shoes_extra_014.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_014.png,streetwear,True,keep_single_label,streetwear,"Converse-style styling with colorful socks. Clearly streetwear/casual, not sporty.",0,0,0,1,1
+style_extra,style_extra,streetwear_shoes_extra_015.png,..\dataset\style_extra\streetwear\shoes\streetwear_shoes_extra_015.png,streetwear,True,keep_single_label,streetwear,"Pink Converse-style shoe. Clearly streetwear/casual, not formal.",0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_001.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_001.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_002.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_002.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_003.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_003.png,streetwear,True,keep_single_label,streetwear,"Graphic casual t-shirt. Streetwear, not sporty enough.",0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_004.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_004.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_005.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_005.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_006.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_006.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_007.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_007.png,streetwear,True,keep_single_label,streetwear,"Oversized graphic t-shirt. Streetwear, not sporty.",0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_008.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_008.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_009.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_009.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_010.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_010.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_011.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_011.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_012.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_012.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_013.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_013.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_014.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_014.png,streetwear,False,not_reviewed,,,0,0,0,1,1
+style_extra,style_extra,streetwear_tshirt_extra_015.png,..\dataset\style_extra\streetwear\tshirt\streetwear_tshirt_extra_015.png,streetwear,False,not_reviewed,,,0,0,0,1,1
