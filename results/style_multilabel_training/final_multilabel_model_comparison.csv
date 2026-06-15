@@ -1,0 +1,3 @@
+model,training_setup,curated_top1_accuracy,curated_macro_f1,real_world_top1_accuracy,real_world_macro_f1,selected_threshold,real_world_zero_label_predictions,real_world_multi_label_predictions,real_world_avg_predicted_labels
+Previous single-label MobileNetV3,CrossEntropyLoss + softmax,0.8167,0.8105,0.625,0.6242,not applicable,not applicable,not applicable,not applicable
+New multi-label MobileNetV3,BCEWithLogitsLoss + sigmoid,0.8,0.7968464130958112,0.625,0.6251858204688393,0.35,0,31,1.4125

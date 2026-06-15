@@ -1,0 +1,14 @@
+predicted_combination,count
+formal,26
+gothic,26
+sporty + streetwear,16
+streetwear,15
+sporty,14
+formal + sporty,9
+formal + streetwear,5
+formal + gothic,2
+gothic + streetwear,2
+gothic + sporty,2
+formal + gothic + sporty,1
+formal + sporty + streetwear,1
+gothic + sporty + streetwear,1
