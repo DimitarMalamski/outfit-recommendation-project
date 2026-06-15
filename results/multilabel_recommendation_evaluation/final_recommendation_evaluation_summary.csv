@@ -1,0 +1,2 @@
+experiment,evaluated_examples,total_scored_rows,old_avg_style_match,new_avg_style_match,old_avg_type_match,new_avg_type_match,old_avg_visual_coherence,new_avg_visual_coherence,old_avg_overall_quality,new_avg_overall_quality,old_avg_total_score,new_avg_total_score,avg_total_score_difference_new_minus_old,new_better_count,old_better_count,equal_count
+18_fashion_multilabel_recommendation_evaluation,16,32,1.0625,1.0625,2.0,2.0,1.125,0.875,1.3125,1.0,5.5,4.9375,-0.5625,6,7,3

@@ -1,0 +1,49 @@
+evaluation_id,recommendation_mode,true_style,input_type,predicted_main_style,multi_label_prediction,allowed_styles,style_match_score,type_match_score,visual_coherence_score,overall_quality_score,manual_notes,input_filename,recommended_items,visual_sheet_path,input_image_path
+eval_01,new_multi_style_clip_ranked,formal,jacket,streetwear,formal + streetwear,formal + streetwear,,,,,,formal_jacket_rw_003.png,"pants: formal - formal_pants_001.png | CLIP similarity: 0.386
+shoes: formal - formal_shoes_043.png | CLIP similarity: 0.307
+tshirt: formal - formal_tshirt_009.png | CLIP similarity: 0.357",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_01_random_vs_clip.png,..\dataset\real_world_test\formal\jacket\formal_jacket_rw_003.png
+eval_02,new_multi_style_clip_ranked,formal,tshirt,streetwear,formal + streetwear,formal + streetwear,,,,,,formal_tshirt_rw_002.png,"jacket: formal - formal_jacket_015.png | CLIP similarity: 0.533
+pants: formal - formal_pants_008.png | CLIP similarity: 0.413
+shoes: formal - formal_shoes_048.png | CLIP similarity: 0.361",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_02_random_vs_clip.png,..\dataset\real_world_test\formal\tshirt\formal_tshirt_rw_002.png
+eval_03,new_multi_style_clip_ranked,formal,tshirt,streetwear,sporty + streetwear,sporty + streetwear,,,,,,formal_tshirt_rw_003.png,"jacket: sporty - sporty_jacket_023.png | CLIP similarity: 0.371
+pants: sporty - sporty_pants_004.png | CLIP similarity: 0.342
+shoes: streetwear - streetwear_shoes_031.png | CLIP similarity: 0.243",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_03_random_vs_clip.png,..\dataset\real_world_test\formal\tshirt\formal_tshirt_rw_003.png
+eval_04,new_multi_style_clip_ranked,formal,tshirt,streetwear,sporty + streetwear,sporty + streetwear,,,,,,formal_tshirt_rw_005.png,"jacket: sporty - sporty_jacket_038.png | CLIP similarity: 0.432
+pants: sporty - sporty_pants_023.png | CLIP similarity: 0.404
+shoes: streetwear - streetwear_shoes_009.png | CLIP similarity: 0.364",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_04_random_vs_clip.png,..\dataset\real_world_test\formal\tshirt\formal_tshirt_rw_005.png
+eval_05,new_multi_style_clip_ranked,gothic,shoes,streetwear,gothic + sporty + streetwear,gothic + sporty + streetwear,,,,,,gothic_shoes_rw_002.png,"jacket: gothic - gothic_jacket_020.png | CLIP similarity: 0.520
+pants: gothic - gothic_pants_012.png | CLIP similarity: 0.617
+tshirt: gothic - gothic_tshirt_012.png | CLIP similarity: 0.380",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_05_random_vs_clip.png,..\dataset\real_world_test\gothic\shoes\gothic_shoes_rw_002.png
+eval_06,new_multi_style_clip_ranked,gothic,jacket,gothic,formal + gothic,formal + gothic,,,,,,gothic_jacket_rw_005.png,"pants: gothic - gothic_pants_010.png | CLIP similarity: 0.556
+shoes: gothic - gothic_shoes_013.png | CLIP similarity: 0.520
+tshirt: gothic - gothic_tshirt_045.png | CLIP similarity: 0.409",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_06_random_vs_clip.png,..\dataset\real_world_test\gothic\jacket\gothic_jacket_rw_005.png
+eval_07,new_multi_style_clip_ranked,gothic,pants,gothic,gothic + streetwear,gothic + streetwear,,,,,,gothic_pants_rw_001.png,"jacket: gothic - gothic_jacket_020.png | CLIP similarity: 0.525
+shoes: gothic - gothic_shoes_013.png | CLIP similarity: 0.604
+tshirt: gothic - gothic_tshirt_033.png | CLIP similarity: 0.429",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_07_random_vs_clip.png,..\dataset\real_world_test\gothic\pants\gothic_pants_rw_001.png
+eval_08,new_multi_style_clip_ranked,gothic,pants,gothic,gothic + streetwear,gothic + streetwear,,,,,,gothic_pants_rw_005.png,"jacket: gothic - gothic_jacket_002.png | CLIP similarity: 0.622
+shoes: gothic - gothic_shoes_018.png | CLIP similarity: 0.665
+tshirt: streetwear - streetwear_tshirt_033.png | CLIP similarity: 0.488",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_08_random_vs_clip.png,..\dataset\real_world_test\gothic\pants\gothic_pants_rw_005.png
+eval_09,new_multi_style_clip_ranked,sporty,tshirt,streetwear,formal + sporty + streetwear,formal + sporty + streetwear,,,,,,sporty_tshirt_rw_003.png,"jacket: formal - formal_jacket_017.png | CLIP similarity: 0.418
+pants: streetwear - streetwear_pants_038.png | CLIP similarity: 0.404
+shoes: sporty - sporty_shoes_007.png | CLIP similarity: 0.379",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_09_random_vs_clip.png,..\dataset\real_world_test\sporty\tshirt\sporty_tshirt_rw_003.png
+eval_10,new_multi_style_clip_ranked,sporty,jacket,formal,formal + sporty,formal + sporty,,,,,,sporty_jacket_rw_004.png,"pants: formal - formal_pants_001.png | CLIP similarity: 0.431
+shoes: formal - formal_shoes_043.png | CLIP similarity: 0.356
+tshirt: formal - formal_tshirt_004.png | CLIP similarity: 0.396",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_10_random_vs_clip.png,..\dataset\real_world_test\sporty\jacket\sporty_jacket_rw_004.png
+eval_11,new_multi_style_clip_ranked,sporty,jacket,formal,formal + sporty,formal + sporty,,,,,,sporty_jacket_rw_005.png,"pants: sporty - sporty_pants_035.png | CLIP similarity: 0.555
+shoes: sporty - sporty_shoes_049.png | CLIP similarity: 0.429
+tshirt: sporty - sporty_tshirt_006.png | CLIP similarity: 0.507",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_11_random_vs_clip.png,..\dataset\real_world_test\sporty\jacket\sporty_jacket_rw_005.png
+eval_12,new_multi_style_clip_ranked,sporty,shoes,streetwear,sporty + streetwear,sporty + streetwear,,,,,,sporty_shoes_rw_003.png,"jacket: streetwear - streetwear_jacket_003.png | CLIP similarity: 0.289
+pants: sporty - sporty_pants_034.png | CLIP similarity: 0.296
+tshirt: sporty - sporty_tshirt_029.png | CLIP similarity: 0.276",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_12_random_vs_clip.png,..\dataset\real_world_test\sporty\shoes\sporty_shoes_rw_003.png
+eval_13,new_multi_style_clip_ranked,streetwear,jacket,formal,formal + gothic,formal + gothic,,,,,,streetwear_jacket_rw_005.png,"pants: gothic - gothic_pants_010.png | CLIP similarity: 0.428
+shoes: gothic - gothic_shoes_013.png | CLIP similarity: 0.438
+tshirt: formal - formal_tshirt_004.png | CLIP similarity: 0.397",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_13_random_vs_clip.png,..\dataset\real_world_test\streetwear\jacket\streetwear_jacket_rw_005.png
+eval_14,new_multi_style_clip_ranked,streetwear,shoes,sporty,sporty + streetwear,sporty + streetwear,,,,,,streetwear_shoes_rw_002.png,"jacket: sporty - sporty_jacket_037.png | CLIP similarity: 0.387
+pants: sporty - sporty_pants_019.png | CLIP similarity: 0.436
+tshirt: sporty - sporty_tshirt_010.png | CLIP similarity: 0.395",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_14_random_vs_clip.png,..\dataset\real_world_test\streetwear\shoes\streetwear_shoes_rw_002.png
+eval_15,new_multi_style_clip_ranked,streetwear,shoes,gothic,gothic + streetwear,gothic + streetwear,,,,,,streetwear_shoes_rw_005.png,"jacket: streetwear - streetwear_jacket_048.png | CLIP similarity: 0.445
+pants: gothic - gothic_pants_048.png | CLIP similarity: 0.441
+tshirt: streetwear - streetwear_tshirt_007.png | CLIP similarity: 0.367",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_15_random_vs_clip.png,..\dataset\real_world_test\streetwear\shoes\streetwear_shoes_rw_005.png
+eval_16,new_multi_style_clip_ranked,streetwear,pants,streetwear,formal + streetwear,formal + streetwear,,,,,,streetwear_pants_rw_001.png,"jacket: streetwear - streetwear_jacket_044.png | CLIP similarity: 0.499
+shoes: streetwear - streetwear_shoes_002.png | CLIP similarity: 0.394
+tshirt: streetwear - streetwear_tshirt_006.png | CLIP similarity: 0.557",..\results\multilabel_clip_recommendation_ranking\manual_review\visual_clip_comparison_sheets\eval_16_random_vs_clip.png,..\dataset\real_world_test\streetwear\pants\streetwear_pants_rw_001.png

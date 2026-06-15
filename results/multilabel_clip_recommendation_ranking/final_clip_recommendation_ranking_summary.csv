@@ -1,0 +1,2 @@
+experiment,evaluated_examples,total_scored_rows,random_avg_style_match,clip_avg_style_match,random_avg_type_match,clip_avg_type_match,random_avg_visual_coherence,clip_avg_visual_coherence,random_avg_overall_quality,clip_avg_overall_quality,random_avg_total_score,clip_avg_total_score,avg_total_score_difference_clip_minus_random,clip_better_count,random_better_count,equal_count
+19_multilabel_clip_recommendation_ranking,16,32,1.0625,1.6875,2.0,2.0,0.875,1.6875,1.0,1.8125,4.9375,7.1875,2.25,11,3,2

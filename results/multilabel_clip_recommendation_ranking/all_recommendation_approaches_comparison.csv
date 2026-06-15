@@ -1,0 +1,4 @@
+recommendation_approach,description,avg_style_match,avg_type_match,avg_visual_coherence,avg_overall_quality,avg_total_score
+old_single_style,Uses only the main predicted style,1.0625,2.0,1.125,1.3125,5.5
+random_multi_style,Uses multi-label styles but selects items randomly,1.0625,2.0,0.875,1.0,4.9375
+clip_ranked_multi_style,Uses multi-label styles and ranks items with CLIP similarity,1.6875,2.0,1.6875,1.8125,7.1875

@@ -1,0 +1,17 @@
+evaluation_id,new_multi_style_clip_ranked,previous_random_multi_style,score_difference_clip_minus_random,comparison_result
+eval_01,8,5,3,clip_better
+eval_02,7,2,5,clip_better
+eval_03,6,2,4,clip_better
+eval_04,5,2,3,clip_better
+eval_05,8,2,6,clip_better
+eval_06,8,8,0,equal
+eval_07,8,2,6,clip_better
+eval_08,8,2,6,clip_better
+eval_09,5,6,-1,random_better
+eval_10,7,8,-1,random_better
+eval_11,7,8,-1,random_better
+eval_12,7,5,2,clip_better
+eval_13,7,7,0,equal
+eval_14,8,7,1,clip_better
+eval_15,8,7,1,clip_better
+eval_16,8,6,2,clip_better

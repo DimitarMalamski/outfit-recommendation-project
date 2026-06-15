@@ -1,0 +1,17 @@
+evaluation_id,new_multi_style,old_single_style,score_difference_new_minus_old,comparison_result
+eval_01,5,5,0,equal
+eval_02,2,4,-2,old_better
+eval_03,2,4,-2,old_better
+eval_04,2,5,-3,old_better
+eval_05,2,5,-3,old_better
+eval_06,8,7,1,new_better
+eval_07,2,7,-5,old_better
+eval_08,2,7,-5,old_better
+eval_09,6,5,1,new_better
+eval_10,8,5,3,new_better
+eval_11,8,4,4,new_better
+eval_12,5,5,0,equal
+eval_13,7,7,0,equal
+eval_14,7,5,2,new_better
+eval_15,7,5,2,new_better
+eval_16,6,8,-2,old_better
