@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import {
   getRecommendations,
+  refineRecommendationsByStylePool,
   replaceRecommendationItem,
   RecommendationResponse,
 } from "@/lib/api";
@@ -12,11 +13,29 @@ import HowItWorksTimeline from "../components/HowItWorksTimeline";
 import AestheticAnalysis from "../components/AestheticAnalysis/AestheticAnalysis";
 import HeroSection from "../components/HeroSection";
 
+function getDetectedStylePool(result: RecommendationResponse) {
+  const detectedStyles =
+    result.analysis?.predicted_styles ??
+    result.predicted_styles ??
+    result.style_candidates.map((candidate) => candidate.style);
+
+  const fallbackStyle =
+    result.analysis?.main_style ?? result.main_style ?? result.predicted_style;
+
+  const styles = detectedStyles.length > 0 ? detectedStyles : [fallbackStyle];
+
+  return Array.from(
+    new Set(styles.filter((style): style is string => Boolean(style))),
+  );
+}
+
 export default function RunwayAIStylist() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [result, setResult] = useState<RecommendationResponse | null>(null);
   const [selectedStyleIndex, setSelectedStyleIndex] = useState(0);
+  const [selectedStylePool, setSelectedStylePool] = useState<string[]>([]);
+  const [isRefiningStylePool, setIsRefiningStylePool] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [shouldScrollToEnsemble, setShouldScrollToEnsemble] = useState(false);
@@ -37,6 +56,8 @@ export default function RunwayAIStylist() {
 
     if (!allowedTypes.includes(file.type)) {
       setSelectedStyleIndex(0);
+      setSelectedStylePool([]);
+      setIsRefiningStylePool(false);
       setSelectedFile(null);
       setPreviewUrl(null);
       setResult(null);
@@ -51,6 +72,8 @@ export default function RunwayAIStylist() {
     }
 
     setSelectedStyleIndex(0);
+    setSelectedStylePool([]);
+    setIsRefiningStylePool(false);
     setSelectedFile(file);
     setPreviewUrl(URL.createObjectURL(file));
     setResult(null);
@@ -62,6 +85,8 @@ export default function RunwayAIStylist() {
 
   function handleRemoveImage() {
     setSelectedStyleIndex(0);
+    setSelectedStylePool([]);
+    setIsRefiningStylePool(false);
     setSelectedFile(null);
     setPreviewUrl(null);
     setResult(null);
@@ -102,8 +127,11 @@ export default function RunwayAIStylist() {
       setRefreshHistory({});
 
       const data = await getRecommendations(selectedFile);
+      const initialStylePool = getDetectedStylePool(data);
 
       setSelectedStyleIndex(0);
+      setSelectedStylePool(initialStylePool);
+      setIsRefiningStylePool(false);
       setResult(data);
       setShouldScrollToEnsemble(true);
     } catch (error) {
@@ -114,6 +142,63 @@ export default function RunwayAIStylist() {
       );
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  async function handleSelectStylePool(stylePool: string[]) {
+    if (!selectedFile || !result) return;
+
+    const uniqueStylePool = Array.from(
+      new Set(stylePool.filter((style): style is string => Boolean(style))),
+    );
+
+    if (uniqueStylePool.length === 0) return;
+
+    try {
+      setIsRefiningStylePool(true);
+      setRefreshError(null);
+      setRefreshHistory({});
+
+      const mainStyle =
+        result.analysis?.main_style ??
+        result.main_style ??
+        result.predicted_style;
+
+      const predictedType =
+        result.analysis?.predicted_type ?? result.predicted_type;
+
+      const typeConfidence =
+        result.analysis?.type_confidence ?? result.type_confidence;
+
+      const data = await refineRecommendationsByStylePool(
+        selectedFile,
+        uniqueStylePool,
+        predictedType,
+        mainStyle,
+        typeConfidence,
+      );
+
+      setSelectedStylePool(data.selected_styles);
+      setSelectedStyleIndex(0);
+
+      setResult((previousResult) => {
+        if (!previousResult) return previousResult;
+
+        return {
+          ...previousResult,
+          recommendations: data.recommendations,
+          outfits: data.outfits,
+          recommendation_groups: data.recommendation_groups,
+        };
+      });
+    } catch (error) {
+      setRefreshError(
+        error instanceof Error
+          ? error.message
+          : "Could not update recommendations for the selected aesthetic mode.",
+      );
+    } finally {
+      setIsRefiningStylePool(false);
     }
   }
 
@@ -130,9 +215,12 @@ export default function RunwayAIStylist() {
 
     const activeStyle = result.analysis?.main_style ?? result.predicted_style;
 
-    const activeStylePool = result.analysis?.predicted_styles ??
-      result.predicted_styles ??
-      activeGroup?.styles ?? [activeStyle];
+    const activeStylePool =
+      selectedStylePool.length > 0
+        ? selectedStylePool
+        : (result.analysis?.predicted_styles ??
+          result.predicted_styles ??
+          activeGroup?.styles ?? [activeStyle]);
 
     const itemKey = `${outfitIndex}-${itemIndex}`;
 
@@ -355,10 +443,13 @@ export default function RunwayAIStylist() {
           result={result}
           recommendationGroups={recommendationGroups}
           selectedStyleIndex={selectedStyleIndex}
+          selectedStylePool={selectedStylePool}
+          isRefiningStylePool={isRefiningStylePool}
           onSelectStyle={(index) => {
             setSelectedStyleIndex(index);
             setRefreshError(null);
           }}
+          onSelectStylePool={handleSelectStylePool}
         />
       )}
 

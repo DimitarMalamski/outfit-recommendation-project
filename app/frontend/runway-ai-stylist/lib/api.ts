@@ -78,6 +78,13 @@ export type ReplacementItemResponse = {
   item: RecommendationItem;
 };
 
+export type RefinedRecommendationResponse = {
+  selected_styles: string[];
+  recommendations: RecommendationItem[];
+  outfits: OutfitRecommendation[];
+  recommendation_groups: RecommendationGroup[];
+};
+
 async function getApiErrorMessage(response: Response, fallbackMessage: string) {
   try {
     const errorBody = await response.json();
@@ -150,6 +157,41 @@ export async function replaceRecommendationItem(
     const message = await getApiErrorMessage(
       response,
       "No alternative item could be found for this piece.",
+    );
+
+    throw new Error(message);
+  }
+
+  return response.json();
+}
+
+export async function refineRecommendationsByStylePool(
+  file: File,
+  selectedStyles: string[],
+  predictedType: string,
+  mainStyle: string,
+  typeConfidence: number,
+): Promise<RefinedRecommendationResponse> {
+  const formData = new FormData();
+
+  formData.append("file", file);
+  formData.append("selected_styles", JSON.stringify(selectedStyles));
+  formData.append("predicted_type", predictedType);
+  formData.append("main_style", mainStyle);
+  formData.append("type_confidence", String(typeConfidence));
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/recommend/refine-style`,
+    {
+      method: "POST",
+      body: formData,
+    },
+  );
+
+  if (!response.ok) {
+    const message = await getApiErrorMessage(
+      response,
+      "Could not update recommendations for the selected aesthetic mode.",
     );
 
     throw new Error(message);

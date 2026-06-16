@@ -678,3 +678,201 @@
     text-align: left;
   }
 }
+
+/* New recommendation mode selector */
+
+.directionHeader {
+  max-width: none;
+  margin-bottom: 0.55rem;
+}
+
+.directionHeaderText {
+  max-width: 720px;
+}
+
+.modeSelector {
+  margin-top: 0;
+}
+
+.modeToggleRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.55rem;
+}
+
+.headerModeToggle {
+  min-width: 170px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 2px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--fg);
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    border-left-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.headerModeToggle:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: rgba(201, 169, 98, 0.25);
+  border-left-color: var(--luxury-primary);
+  background: rgba(139, 38, 53, 0.055);
+}
+
+.headerModeToggle:disabled {
+  cursor: wait;
+  opacity: 0.78;
+}
+
+.headerModeToggleActive {
+  border-left-color: var(--luxury-accent);
+  background: rgba(201, 169, 98, 0.07);
+}
+
+.headerModeToggleLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.switchTrack {
+  width: 3rem;
+  height: 1.45rem;
+  display: flex;
+  align-items: center;
+  padding: 0.16rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.25s ease;
+}
+
+.switchThumb {
+  width: 1.12rem;
+  height: 1.12rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  transform: translateX(0);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.headerModeToggleActive .switchTrack {
+  background: rgba(201, 169, 98, 0.75);
+}
+
+.headerModeToggleActive .switchThumb {
+  transform: translateX(1.48rem);
+  background: var(--fg);
+}
+
+.combinedModeCard,
+.splitStyleCard {
+  width: 100%;
+  min-height: 6.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 2px solid var(--luxury-accent);
+  background: rgba(201, 169, 98, 0.055);
+  color: var(--fg);
+  text-align: left;
+}
+
+.splitStyleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.splitStyleCard {
+  border-left-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.025);
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    border-left-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.splitStyleCard:hover:not(:disabled) {
+  transform: translateY(-4px);
+  border-color: rgba(201, 169, 98, 0.22);
+  border-left-color: var(--luxury-primary);
+  background: rgba(139, 38, 53, 0.055);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+.splitStyleCardActive {
+  border-left-color: var(--luxury-accent);
+  background: rgba(201, 169, 98, 0.07);
+}
+
+.splitStyleCard:disabled {
+  cursor: default;
+  opacity: 0.9;
+}
+
+.modeEyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.modeTitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--fg);
+}
+
+.modeDescription {
+  max-width: 520px;
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+@media (max-width: 768px) {
+  .modeToggleRow {
+    justify-content: flex-start;
+  }
+
+  .headerModeToggle {
+    width: 100%;
+  }
+
+  .splitStyleGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerModeToggle {
+    padding: 0.85rem;
+  }
+
+  .switchTrack {
+    width: 2.75rem;
+  }
+
+  .headerModeToggleActive .switchThumb {
+    transform: translateX(1.25rem);
+  }
+}

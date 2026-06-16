@@ -8,13 +8,16 @@ CATALOGUE_EMBEDDINGS_PATH = "data/catalogue_embeddings.pt"
 _catalogue_records = None
 
 
-def recommend_outfit(prediction_result, input_image=None):
+def recommend_outfit(prediction_result, input_image=None, selected_styles=None):
     predicted_type = prediction_result["predicted_type"]
 
-    predicted_styles = prediction_result.get("predicted_styles")
+    if selected_styles:
+        predicted_styles = selected_styles
+    else:
+        predicted_styles = prediction_result.get("predicted_styles")
 
-    if not predicted_styles:
-        predicted_styles = [prediction_result["predicted_style"]]
+        if not predicted_styles:
+            predicted_styles = [prediction_result["predicted_style"]]
 
     if input_image is None:
         return {

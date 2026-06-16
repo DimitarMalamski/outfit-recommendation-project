@@ -191,6 +191,68 @@ async def recommend(file: UploadFile = File(...)):
         "recommendation_groups": recommendation_result["recommendation_groups"],
     }
 
+@app.post("/recommend/refine-style")
+async def refine_recommendation_style(
+    file: UploadFile = File(...),
+    selected_styles: str = Form(...),
+    predicted_type: str = Form(...),
+    main_style: str = Form(...),
+    type_confidence: float = Form(1.0),
+):
+    image = await read_validated_image(file)
+
+    style_pool = parse_form_list(selected_styles)
+
+    if not style_pool:
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "code": "empty_style_pool",
+                "message": "Please provide at least one selected style.",
+            },
+        )
+
+    prediction_result = {
+        "predicted_style": main_style,
+        "main_style": main_style,
+        "style_confidence": 1.0,
+        "predicted_styles": style_pool,
+        "style_scores": {
+            style: 1.0 if style in style_pool else 0.0
+            for style in ["formal", "gothic", "sporty", "streetwear"]
+        },
+        "style_probabilities": {
+            style: 1.0 if style in style_pool else 0.0
+            for style in ["formal", "gothic", "sporty", "streetwear"]
+        },
+        "style_candidates": [
+            {
+                "style": style,
+                "confidence": 1.0,
+                "reason": "Selected by user recommendation mode",
+            }
+            for style in style_pool
+        ],
+        "style_mode": "multi_style" if len(style_pool) > 1 else "single_style",
+        "style_threshold": None,
+        "used_top1_fallback": False,
+        "predicted_type": predicted_type,
+        "type_confidence": type_confidence,
+    }
+
+    recommendation_result = recommend_outfit(
+        prediction_result,
+        image,
+        selected_styles=style_pool,
+    )
+
+    return {
+        "selected_styles": style_pool,
+        "recommendations": recommendation_result["recommendations"],
+        "outfits": recommendation_result["outfits"],
+        "recommendation_groups": recommendation_result["recommendation_groups"],
+    }
+
 def parse_form_list(value: str):
     if value is None:
         return []

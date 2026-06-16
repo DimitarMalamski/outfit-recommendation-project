@@ -2,7 +2,6 @@
 
 import type { RecommendationGroup, RecommendationResponse } from "@/lib/api";
 import { Info } from "lucide-react";
-import { useState } from "react";
 
 import styles from "./AestheticAnalysis.module.css";
 
@@ -10,7 +9,10 @@ type AestheticAnalysisProps = {
   result: RecommendationResponse;
   recommendationGroups: RecommendationGroup[];
   selectedStyleIndex: number;
+  selectedStylePool?: string[];
+  isRefiningStylePool?: boolean;
   onSelectStyle: (index: number) => void;
+  onSelectStylePool?: (styles: string[]) => void;
 };
 
 function formatLabel(value: string) {
@@ -29,18 +31,40 @@ function getReliabilityLabel(reliability: string) {
   return reliability.charAt(0).toUpperCase() + reliability.slice(1);
 }
 
+function getUniqueStyles(styles: string[]) {
+  return Array.from(
+    new Set(styles.filter((style): style is string => Boolean(style))),
+  );
+}
+
+function areStylePoolsEqual(firstPool: string[], secondPool: string[]) {
+  if (firstPool.length !== secondPool.length) return false;
+
+  const firstSorted = [...firstPool].sort();
+  const secondSorted = [...secondPool].sort();
+
+  return firstSorted.every((style, index) => style === secondSorted[index]);
+}
+
 export default function AestheticAnalysis({
   result,
-  recommendationGroups,
   selectedStyleIndex,
+  selectedStylePool = [],
+  isRefiningStylePool = false,
   onSelectStyle,
+  onSelectStylePool,
 }: AestheticAnalysisProps) {
-  const [isReliabilityOpen, setIsReliabilityOpen] = useState(false);
+  const mainAesthetic =
+    result.analysis?.main_style ?? result.main_style ?? result.predicted_style;
 
-  const selectedStyles =
+  const rawSelectedStyles =
     result.analysis?.predicted_styles ??
     result.predicted_styles ??
     result.style_candidates.map((candidate) => candidate.style);
+
+  const selectedStyles = getUniqueStyles(
+    rawSelectedStyles.length > 0 ? rawSelectedStyles : [mainAesthetic],
+  );
 
   const styleScores =
     result.analysis?.style_scores ??
@@ -74,24 +98,63 @@ export default function AestheticAnalysis({
       ? selectedStyleIndex
       : 0;
 
-  const activeStyleOption =
-    styleOptions[safeSelectedStyleIndex] ?? styleOptions[0];
-
   const hasMultipleDirections = styleOptions.length > 1;
 
-  const styleProbabilityEntries = Object.entries(
-    result.style_probabilities ?? {},
-  ).sort(([, firstValue], [, secondValue]) => secondValue - firstValue);
+  const defaultStylePool = styleOptions.map((option) => option.style);
 
-  const mainAesthetic =
-    result.analysis?.main_style ?? result.main_style ?? result.predicted_style;
+  const activeStylePool =
+    selectedStylePool.length > 0 ? selectedStylePool : defaultStylePool;
+
+  const activeAestheticLabel =
+    activeStylePool.length > 1
+      ? activeStylePool.map((style) => formatLabel(style)).join(" + ")
+      : formatLabel(activeStylePool[0] ?? mainAesthetic);
 
   const mainAestheticConfidence =
     styleScores[mainAesthetic] ?? result.style_confidence;
 
-  const selectedAesthetic = activeStyleOption?.style ?? mainAesthetic;
-  const selectedAestheticConfidence =
-    activeStyleOption?.confidence ?? mainAestheticConfidence;
+  const activeStyleConfidence =
+    activeStylePool.length > 1
+      ? activeStylePool.reduce((sum, style) => {
+          return sum + (styleScores[style] ?? 0);
+        }, 0) / activeStylePool.length
+      : (styleScores[activeStylePool[0] ?? mainAesthetic] ??
+        mainAestheticConfidence);
+
+  const styleConfidenceMetricLabel =
+    activeStylePool.length > 1 ? "style pool confidence" : "style confidence";
+
+  const isCombinedMode =
+    hasMultipleDirections &&
+    areStylePoolsEqual(activeStylePool, defaultStylePool);
+
+  function handleStylePoolSelection(styles: string[]) {
+    const firstStyleIndex = styleOptions.findIndex(
+      (styleOption) => styleOption.style === styles[0],
+    );
+
+    onSelectStyle(firstStyleIndex >= 0 ? firstStyleIndex : 0);
+    onSelectStylePool?.(styles);
+  }
+
+  function handleCombinationToggle() {
+    if (!hasMultipleDirections) return;
+
+    if (isCombinedMode) {
+      const primaryStyle = styleOptions[0]?.style;
+
+      if (!primaryStyle) return;
+
+      handleStylePoolSelection([primaryStyle]);
+      return;
+    }
+
+    handleStylePoolSelection(defaultStylePool);
+  }
+
+  const styleProbabilityEntries = Object.entries(
+    result.style_probabilities ?? {},
+  ).sort(([, firstValue], [, secondValue]) => secondValue - firstValue);
 
   const reliabilityDescription =
     result.reliability === "high"
@@ -132,7 +195,7 @@ export default function AestheticAnalysis({
                 ?.scrollIntoView({ behavior: "smooth", block: "center" });
             }}
           >
-            {formatLabel(mainAesthetic)}
+            {activeAestheticLabel}
           </button>{" "}
           {formatLabel(result.predicted_type).toLowerCase()}.
         </p>
@@ -140,13 +203,13 @@ export default function AestheticAnalysis({
         <div className={styles.editorialMeta}>
           <div className={styles.metaMetric}>
             <span>
-              <strong>{formatConfidence(mainAestheticConfidence)}</strong> style
-              confidence
+              <strong>{formatConfidence(activeStyleConfidence)}</strong>{" "}
+              {styleConfidenceMetricLabel}
             </span>
             <div className={styles.metaBar}>
               <div
                 className={styles.metaBarFill}
-                style={{ width: formatConfidence(mainAestheticConfidence) }}
+                style={{ width: formatConfidence(activeStyleConfidence) }}
               />
             </div>
           </div>
@@ -188,59 +251,127 @@ export default function AestheticAnalysis({
       <div className={styles.compactAnalysisGrid}>
         <div className={styles.directionPanel}>
           <div className={styles.directionHeader}>
-            <span className={styles.cardLabel}>Aesthetic interpretation</span>
+            <div className={styles.directionHeaderText}>
+              <span className={styles.cardLabel}>Aesthetic interpretation</span>
 
-            <h3>
-              {hasMultipleDirections
-                ? "Detected aesthetic pool"
-                : "Recommended aesthetic direction"}
-            </h3>
+              <h3>
+                {hasMultipleDirections
+                  ? "Choose recommendation mode"
+                  : "Recommended aesthetic mode"}
+              </h3>
 
-            <p>
-              {hasMultipleDirections
-                ? "The model detected multiple possible aesthetics. The system uses these selected styles as the recommendation pool and ranks matching items with CLIP similarity."
-                : "The model found one selected aesthetic for the recommendation pool."}
-            </p>
+              <p>
+                {hasMultipleDirections
+                  ? "Use the detected styles together, or turn combination off to focus the outfit on one aesthetic."
+                  : "The model found one selected aesthetic for the recommendation pool."}
+              </p>
+            </div>
           </div>
 
-          <div className={styles.directionOptions}>
-            {styleOptions.map((option, index) => (
-              <button
-                key={option.style}
-                type="button"
-                onClick={() => onSelectStyle(index)}
-                className={`${styles.directionOption} ${
-                  safeSelectedStyleIndex === index ? styles.active : ""
-                }`}
-              >
-                <div>
-                  <span className={styles.directionName}>
-                    {formatLabel(option.style)}
+          <div className={styles.modeSelector}>
+            {hasMultipleDirections && (
+              <div className={styles.modeToggleRow}>
+                <button
+                  type="button"
+                  className={`${styles.headerModeToggle} ${
+                    isCombinedMode ? styles.headerModeToggleActive : ""
+                  }`}
+                  onClick={handleCombinationToggle}
+                  disabled={isRefiningStylePool}
+                  aria-pressed={isCombinedMode}
+                >
+                  <span className={styles.headerModeToggleLabel}>
+                    {isCombinedMode ? "Combined" : "Focused"}
                   </span>
 
-                  <span className={styles.directionReason}>
-                    {index === 0
-                      ? "Primary selected aesthetic"
-                      : "Also selected"}
+                  <span className={styles.switchTrack}>
+                    <span className={styles.switchThumb} />
+                  </span>
+                </button>
+              </div>
+            )}
+
+            {hasMultipleDirections ? (
+              isCombinedMode ? (
+                <div className={styles.combinedModeCard}>
+                  <span className={styles.modeEyebrow}>
+                    Combined recommendation pool
+                  </span>
+
+                  <strong className={styles.modeTitle}>
+                    {defaultStylePool
+                      .map((style) => formatLabel(style))
+                      .join(" + ")}
+                  </strong>
+
+                  <span className={styles.modeDescription}>
+                    Recommended. The outfit is generated from both detected
+                    aesthetics.
                   </span>
                 </div>
+              ) : (
+                <div className={styles.splitStyleGrid}>
+                  {styleOptions.map((option) => {
+                    const isActive = areStylePoolsEqual(activeStylePool, [
+                      option.style,
+                    ]);
 
-                <span className={styles.directionConfidence}>
-                  {formatConfidence(option.confidence)}
+                    return (
+                      <button
+                        key={option.style}
+                        type="button"
+                        className={`${styles.splitStyleCard} ${
+                          isActive ? styles.splitStyleCardActive : ""
+                        }`}
+                        onClick={() => handleStylePoolSelection([option.style])}
+                        disabled={isRefiningStylePool || isActive}
+                      >
+                        <span className={styles.modeEyebrow}>
+                          Focused aesthetic
+                        </span>
+
+                        <strong className={styles.modeTitle}>
+                          {formatLabel(option.style)}
+                        </strong>
+
+                        <span className={styles.modeDescription}>
+                          Use only this aesthetic for the outfit.
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )
+            ) : (
+              <div className={styles.combinedModeCard}>
+                <span className={styles.modeEyebrow}>Selected aesthetic</span>
+
+                <strong className={styles.modeTitle}>
+                  {formatLabel(defaultStylePool[0])}
+                </strong>
+
+                <span className={styles.modeDescription}>
+                  The outfit is generated from this aesthetic.
                 </span>
-              </button>
-            ))}
+              </div>
+            )}
           </div>
 
-          {styleOptions.length > 0 && (
+          {activeStylePool.length > 0 && (
             <p className={styles.activeDirectionNote}>
-              Recommendation pool:{" "}
-              <strong>
-                {styleOptions
-                  .map((option) => formatLabel(option.style))
-                  .join(" + ")}
-              </strong>
-              . Items are ranked with CLIP visual similarity.
+              {isRefiningStylePool ? (
+                <>Updating recommendations for the selected aesthetic mode...</>
+              ) : (
+                <>
+                  Active recommendation pool:{" "}
+                  <strong>
+                    {activeStylePool
+                      .map((style) => formatLabel(style))
+                      .join(" + ")}
+                  </strong>
+                  . Items are ranked with CLIP visual similarity.
+                </>
+              )}
             </p>
           )}
         </div>
