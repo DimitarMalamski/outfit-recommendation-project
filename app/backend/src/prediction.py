@@ -9,8 +9,15 @@ from src.config import (
     MAX_STYLE_CANDIDATES,
     STYLE_CLASSES,
     TYPE_CLASSES,
+    STYLE_MULTILABEL_THRESHOLD,
 )
-from src.model_loader import get_device, load_style_model, load_type_model
+
+from src.model_loader import (
+    get_device,
+    load_style_model,
+    load_type_model,
+    load_multilabel_style_model,
+)
 
 
 image_transform = transforms.Compose(
@@ -83,25 +90,79 @@ def _predict_single_model(model, image_tensor, class_names):
 
     return class_names[predicted_index.item()], confidence.item()
 
+def predict_multilabel_style(image: Image.Image):
+    device = get_device()
+    style_model = load_multilabel_style_model()
+
+    image_tensor = image_transform(image).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        logits = style_model(image_tensor)
+
+        # Important:
+        # This model was trained with BCEWithLogitsLoss,
+        # so inference must use sigmoid, not softmax.
+        scores = torch.sigmoid(logits)[0]
+
+    style_scores = {
+        STYLE_CLASSES[index]: round(float(scores[index].item()), 4)
+        for index in range(len(STYLE_CLASSES))
+    }
+
+    sorted_styles = sorted(
+        style_scores.items(),
+        key=lambda item: item[1],
+        reverse=True,
+    )
+
+    predicted_styles = [
+        style
+        for style, score in sorted_styles
+        if score >= STYLE_MULTILABEL_THRESHOLD
+    ]
+
+    used_top1_fallback = False
+
+    if not predicted_styles:
+        predicted_styles = [sorted_styles[0][0]]
+        used_top1_fallback = True
+
+    main_style = predicted_styles[0]
+
+    return {
+        "main_style": main_style,
+        "predicted_styles": predicted_styles,
+        "style_scores": style_scores,
+        "style_threshold": STYLE_MULTILABEL_THRESHOLD,
+        "used_top1_fallback": used_top1_fallback,
+    }
 
 def predict_image(image: Image.Image):
     device = get_device()
 
-    style_model = load_style_model()
     type_model = load_type_model()
 
     image_tensor = image_transform(image).unsqueeze(0).to(device)
 
-    style_probabilities = _predict_probabilities(
-        style_model,
-        image_tensor,
-        STYLE_CLASSES,
-    )
+    style_result = predict_multilabel_style(image)
 
-    style_candidates = select_style_candidates(style_probabilities)
+    predicted_style = style_result["main_style"]
+    predicted_styles = style_result["predicted_styles"]
+    style_scores = style_result["style_scores"]
+    style_confidence = style_scores[predicted_style]
 
-    predicted_style = style_candidates[0]["style"]
-    style_confidence = style_candidates[0]["confidence"]
+    style_candidates = [
+        {
+            "style": style,
+            "confidence": style_scores[style],
+            "reason": (
+                "Selected by multi-label sigmoid threshold"
+                if not style_result["used_top1_fallback"]
+                else "Selected by top-1 fallback because no style passed the threshold"
+            ),
+        }
+        for style in predicted_styles
+    ]
 
     predicted_type, type_confidence = _predict_single_model(
         type_model,
@@ -111,10 +172,20 @@ def predict_image(image: Image.Image):
 
     return {
         "predicted_style": predicted_style,
+        "main_style": predicted_style,
         "style_confidence": round(style_confidence, 4),
-        "style_probabilities": style_probabilities,
+
+        # Kept for frontend compatibility
+        "style_probabilities": style_scores,
         "style_candidates": style_candidates,
-        "style_mode": "multi_style" if len(style_candidates) > 1 else "single_style",
+        "style_mode": "multi_style" if len(predicted_styles) > 1 else "single_style",
+
+        # New final architecture fields
+        "predicted_styles": predicted_styles,
+        "style_scores": style_scores,
+        "style_threshold": style_result["style_threshold"],
+        "used_top1_fallback": style_result["used_top1_fallback"],
+
         "predicted_type": predicted_type,
         "type_confidence": round(type_confidence, 4),
     }

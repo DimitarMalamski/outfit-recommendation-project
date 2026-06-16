@@ -37,18 +37,61 @@ export default function AestheticAnalysis({
 }: AestheticAnalysisProps) {
   const [isReliabilityOpen, setIsReliabilityOpen] = useState(false);
 
-  const activeGroup =
-    recommendationGroups[selectedStyleIndex] ?? recommendationGroups[0];
+  const selectedStyles =
+    result.analysis?.predicted_styles ??
+    result.predicted_styles ??
+    result.style_candidates.map((candidate) => candidate.style);
 
-  const hasMultipleDirections = recommendationGroups.length > 1;
+  const styleScores =
+    result.analysis?.style_scores ??
+    result.style_scores ??
+    result.style_probabilities ??
+    {};
+
+  const styleThreshold =
+    result.analysis?.style_threshold ?? result.style_threshold ?? 0.35;
+
+  const styleOptions = selectedStyles.map((style, index) => {
+    const candidate = result.style_candidates.find(
+      (styleCandidate) => styleCandidate.style === style,
+    );
+
+    return {
+      style,
+      confidence:
+        styleScores[style] ??
+        candidate?.confidence ??
+        (index === 0 ? result.style_confidence : 0),
+      reason:
+        index === 0
+          ? "Primary selected aesthetic"
+          : `Selected because it passed the ${formatConfidence(styleThreshold)} threshold`,
+    };
+  });
+
+  const safeSelectedStyleIndex =
+    selectedStyleIndex >= 0 && selectedStyleIndex < styleOptions.length
+      ? selectedStyleIndex
+      : 0;
+
+  const activeStyleOption =
+    styleOptions[safeSelectedStyleIndex] ?? styleOptions[0];
+
+  const hasMultipleDirections = styleOptions.length > 1;
 
   const styleProbabilityEntries = Object.entries(
     result.style_probabilities ?? {},
   ).sort(([, firstValue], [, secondValue]) => secondValue - firstValue);
 
-  const selectedAesthetic = activeGroup?.style ?? result.predicted_style;
+  const mainAesthetic =
+    result.analysis?.main_style ?? result.main_style ?? result.predicted_style;
+
+  const mainAestheticConfidence =
+    styleScores[mainAesthetic] ?? result.style_confidence;
+
+  const selectedAesthetic = activeStyleOption?.style ?? mainAesthetic;
   const selectedAestheticConfidence =
-    activeGroup?.confidence ?? result.style_confidence;
+    activeStyleOption?.confidence ?? mainAestheticConfidence;
 
   const reliabilityDescription =
     result.reliability === "high"
@@ -89,7 +132,7 @@ export default function AestheticAnalysis({
                 ?.scrollIntoView({ behavior: "smooth", block: "center" });
             }}
           >
-            {formatLabel(selectedAesthetic)}
+            {formatLabel(mainAesthetic)}
           </button>{" "}
           {formatLabel(result.predicted_type).toLowerCase()}.
         </p>
@@ -97,13 +140,13 @@ export default function AestheticAnalysis({
         <div className={styles.editorialMeta}>
           <div className={styles.metaMetric}>
             <span>
-              <strong>{formatConfidence(selectedAestheticConfidence)}</strong>{" "}
-              style confidence
+              <strong>{formatConfidence(mainAestheticConfidence)}</strong> style
+              confidence
             </span>
             <div className={styles.metaBar}>
               <div
                 className={styles.metaBarFill}
-                style={{ width: formatConfidence(selectedAestheticConfidence) }}
+                style={{ width: formatConfidence(mainAestheticConfidence) }}
               />
             </div>
           </div>
@@ -149,50 +192,55 @@ export default function AestheticAnalysis({
 
             <h3>
               {hasMultipleDirections
-                ? "This item may fit more than one aesthetic"
+                ? "Detected aesthetic pool"
                 : "Recommended aesthetic direction"}
             </h3>
 
             <p>
               {hasMultipleDirections
-                ? "Choose which aesthetic direction you want the outfit recommendations to follow."
-                : "The model found one clear style direction for the recommendations."}
+                ? "The model detected multiple possible aesthetics. The system uses these selected styles as the recommendation pool and ranks matching items with CLIP similarity."
+                : "The model found one selected aesthetic for the recommendation pool."}
             </p>
           </div>
 
           <div className={styles.directionOptions}>
-            {recommendationGroups.map((group, index) => (
+            {styleOptions.map((option, index) => (
               <button
-                key={group.style}
+                key={option.style}
                 type="button"
                 onClick={() => onSelectStyle(index)}
                 className={`${styles.directionOption} ${
-                  selectedStyleIndex === index ? styles.active : ""
+                  safeSelectedStyleIndex === index ? styles.active : ""
                 }`}
               >
                 <div>
                   <span className={styles.directionName}>
-                    {formatLabel(group.style)}
+                    {formatLabel(option.style)}
                   </span>
 
                   <span className={styles.directionReason}>
                     {index === 0
-                      ? "Primary direction"
-                      : "Alternative direction"}
+                      ? "Primary selected aesthetic"
+                      : "Also selected"}
                   </span>
                 </div>
 
                 <span className={styles.directionConfidence}>
-                  {formatConfidence(group.confidence)}
+                  {formatConfidence(option.confidence)}
                 </span>
               </button>
             ))}
           </div>
 
-          {activeGroup && (
+          {styleOptions.length > 0 && (
             <p className={styles.activeDirectionNote}>
-              Showing recommendations for the{" "}
-              <strong>{formatLabel(activeGroup.style)}</strong> direction.
+              Recommendation pool:{" "}
+              <strong>
+                {styleOptions
+                  .map((option) => formatLabel(option.style))
+                  .join(" + ")}
+              </strong>
+              . Items are ranked with CLIP visual similarity.
             </p>
           )}
         </div>

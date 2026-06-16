@@ -4,6 +4,11 @@ export type RecommendationItem = {
   brand: string;
   image_url: string;
   score: number;
+
+  // New backend fields
+  style?: string;
+  filename?: string;
+  clip_similarity?: number;
 };
 
 export type OutfitRecommendation = {
@@ -19,6 +24,7 @@ export type StyleCandidate = {
 
 export type RecommendationGroup = {
   style: string;
+  styles?: string[];
   confidence: number;
   reason: string;
   outfits: OutfitRecommendation[];
@@ -27,16 +33,38 @@ export type RecommendationGroup = {
 
 export type StyleMode = "single_style" | "multi_style";
 
+export type RecommendationAnalysis = {
+  predicted_type: string;
+  type_confidence: number;
+  main_style: string;
+  predicted_styles: string[];
+  style_scores: Record<string, number>;
+  style_threshold: number;
+  used_top1_fallback: boolean;
+  style_model_mode: string;
+  recommendation_strategy: string;
+};
+
 export type RecommendationResponse = {
   predicted_style: string;
+  main_style?: string;
   style_confidence: number;
 
   style_probabilities: Record<string, number>;
   style_candidates: StyleCandidate[];
   style_mode: StyleMode;
 
+  // New multi-label fields
+  predicted_styles?: string[];
+  style_scores?: Record<string, number>;
+  style_threshold?: number;
+  used_top1_fallback?: boolean;
+
   predicted_type: string;
   type_confidence: number;
+
+  analysis?: RecommendationAnalysis;
+
   reliability: string;
   styling_notes: string;
 
@@ -96,12 +124,18 @@ export async function replaceRecommendationItem(
   targetType: string,
   predictedStyle: string,
   excludeImageUrls: string[],
+  predictedStyles?: string[],
 ): Promise<ReplacementItemResponse> {
   const formData = new FormData();
 
   formData.append("file", file);
   formData.append("target_type", targetType);
   formData.append("predicted_style", predictedStyle);
+
+  if (predictedStyles && predictedStyles.length > 0) {
+    formData.append("predicted_styles", JSON.stringify(predictedStyles));
+  }
+
   formData.append("exclude_image_urls", JSON.stringify(excludeImageUrls));
 
   const response = await fetch(

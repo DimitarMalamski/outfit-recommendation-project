@@ -128,9 +128,13 @@ export default function RunwayAIStylist() {
       result.recommendation_groups?.[selectedStyleIndex] ??
       result.recommendation_groups?.[0];
 
-    const activeStyle = activeGroup?.style ?? result.predicted_style;
+    const activeStyle = result.analysis?.main_style ?? result.predicted_style;
 
-    const itemKey = `${activeStyle}-${outfitIndex}-${itemIndex}`;
+    const activeStylePool = result.analysis?.predicted_styles ??
+      result.predicted_styles ??
+      activeGroup?.styles ?? [activeStyle];
+
+    const itemKey = `${outfitIndex}-${itemIndex}`;
 
     const currentOutfits = activeGroup?.outfits?.length
       ? activeGroup.outfits
@@ -159,6 +163,7 @@ export default function RunwayAIStylist() {
         itemType,
         activeStyle,
         excludeImageUrls,
+        activeStylePool,
       );
 
       const newItem = data.item;

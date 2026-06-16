@@ -17,6 +17,7 @@ from src.clip_service import load_clip_model
 ALLOWED_IMAGE_TYPES = {
     "image/jpeg",
     "image/png",
+    "image/webp",
 }
 
 MAX_IMAGE_SIZE_BYTES = 8 * 1024 * 1024
@@ -36,7 +37,11 @@ app.mount(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:4000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -150,20 +155,35 @@ def apply_clip_type_fallback(prediction_result, clip_validation):
 
     return prediction_result
 
+def create_analysis_response(prediction_result):
+    return {
+        "predicted_type": prediction_result["predicted_type"],
+        "type_confidence": prediction_result["type_confidence"],
+        "main_style": prediction_result["main_style"],
+        "predicted_styles": prediction_result["predicted_styles"],
+        "style_scores": prediction_result["style_scores"],
+        "style_threshold": prediction_result["style_threshold"],
+        "used_top1_fallback": prediction_result["used_top1_fallback"],
+        "style_model_mode": "multi_label_sigmoid",
+        "recommendation_strategy": "multi_label_style_filter_with_clip_ranking",
+    }
+
 @app.post("/recommend")
 async def recommend(file: UploadFile = File(...)):
     image = await read_validated_image(file)
 
-    prediction_result = predict_image(image)
-    validate_supported_garment_prediction(prediction_result)
-
     clip_validation = validate_clip_supported_garment(image)
+
+    prediction_result = predict_image(image)
     prediction_result = apply_clip_type_fallback(prediction_result, clip_validation)
+
+    validate_supported_garment_prediction(prediction_result)
 
     recommendation_result = recommend_outfit(prediction_result, image)
 
     return {
         **prediction_result,
+        "analysis": create_analysis_response(prediction_result),
         "reliability": calculate_reliability(prediction_result),
         "styling_notes": create_styling_notes(prediction_result),
         "recommendations": recommendation_result["recommendations"],
@@ -171,23 +191,56 @@ async def recommend(file: UploadFile = File(...)):
         "recommendation_groups": recommendation_result["recommendation_groups"],
     }
 
+def parse_form_list(value: str):
+    if value is None:
+        return []
+
+    value = value.strip()
+
+    if not value:
+        return []
+
+    try:
+        parsed = json.loads(value)
+
+        if isinstance(parsed, list):
+            return [
+                str(item).strip()
+                for item in parsed
+                if str(item).strip()
+            ]
+
+        if isinstance(parsed, str):
+            return [parsed.strip()]
+
+    except json.JSONDecodeError:
+        pass
+
+    cleaned_value = value.strip("[]")
+
+    return [
+        item.strip().strip("'").strip('"')
+        for item in cleaned_value.split(",")
+        if item.strip().strip("'").strip('"')
+    ]
+
 @app.post("/recommend/replace-item")
 async def replace_item(
     file: UploadFile = File(...),
     target_type: str = Form(...),
     predicted_style: str = Form(...),
+    predicted_styles: str = Form(None),
     exclude_image_urls: str = Form("[]"),
 ):
     image = await read_validated_image(file)
 
-    try:
-        excluded_urls = json.loads(exclude_image_urls)
-    except json.JSONDecodeError:
-        excluded_urls = []
+    excluded_urls = parse_form_list(exclude_image_urls)
+
+    style_pool = predicted_styles if predicted_styles else predicted_style
 
     replacement_item = recommend_replacement_item(
         target_type=target_type,
-        predicted_style=predicted_style,
+        predicted_style=style_pool,
         input_image=image,
         exclude_image_urls=excluded_urls,
     )
@@ -206,6 +259,23 @@ async def replace_item(
 def calculate_reliability(prediction_result):
     style_conf = prediction_result["style_confidence"]
     type_conf = prediction_result["type_confidence"]
+
+    style_threshold = prediction_result.get("style_threshold")
+    used_top1_fallback = prediction_result.get("used_top1_fallback", False)
+
+    is_multilabel_style_result = style_threshold is not None
+
+    if is_multilabel_style_result:
+        if used_top1_fallback:
+            return "low"
+
+        if type_conf >= 0.80 and style_conf >= 0.60:
+            return "high"
+
+        if type_conf >= 0.60 and style_conf >= style_threshold:
+            return "medium"
+
+        return "low"
 
     if style_conf >= 0.80 and type_conf >= 0.80:
         return "high"
@@ -235,28 +305,36 @@ def create_styling_notes(prediction_result):
         style_note = (
             f"The uploaded item was classified mainly as {style}, "
             f"but the style confidence is not high enough to treat it as only one aesthetic. "
-            f"The system also found possible alternative aesthetic direction(s): {alternatives_text}. "
-            "Because fashion items can fit multiple aesthetics, recommendations are shown for each possible direction. "
+            f"The system also detected possible alternative aesthetic direction(s): {alternatives_text}. "
+            "Because fashion items can fit multiple aesthetics, the recommendation system uses all selected styles as candidates. "
         )
     else:
         style_note = (
             f"The uploaded item was classified as {style}. "
         )
 
-    if style_conf < 0.60 or type_conf < 0.60:
+    reliability = calculate_reliability(prediction_result)
+
+    if reliability == "high":
         confidence_note = (
-            "Because one or both predictions are below the confidence threshold, "
-            "this outfit should be treated as a suggested prototype result rather than a fully reliable recommendation."
+            "The type prediction is strong and the main style score is high for the multi-label setup, "
+            "so the recommendation is considered highly reliable."
+        )
+    elif reliability == "medium":
+        confidence_note = (
+            "The type prediction is strong and the selected style passed the multi-label threshold, "
+            "so the recommendation is considered moderately reliable."
         )
     else:
         confidence_note = (
-            "Both predictions are above the confidence threshold, so the recommendation is considered more reliable."
+            "Because the style selection or type prediction is uncertain, "
+            "this outfit should be treated as a suggested prototype result rather than a fully reliable recommendation."
         )
 
     return (
         f"{style_note}"
         f"The item was detected as a {item_type}. "
-        "The system selected catalogue items from the same predicted aesthetic direction, "
+        "The system selected catalogue items from the predicted multi-label aesthetic pool, "
         "excluded the uploaded item type, and ranked candidates using CLIP-based visual similarity. "
         f"{confidence_note}"
     )

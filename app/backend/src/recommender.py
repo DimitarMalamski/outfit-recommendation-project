@@ -1,3 +1,4 @@
+import json
 import torch
 
 from src.clip_service import encode_image
@@ -10,16 +11,10 @@ _catalogue_records = None
 def recommend_outfit(prediction_result, input_image=None):
     predicted_type = prediction_result["predicted_type"]
 
-    style_candidates = prediction_result.get("style_candidates")
+    predicted_styles = prediction_result.get("predicted_styles")
 
-    if not style_candidates:
-        style_candidates = [
-            {
-                "style": prediction_result["predicted_style"],
-                "confidence": prediction_result["style_confidence"],
-                "reason": "Most likely aesthetic",
-            }
-        ]
+    if not predicted_styles:
+        predicted_styles = [prediction_result["predicted_style"]]
 
     if input_image is None:
         return {
@@ -31,47 +26,42 @@ def recommend_outfit(prediction_result, input_image=None):
     input_embedding = encode_image(input_image).squeeze(0)
     records = _load_catalogue_records()
 
-    recommendation_groups = []
+    candidates_by_type = {}
 
-    for style_candidate in style_candidates:
-        style = style_candidate["style"]
+    for clothing_type in TYPE_CLASSES:
+        if clothing_type == predicted_type:
+            continue
 
-        candidates_by_type = {}
+        candidates = [
+            record
+            for record in records
+            if record["style"] in predicted_styles
+            and record["type"] == clothing_type
+        ]
 
-        for clothing_type in TYPE_CLASSES:
-            if clothing_type == predicted_type:
-                continue
+        if not candidates:
+            continue
 
-            candidates = [
-                record
-                for record in records
-                if record["style"] == style and record["type"] == clothing_type
-            ]
+        ranked_candidates = _rank_candidates(input_embedding, candidates)
+        candidates_by_type[clothing_type] = ranked_candidates[:3]
 
-            if not candidates:
-                continue
+    outfits = _build_outfits(candidates_by_type)
 
-            ranked_candidates = _rank_candidates(input_embedding, candidates)
-            candidates_by_type[clothing_type] = ranked_candidates[:3]
-
-        outfits = _build_outfits(style, candidates_by_type)
-
-        recommendation_groups.append(
-            {
-                "style": style,
-                "confidence": style_candidate.get("confidence"),
-                "reason": style_candidate.get("reason"),
-                "outfits": outfits,
-                "recommendations": outfits[0]["items"] if outfits else [],
-            }
-        )
-
-    primary_group = recommendation_groups[0] if recommendation_groups else None
+    recommendations = outfits[0]["items"] if outfits else []
 
     return {
-        "recommendations": primary_group["recommendations"] if primary_group else [],
-        "outfits": primary_group["outfits"] if primary_group else [],
-        "recommendation_groups": recommendation_groups,
+        "recommendations": recommendations,
+        "outfits": outfits,
+        "recommendation_groups": [
+            {
+                "style": prediction_result.get("predicted_style"),
+                "styles": predicted_styles,
+                "confidence": prediction_result.get("style_confidence"),
+                "reason": "Filtered by all predicted multi-label styles, then ranked with CLIP similarity",
+                "outfits": outfits,
+                "recommendations": recommendations,
+            }
+        ],
     }
 
 def recommend_replacement_item(
@@ -95,10 +85,12 @@ def recommend_replacement_item(
         cleaned_path = image_url.replace("/catalogue/", "")
         excluded_paths.add(cleaned_path)
 
+    target_styles = _parse_style_pool(predicted_style)
+
     candidates = [
         record
         for record in records
-        if record["style"] == predicted_style
+        if record["style"] in target_styles
         and record["type"] == target_type
         and record["path"] not in excluded_paths
     ]
@@ -112,10 +104,13 @@ def recommend_replacement_item(
 
     return {
         "type": target_type,
-        "name": _format_item_name(predicted_style, target_type),
+        "style": record["style"],
+        "filename": record["path"].split("/")[-1],
+        "name": _format_item_name(record["style"], target_type),
         "brand": "Catalogue Item",
         "image_url": "/catalogue/" + record["path"],
         "score": round(float(score), 4),
+        "clip_similarity": round(float(score), 4),
     }
 
 
@@ -152,7 +147,7 @@ def _rank_candidates(input_embedding, candidates):
     return ranked
 
 
-def _build_outfits(predicted_style, candidates_by_type):
+def _build_outfits(candidates_by_type):
     outfits = []
 
     for outfit_index in range(3):
@@ -167,10 +162,13 @@ def _build_outfits(predicted_style, candidates_by_type):
             outfit_items.append(
                 {
                     "type": clothing_type,
-                    "name": _format_item_name(predicted_style, clothing_type),
+                    "style": record["style"],
+                    "filename": record["path"].split("/")[-1],
+                    "name": _format_item_name(record["style"], clothing_type),
                     "brand": "Catalogue Item",
                     "image_url": "/catalogue/" + record["path"],
                     "score": round(float(score), 4),
+                    "clip_similarity": round(float(score), 4),
                 }
             )
 
@@ -190,3 +188,43 @@ def _format_item_name(style: str, clothing_type: str):
     readable_type = clothing_type.replace("_", " ").title()
 
     return f"{readable_style} {readable_type}"
+
+def _parse_style_pool(style_input):
+    if isinstance(style_input, list):
+        return style_input
+
+    if style_input is None:
+        return []
+
+    style_text = str(style_input).strip()
+
+    if not style_text:
+        return []
+
+    try:
+        parsed = json.loads(style_text)
+
+        if isinstance(parsed, list):
+            return [
+                str(style).strip()
+                for style in parsed
+                if str(style).strip()
+            ]
+    except json.JSONDecodeError:
+        pass
+
+    if "+" in style_text:
+        return [
+            style.strip()
+            for style in style_text.split("+")
+            if style.strip()
+        ]
+
+    if "," in style_text:
+        return [
+            style.strip()
+            for style in style_text.split(",")
+            if style.strip()
+        ]
+
+    return [style_text]
