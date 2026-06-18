@@ -945,26 +945,17 @@ This final architecture is stronger than the previous version because it combine
 
 Overall, the project demonstrates that classification and embedding retrieval can support a basic fashion recommendation system. The final prototype is not a complete fashion stylist yet, because it does not fully understand colour matching, fit, season, occasion, or user preference. However, it provides a solid technical foundation and shows clear improvement through iterative experiments.
 
-## 26. Next Steps
+## 26. Future Improvements
 
-The next development steps are:
+The current prototype already integrates the selected final architecture into the web application: multi-label MobileNetV3 style classification, improved ResNet34 clothing type classification, CLIP-ranked recommendations, recommendation mode selection, and item replacement.
 
-1. Integrate the multi-label MobileNetV3 style model into the FastAPI backend.
+Future improvements could focus on:
 
-2. Replace single-style filtering with multi-label style filtering using threshold 0.35 and top-1 fallback.
-
-3. Replace random candidate selection with CLIP-ranked candidate selection in the recommendation endpoint.
-
-4. Keep the current dataset-improved type classifier, because it remains the strongest tested clothing type model.
-
-5. Cache CLIP embeddings for catalogue items so recommendations can be generated quickly without recalculating embeddings every request.
-
-6. Update the frontend so it can show multiple predicted styles instead of only one style.
-
-7. Show recommendation reliability clearly to the user, especially when the model predicts multiple possible styles.
-
-8. Add a larger user evaluation later to check whether real users also prefer the CLIP-ranked multi-style recommendations.
-
-9. Improve the recommendation system further by adding extra clothing attributes, such as colour, season, occasion, material, and fit.
-
-10. Keep the real-world test set separate from training data so future improvements can still be evaluated fairly.
+1. Conducting larger user testing with regular users and fashion-related users.
+2. Expanding the recommendation catalogue with more clothing items and styles.
+3. Adding extra fashion attributes such as colour, material, season, occasion, and fit.
+4. Improving model confidence calibration, because the system can still be confidently wrong.
+5. Adding personalization based on user preferences.
+6. Improving cold-start performance when the backend wakes up after inactivity.
+7. Using a vector database if the catalogue becomes much larger.
+8. Keeping the real-world test set separate so future model improvements can still be evaluated fairly.

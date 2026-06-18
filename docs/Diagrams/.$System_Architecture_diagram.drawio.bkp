@@ -1,0 +1,59 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="wNuCmT7OHMPJWkn3Q6uW">
+    <mxGraphModel dx="1586" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-10" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PMAOK6ORaOMUNa6HTcy6-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-1" parent="1" style="shape=actor;whiteSpace=wrap;html=1;" value="User" vertex="1">
+          <mxGeometry height="100" width="70" x="30" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-11" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PMAOK6ORaOMUNa6HTcy6-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-17" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="PMAOK6ORaOMUNa6HTcy6-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="170" />
+              <mxPoint x="150" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="React Frontend&lt;div&gt;- Upload image&lt;/div&gt;&lt;div&gt;- Show garment profile&lt;br&gt;- Select recommendation mode&lt;br&gt;- Refresh items&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="160" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-12" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PMAOK6ORaOMUNa6HTcy6-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="FastAPI Backend&lt;br&gt;- Validate upload&lt;br&gt;- Run prediction endpoints&lt;br&gt;- Generate recommendations" vertex="1">
+          <mxGeometry height="130" width="210" x="425" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-13" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PMAOK6ORaOMUNa6HTcy6-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="AI Pipeline&lt;br&gt;- MobileNetV3 style model&lt;br&gt;- ResNet34 type model&lt;br&gt;- CLIP embeddings" vertex="1">
+          <mxGeometry height="130" width="210" x="690" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-15" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PMAOK6ORaOMUNa6HTcy6-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Recommendation Catalogue&lt;br&gt;- Clothing images&lt;br&gt;- Style/type labels&lt;br&gt;- Precomputed embeddings" vertex="1">
+          <mxGeometry height="130" width="210" x="950" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-16" edge="1" parent="1" source="PMAOK6ORaOMUNa6HTcy6-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="PMAOK6ORaOMUNa6HTcy6-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1335" y="280" />
+              <mxPoint x="265" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PMAOK6ORaOMUNa6HTcy6-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Generated Result&lt;br&gt;- Garment type&lt;br&gt;- Selected style pool&lt;br&gt;- Outfit recommendations&lt;br&gt;- Reliability/explanation info" vertex="1">
+          <mxGeometry height="130" width="210" x="1230" y="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
