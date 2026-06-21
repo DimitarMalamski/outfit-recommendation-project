@@ -20,10 +20,6 @@ dataset/split/
 dataset/split_type/
 dataset/external_type_test/
 
-models/
-*.pth
-*.pt
-
 outputs/
 runs/
 checkpoints/
