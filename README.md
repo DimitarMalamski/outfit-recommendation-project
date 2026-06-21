@@ -103,6 +103,29 @@ The main results are summarized in the Development Summary report, including:
 - recommendation quality comparisons
 - final model selection reasoning
 
+## Models
+
+The `models/` folder contains the trained model files used during experimentation and in the final prototype.
+
+The final prototype uses:
+
+- **Multi-label MobileNetV3 Large** for style prediction
+- **Improved ResNet34** for clothing type prediction
+- **CLIP catalogue embeddings** for recommendation ranking
+
+The model files are included in the repository so the selected final models can be inspected together with the notebooks, results, and documentation.
+
+The final selected architecture is:
+
+```text
+multi-label MobileNetV3 Large style classification
++ improved ResNet34 clothing type classification
++ threshold 0.35 with top-1 fallback
++ CLIP image similarity ranking
+```
+
+The model training process, model comparison, and model selection reasoning are explained in the **Development Summary** report.
+
 ## Application
 
 The application source code is stored in the `app/` folder.
