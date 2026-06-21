@@ -420,27 +420,45 @@
 }
 
 .probabilityTrack {
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.13);
   overflow: hidden;
+  border-radius: 999px;
 }
 
 .probabilityFill {
-  height: 100%;
-  background: var(--luxury-accent);
+  display: block;
+  width: 0;
+  height: 4px;
+  min-width: 8px;
+  background: var(--probability-color, var(--luxury-accent));
+  border-radius: 999px;
   transition: width 1s ease;
 }
 
-.probabilityRow:nth-child(even) .probabilityFill {
-  background: var(--luxury-primary);
+.probabilityRowHigh {
+  --probability-color: #d6b66d;
+}
+
+.probabilityRowMedium {
+  --probability-color: #9f824f;
+}
+
+.probabilityRowLow {
+  --probability-color: #b3344a;
+}
+
+.probabilityRowVeryLow {
+  --probability-color: #6f2230;
 }
 
 .probabilityRow strong {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 300;
   text-align: right;
-  color: var(--luxury-accent);
+  color: var(--probability-color, var(--luxury-accent));
 }
 
 .explanationDisclosure {

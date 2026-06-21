@@ -27,6 +27,16 @@ function formatConfidence(value: number) {
   return `${Math.round(value * 100)}%`;
 }
 
+function getProbabilityToneClass(value: number) {
+  const percentage = value * 100;
+
+  if (percentage >= 60) return styles.probabilityRowHigh;
+  if (percentage >= 35) return styles.probabilityRowMedium;
+  if (percentage >= 20) return styles.probabilityRowLow;
+
+  return styles.probabilityRowVeryLow;
+}
+
 function getReliabilityLabel(reliability: string) {
   return reliability.charAt(0).toUpperCase() + reliability.slice(1);
 }
@@ -389,7 +399,10 @@ export default function AestheticAnalysis({
 
             <div className={styles.probabilityList}>
               {styleProbabilityEntries.map(([style, value]) => (
-                <div key={style} className={styles.probabilityRow}>
+                <div
+                  key={style}
+                  className={`${styles.probabilityRow} ${getProbabilityToneClass(value)}`}
+                >
                   <span className={styles.probabilityName}>
                     {formatLabel(style)}
                   </span>
